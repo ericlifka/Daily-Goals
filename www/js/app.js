@@ -6,18 +6,14 @@
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      return {
-        name: localStorage.getItem('goalName')
-      };
+      return localStorage.getItem('goals') || [];
     }
   });
 
-  App.IndexController = Ember.ObjectController.extend({
-    actions: {
-      save: function() {
-        return localStorage.setItem('goalName', this.get('goalName'));
-      }
-    }
+  App.IndexController = Ember.ArrayController.extend({
+    hasGoals: Ember.computed('length', function() {
+      return 0 < this.get('length');
+    })
   });
 
 }).call(this);

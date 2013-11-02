@@ -1,6 +1,5 @@
-
-{{input type="text" value=goalName class="form-control" placeholder="Goal"}}
-<button type="button" class="btn btn-default" {{action save}}>Save</button>
-<div>
-    {{name}}
-</div>
+{{#if hasGoals}}
+    You have goals
+{{else}}
+    You don't have any goals
+{{/if}}
