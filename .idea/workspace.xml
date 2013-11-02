@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/application.hbs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/index.hbs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/templates.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/templates/templates.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/www/templates/application.hbs" afterPath="$PROJECT_DIR$/templates/application.hbs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/www/templates/index.hbs" afterPath="$PROJECT_DIR$/templates/index.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sh" afterPath="$PROJECT_DIR$/build.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" afterPath="$PROJECT_DIR$/platforms/ios/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="daily-goals.iws" />
@@ -47,8 +38,10 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.35123968" vertical-offset="0" max-vertical-offset="726">
-              <folding />
+            <state line="6" column="0" selection-start="144" selection-end="144" vertical-scroll-proportion="0.12396694" vertical-offset="0" max-vertical-offset="726">
+              <folding>
+                <marker date="1383356240000" expanded="true" signature="35:143" placeholder="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,7 +75,6 @@
       <list>
         <option value="$PROJECT_DIR$/www/templates/application.hbs" />
         <option value="$PROJECT_DIR$/www/templates/index.hbs" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/compileHandlebars.js" />
         <option value="$PROJECT_DIR$/build/ember-precompile/index.js" />
         <option value="$PROJECT_DIR$/build/ember-precompile/render.js" />
@@ -95,6 +87,7 @@
         <option value="$PROJECT_DIR$/node_modules/ember-precompile/src/context.js" />
         <option value="$PROJECT_DIR$/build.sh" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
   </component>
@@ -417,8 +410,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.35123968" vertical-offset="0" max-vertical-offset="726">
-          <folding />
+        <state line="6" column="0" selection-start="144" selection-end="144" vertical-scroll-proportion="0.12396694" vertical-offset="0" max-vertical-offset="726">
+          <folding>
+            <marker date="1383356240000" expanded="true" signature="35:143" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
