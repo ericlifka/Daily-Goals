@@ -1,3 +1,14 @@
+.new-goal {
+  text-align: right;
+}
+.new-goal a {
+  font-size: 28px;
+  line-height: 70%;
+  padding-right: 10px;
+}
+.new-goal a:active {
+  text-decoration: underline;
+}
 h3 {
   text-align: center;
 }

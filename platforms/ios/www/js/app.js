@@ -2,7 +2,9 @@
 (function() {
   window.App = Ember.Application.create();
 
-  App.Router.map(function() {});
+  App.Router.map(function() {
+    return this.route('new');
+  });
 
   App.ApplicationController = Ember.Controller.extend({
     days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],

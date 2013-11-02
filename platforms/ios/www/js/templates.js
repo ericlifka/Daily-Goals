@@ -33,6 +33,7 @@ function program3(depth0,data) {
   data.buffer.push("\n    You don't have any goals\n");
   }
 
+  data.buffer.push("<div class=\"new-goal\"><a href=\"#/new\">+</a></div>\n");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "hasGoals", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});

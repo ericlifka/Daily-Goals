@@ -29,4 +29,5 @@ App.ApplicationController = Ember.Controller.extend
         weekday = this.days[today.getDay()]
         month = this.months[today.getMonth()]
         day = today.getDate()
+
         "#{weekday} #{month} #{day}"
