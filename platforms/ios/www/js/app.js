@@ -2,17 +2,21 @@
 (function() {
   window.App = Ember.Application.create();
 
-  App.deferReadiness();
-
-  document.addEventListener("deviceready", function() {
-    return App.advanceReadiness();
-  });
-
   App.Router.map(function() {});
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      return ['red', 'yellow', 'blue'];
+      return {
+        name: localStorage.getItem('goalName')
+      };
+    }
+  });
+
+  App.IndexController = Ember.ObjectController.extend({
+    actions: {
+      save: function() {
+        return localStorage.setItem('goalName', this.get('goalName'));
+      }
     }
   });
 

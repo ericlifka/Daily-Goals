@@ -1,3 +1,8 @@
 App.IndexRoute = Ember.Route.extend
     model: ->
-        ['red', 'yellow', 'blue']
+        name: localStorage.getItem 'goalName'
+
+App.IndexController = Ember.ObjectController.extend
+    actions:
+        save: ->
+            localStorage.setItem 'goalName', this.get 'goalName'

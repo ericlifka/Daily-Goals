@@ -1,5 +1,6 @@
-<ul>
-    {{#each item in model}}
-        <li>{{item}}</li>
-    {{/each}}
-</ul>
+
+{{input type="text" value=goalName class="form-control" placeholder="Goal"}}
+<button type="button" class="btn btn-default" {{action save}}>Save</button>
+<div>
+    {{name}}
+</div>
