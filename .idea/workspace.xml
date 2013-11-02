@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/vendor/ember-1.1.2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/vendor/handlebars-1.0.0.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/application.hbs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/index.hbs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/templates.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/templates/templates.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/www/templates/application.hbs" afterPath="$PROJECT_DIR$/templates/application.hbs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/www/templates/index.hbs" afterPath="$PROJECT_DIR$/templates/index.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ember-precompile/src/context.js" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/src/context.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-precompile" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-precompile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-render" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-render" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ember-precompile/src/index.js" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ember-precompile/src/render.js" afterPath="$PROJECT_DIR$/node_modules/ember-precompile/src/render.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/templates/templates.js" afterPath="$PROJECT_DIR$/platforms/ios/www/templates/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sh" afterPath="$PROJECT_DIR$/build.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" afterPath="$PROJECT_DIR$/platforms/ios/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="daily-goals.iws" />
@@ -38,73 +38,26 @@
       <file leaf-file-name="build.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+            <state line="3" column="0" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="context.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/context.js">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="52" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1290">
+            <state line="17" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.35123968" vertical-offset="0" max-vertical-offset="726">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="templates.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/templates.js">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+            <state line="38" column="22" selection-start="1641" selection-end="1641" vertical-scroll-proportion="-23.75" vertical-offset="0" max-vertical-offset="705">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ember-precompile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-precompile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="7" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ember-render" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-render">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="54" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ember-1.1.2.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/vendor/ember-1.1.2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18694" column="22" selection-start="529112" selection-end="529130" vertical-scroll-proportion="0.6227209" vertical-offset="279966" max-vertical-offset="555075">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="render.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/render.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="54" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -129,19 +82,19 @@
       <list>
         <option value="$PROJECT_DIR$/www/templates/application.hbs" />
         <option value="$PROJECT_DIR$/www/templates/index.hbs" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/compileHandlebars.js" />
         <option value="$PROJECT_DIR$/build/ember-precompile/index.js" />
         <option value="$PROJECT_DIR$/build/ember-precompile/render.js" />
         <option value="$PROJECT_DIR$/build/ember-precompile.js" />
         <option value="$PROJECT_DIR$/build/ember-precompile/context.js" />
-        <option value="$PROJECT_DIR$/build.sh" />
         <option value="$PROJECT_DIR$/node_modules/ember-precompile/src/index.js" />
         <option value="$PROJECT_DIR$/node_modules/ember-precompile/src/render.js" />
         <option value="$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-precompile" />
         <option value="$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-render" />
         <option value="$PROJECT_DIR$/node_modules/ember-precompile/src/context.js" />
+        <option value="$PROJECT_DIR$/build.sh" />
+        <option value="$PROJECT_DIR$/www/index.html" />
       </list>
     </option>
   </component>
@@ -222,24 +175,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -272,91 +207,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ember-precompile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ember-precompile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ember-precompile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ember-precompile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -372,6 +223,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/node_modules/ember-precompile/vendor" />
       <recent name="$PROJECT_DIR$/www/libs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
@@ -450,30 +304,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.35123968" vertical-offset="0" max-vertical-offset="726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/application.hbs">
+    <entry file="file://$PROJECT_DIR$/templates/application.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="0" selection-start="41" selection-end="41" vertical-scroll-proportion="0.06410257" vertical-offset="0" max-vertical-offset="702">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/index.hbs">
+    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="702">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="35" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.8258346" vertical-offset="1" max-vertical-offset="705">
           <folding />
         </state>
       </provider>
@@ -510,60 +350,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.sh">
+    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/vendor/ember-1.1.2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/render.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="54" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-precompile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="7" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+        <state line="18682" column="34" selection-start="528695" selection-end="528695" vertical-scroll-proportion="0.37026647" vertical-offset="279966" max-vertical-offset="555075">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-render">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="54" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+        <state line="45" column="54" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.92975205" vertical-offset="0" max-vertical-offset="765">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/templates.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/bin/ember-precompile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="713">
+        <state line="38" column="7" selection-start="954" selection-end="954" vertical-scroll-proportion="0.78512394" vertical-offset="0" max-vertical-offset="726">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/context.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="52" selection-start="795" selection-end="795" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1290">
+        <state line="26" column="52" selection-start="795" selection-end="795" vertical-scroll-proportion="0.35123968" vertical-offset="135" max-vertical-offset="1290">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/vendor/ember-1.1.2.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18694" column="22" selection-start="529112" selection-end="529130" vertical-scroll-proportion="0.6227209" vertical-offset="279966" max-vertical-offset="555075">
+        <state line="9" column="0" selection-start="263" selection-end="263" vertical-scroll-proportion="0.18595041" vertical-offset="0" max-vertical-offset="726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ember-precompile/src/render.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="54" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.8471074" vertical-offset="0" max-vertical-offset="726">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="22" selection-start="1641" selection-end="1641" vertical-scroll-proportion="-23.75" vertical-offset="0" max-vertical-offset="705">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/templates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="1800" selection-end="1800" vertical-scroll-proportion="0.82047683" vertical-offset="0" max-vertical-offset="713">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.35123968" vertical-offset="0" max-vertical-offset="726">
           <folding />
         </state>
       </provider>
