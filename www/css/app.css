@@ -5,6 +5,7 @@ body {
 .title-bar {
   text-align: center;
   font-size: 20px;
+  margin-bottom: 10px;
 }
 .nav-back {
   position: absolute;
@@ -16,4 +17,7 @@ body {
 }
 .goal-section {
   font-size: 16px;
+}
+.form-control {
+  margin-bottom: 10px;
 }

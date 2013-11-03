@@ -2,16 +2,19 @@
     {{today}}
 </div>
 
-<div class="goal-section">
-    <div class="title">
-        Today's Goals
-        {{#link-to "new" class="nav-forward"}}new{{/link-to}}
+{{#unless hasGoals}}
+    <div class="goal-section none">
+        <div class="title">
+            You don't have any goals yet
+            {{#link-to "new" class="nav-forward"}}new{{/link-to}}
+        </div>
     </div>
-
-</div>
-
-{{#if hasGoals}}
-    You have goals
 {{else}}
-    You don't have any goals
-{{/if}}
+    <div class="goal-section today">
+        <div class="title">
+            Today's Goals
+            {{#link-to "new" class="nav-forward"}}new{{/link-to}}
+        </div>
+
+    </div>
+{{/unless}}
