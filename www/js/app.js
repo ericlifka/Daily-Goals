@@ -29,7 +29,21 @@
   });
 
   App.NewController = Ember.Controller.extend({
-    frequencyOptions: ['Every Day', 'X Days a Week', 'X Days a Month']
+    frequencyOptions: ['Every Day', 'X Days a Week', 'X Days a Month'],
+    daysPerPeriodSelection: Ember.computed('goalFrequency', function() {
+      var selection;
+      selection = this.get('goalFrequency');
+      return selection === 'X Days a Week' || selection === 'X Days a Month';
+    }),
+    periodType: Ember.computed('goalFrequency', function() {
+      var selection;
+      selection = this.get('goalFrequency');
+      if (selection === 'X Days a Month') {
+        return 'month';
+      } else {
+        return 'week';
+      }
+    })
   });
 
 }).call(this);

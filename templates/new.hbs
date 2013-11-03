@@ -9,6 +9,14 @@
     {{view Ember.Select
             content=frequencyOptions
             value=goalFrequency
-            prompt="Frequency for this goal"
             class="form-control"}}
+
+    {{#if daysPerPeriodSelection}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">How many times per {{periodType}}</label>
+            <div class="col-sm-10">
+                {{input value=daysPerPeriod placeholder="1" class="form-control"}}
+            </div>
+        </div>
+    {{/if}}
 </div>
