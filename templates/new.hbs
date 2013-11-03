@@ -6,17 +6,29 @@
 
 <div class="form-group">
     {{input value=goalName placeholder="Goal Name" class="form-control"}}
-    {{view Ember.Select
-            content=frequencyOptions
-            value=goalFrequency
-            class="form-control"}}
+    {{view Ember.Select content=frequencyOptions value=goalFrequency class="form-control"}}
 
     {{#if daysPerPeriodSelection}}
         <div class="form-group">
             <label class="col-sm-2 control-label">How many times per {{periodType}}</label>
+
             <div class="col-sm-10">
                 {{input value=daysPerPeriod placeholder="1" class="form-control"}}
             </div>
         </div>
     {{/if}}
+
+    <div class="checkbox">
+        <label>
+            {{view Ember.Checkbox checkedBinding="addNumericInput"}}
+            Add numeric value to goal
+        </label>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            {{view Ember.Checkbox checkedBinding="addNotesInput"}}
+            Add notes input section to goal
+        </label>
+    </div>
 </div>

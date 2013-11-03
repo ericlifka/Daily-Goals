@@ -82,7 +82,7 @@ function program3(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "periodType", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</label>\n            <div class=\"col-sm-10\">\n                ");
+  data.buffer.push("</label>\n\n            <div class=\"col-sm-10\">\n                ");
   hashContexts = {'value': depth0,'placeholder': depth0,'class': depth0};
   hashTypes = {'value': "ID",'placeholder': "STRING",'class': "STRING"};
   options = {hash:{
@@ -129,7 +129,19 @@ function program3(depth0,data) {
   hashContexts = {};
   stack2 = helpers['if'].call(depth0, "daysPerPeriodSelection", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n</div>\n");
+  data.buffer.push("\n\n    <div class=\"checkbox\">\n        <label>\n            ");
+  hashContexts = {'checkedBinding': depth0};
+  hashTypes = {'checkedBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{
+    'checkedBinding': ("addNumericInput")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n            Add numeric value to goal\n        </label>\n    </div>\n\n    <div class=\"checkbox\">\n        <label>\n            ");
+  hashContexts = {'checkedBinding': depth0};
+  hashTypes = {'checkedBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{
+    'checkedBinding': ("addNotesInput")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n            Add notes input section to goal\n        </label>\n    </div>\n</div>\n");
   return buffer;
   
 });

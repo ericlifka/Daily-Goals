@@ -18,6 +18,9 @@ body {
 .goal-section {
   font-size: 16px;
 }
-.form-control {
+.form-group .form-control {
   margin-bottom: 10px;
+}
+.form-group .control-label {
+  font-weight: normal;
 }
