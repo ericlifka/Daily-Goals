@@ -35,7 +35,6 @@ App.IndexController = Ember.ArrayController.extend
         day = today.getDate()
 
         "#{weekday} #{month} #{day}"
-        "Wednesday September 30"
 
 
     hasGoals: Ember.computed 'length', ->

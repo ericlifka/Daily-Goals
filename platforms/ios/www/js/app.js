@@ -21,8 +21,7 @@
       weekday = this.days[today.getDay()];
       month = this.months[today.getMonth()];
       day = today.getDate();
-      "" + weekday + " " + month + " " + day;
-      return "Wednesday September 30";
+      return "" + weekday + " " + month + " " + day;
     }),
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
