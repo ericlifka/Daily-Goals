@@ -18,8 +18,14 @@ body {
 .goal-section {
   font-size: 16px;
 }
-.form-group .form-control {
+.form-group .form-element {
   margin-bottom: 10px;
+}
+.form-group .checkbox {
+  margin-top: 20px;
+}
+.form-group .checkbox label {
+  padding-left: 10px;
 }
 .form-group .control-label {
   font-weight: normal;

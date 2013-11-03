@@ -12,3 +12,7 @@ App.NewController = Ember.Controller.extend
     periodType: Ember.computed 'goalFrequency', ->
         selection = this.get 'goalFrequency'
         if selection is 'X Days a Month' then 'month' else 'week'
+
+    actions:
+        save: ->
+            debugger

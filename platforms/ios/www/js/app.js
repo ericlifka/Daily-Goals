@@ -43,7 +43,12 @@
       } else {
         return 'week';
       }
-    })
+    }),
+    actions: {
+      save: function() {
+        debugger;
+      }
+    }
   });
 
 }).call(this);

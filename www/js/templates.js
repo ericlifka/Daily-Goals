@@ -83,12 +83,13 @@ function program3(depth0,data) {
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "periodType", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("</label>\n\n            <div class=\"col-sm-10\">\n                ");
-  hashContexts = {'value': depth0,'placeholder': depth0,'class': depth0};
-  hashTypes = {'value': "ID",'placeholder': "STRING",'class': "STRING"};
+  hashContexts = {'value': depth0,'placeholder': depth0,'pattern': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'placeholder': "STRING",'pattern': "STRING",'class': "STRING"};
   options = {hash:{
     'value': ("daysPerPeriod"),
     'placeholder': ("1"),
-    'class': ("form-control")
+    'pattern': ("\\d*"),
+    'class': ("form-control form-element")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n            </div>\n        </div>\n    ");
@@ -113,7 +114,7 @@ function program3(depth0,data) {
   options = {hash:{
     'value': ("goalName"),
     'placeholder': ("Goal Name"),
-    'class': ("form-control")
+    'class': ("form-control form-element")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n    ");
@@ -122,7 +123,7 @@ function program3(depth0,data) {
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
     'content': ("frequencyOptions"),
     'value': ("goalFrequency"),
-    'class': ("form-control")
+    'class': ("form-control form-element")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n\n    ");
   hashTypes = {};
@@ -130,6 +131,12 @@ function program3(depth0,data) {
   stack2 = helpers['if'].call(depth0, "daysPerPeriodSelection", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n\n    <div class=\"checkbox\">\n        <label>\n            ");
+  hashContexts = {'checkedBinding': depth0};
+  hashTypes = {'checkedBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{
+    'checkedBinding': ("excludeWeekends")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n            Exclude weekends\n        </label>\n    </div>\n\n    <div class=\"checkbox\">\n        <label>\n            ");
   hashContexts = {'checkedBinding': depth0};
   hashTypes = {'checkedBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{
