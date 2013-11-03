@@ -1,5 +1,25 @@
-@import "index";
+@body-padding: 10px;
 
-h3 {
+body {
+    padding: @body-padding;
+    padding-top: 20px;
+}
+
+.title-bar {
     text-align: center;
+    font-size: 20px;
+}
+
+.nav-back {
+    position: absolute;
+    left: @body-padding;
+}
+
+.nav-forward {
+    position: absolute;
+    right: @body-padding;
+}
+
+.goal-section {
+    font-size: 16px;
 }

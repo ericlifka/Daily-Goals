@@ -6,7 +6,13 @@
     return this.route('new');
   });
 
-  App.ApplicationController = Ember.Controller.extend({
+  App.IndexRoute = Ember.Route.extend({
+    model: function() {
+      return localStorage.getItem('goals') || [];
+    }
+  });
+
+  App.IndexController = Ember.ArrayController.extend({
     days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     today: Ember.computed(function() {
@@ -15,17 +21,9 @@
       weekday = this.days[today.getDay()];
       month = this.months[today.getMonth()];
       day = today.getDate();
-      return "" + weekday + " " + month + " " + day;
-    })
-  });
-
-  App.IndexRoute = Ember.Route.extend({
-    model: function() {
-      return localStorage.getItem('goals') || [];
-    }
-  });
-
-  App.IndexController = Ember.ArrayController.extend({
+      "" + weekday + " " + month + " " + day;
+      return "Wednesday September 30";
+    }),
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
     })

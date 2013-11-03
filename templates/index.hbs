@@ -1,4 +1,15 @@
-<div class="new-goal"><a href="#/new">+</a></div>
+<div class="title-bar">
+    {{today}}
+</div>
+
+<div class="goal-section">
+    <div class="title">
+        Today's Goals
+        {{#link-to "new" class="nav-forward"}}new{{/link-to}}
+    </div>
+
+</div>
+
 {{#if hasGoals}}
     You have goals
 {{else}}
