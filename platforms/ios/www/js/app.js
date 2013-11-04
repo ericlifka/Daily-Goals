@@ -10,64 +10,66 @@
 
   App.GoalModel = Ember.Object.extend();
 
-  App.GoalModel.reopenClass({
+  window.Data = {
     loadGoals: function() {
-      if (!this.get('initialized')) {
+      if (!this.initialized) {
         this.loadData();
       }
-      return this.get('goals');
+      return this.goalsAsArray();
     },
     getGoalsList: function() {
       return JSON.parse(localStorage.getItem('goals')) || [];
     },
     buildGoal: function(goalName) {
       var description, model;
-      description = JSON.parse(localStorage.getItem("goal." + goalName)) || {};
+      description = JSON.parse(localStorage.getItem("goals." + goalName)) || {};
       model = App.GoalModel.create(description);
-      this.set("goals." + description.name, model);
+      this.goals[description.name] = model;
       return model;
     },
     loadData: function() {
-      var goalName, goalNames, _i, _len;
-      goalNames = this.getGoalsList();
-      this.set('goalNames', goalNames);
-      this.set('goals', {});
-      for (_i = 0, _len = goalNames.length; _i < _len; _i++) {
-        goalName = goalNames[_i];
+      var goalName, _i, _len, _ref;
+      this.goalNames = this.getGoalsList();
+      this.goals = {};
+      _ref = this.goalNames;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        goalName = _ref[_i];
         this.buildGoal(goalName);
       }
-      return this.set('initialized', true);
+      return this.initialized = true;
     },
     saveGoal: function(description) {
       this.addModelName(description.name);
       return this.saveModel(description);
     },
     addModelName: function(name) {
-      var goalNames;
-      goalNames = this.get('goalNames');
-      if (__indexOf.call(goalNames, name) >= 0) {
-        throw "Duplicate goal: " + description.name;
+      if (__indexOf.call(this.goalNames, name) >= 0) {
+        throw "Duplicate goal: " + name;
       }
-      goalNames.pushObject(name);
-      return localStorage.setItem('goals', JSON.stringify(goalNames));
+      this.goalNames.push(name);
+      return localStorage.setItem('goals', JSON.stringify(this.goalNames));
     },
     saveModel: function(description) {
-      var keyPath, model;
+      var model;
       model = App.GoalModel.create(description);
-      keyPath = "goals." + description.name;
-      this.set(keyPath, model);
-      localStorage.setItem(keyPath, JSON.stringify(description));
+      this.goals[description.name] = model;
+      localStorage.setItem("goals." + description.name, JSON.stringify(description));
       return model;
+    },
+    goalsAsArray: function() {
+      return _.collect(this.goals, function(goal) {
+        return goal;
+      });
     }
-  });
+  };
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      return App.GoalModel.loadGoals();
+      return Data.loadGoals();
     }
   });
 
-  App.IndexController = Ember.ArrayController.extend({
+  App.IndexController = Ember.ObjectController.extend({
     days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     today: Ember.computed(function() {
@@ -119,7 +121,7 @@
     },
     actions: {
       save: function() {
-        return App.GoalModel.saveGoal({
+        return Data.saveGoal({
           name: this.get('goalName'),
           inputs: this.getGoalInputs(),
           frequency: this.getGoalFrequencyDescription()

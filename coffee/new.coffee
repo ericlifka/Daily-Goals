@@ -29,7 +29,7 @@ App.NewController = Ember.Controller.extend
 
     actions:
         save: ->
-            App.GoalModel.saveGoal
+            Data.saveGoal
                 name: @get 'goalName'
                 inputs: @getGoalInputs()
                 frequency: @getGoalFrequencyDescription()
