@@ -1,6 +1,6 @@
 App.IndexRoute = Ember.Route.extend
     model: ->
-        localStorage.getItem('goals') or []
+        App.GoalModel.loadGoals()
 
 App.IndexController = Ember.ArrayController.extend
     days: [
@@ -30,12 +30,12 @@ App.IndexController = Ember.ArrayController.extend
 
     today: Ember.computed ->
         today = new Date()
-        weekday = this.days[today.getDay()]
-        month = this.months[today.getMonth()]
+        weekday = @days[today.getDay()]
+        month = @months[today.getMonth()]
         day = today.getDate()
 
         "#{weekday} #{month} #{day}"
 
 
     hasGoals: Ember.computed 'length', ->
-        0 < this.get 'length'
+        0 < @get 'length'

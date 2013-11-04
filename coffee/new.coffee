@@ -6,13 +6,30 @@ App.NewController = Ember.Controller.extend
     ]
 
     daysPerPeriodSelection: Ember.computed 'goalFrequency', ->
-        selection = this.get 'goalFrequency'
+        selection = @get 'goalFrequency'
         selection is 'X Days a Week' or selection is 'X Days a Month'
 
     periodType: Ember.computed 'goalFrequency', ->
-        selection = this.get 'goalFrequency'
+        selection = @get 'goalFrequency'
         if selection is 'X Days a Month' then 'month' else 'week'
+
+    getGoalInputs: ->
+        inputs = ['checkbox']
+        if @get 'addNumericInput'
+            inputs.push 'integer'
+        if @get 'addNotesInput'
+            inputs.push 'string'
+
+        inputs
+
+    getGoalFrequencyDescription: ->
+        interval: @get 'goalFrequency'
+        daysPerPeriod: @get('daysPerPeriod') or 1
+        excludeWeekends: @get('excludeWeekends') or false
 
     actions:
         save: ->
-            debugger
+            App.GoalModel.saveGoal
+                name: @get 'goalName'
+                inputs: @getGoalInputs()
+                frequency: @getGoalFrequencyDescription()
