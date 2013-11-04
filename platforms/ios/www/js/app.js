@@ -12,10 +12,13 @@
 
   window.Data = {
     loadGoals: function() {
-      if (!this.initialized) {
-        this.loadData();
-      }
+      this.loadData();
       return this.goalsAsArray();
+    },
+    saveGoal: function(description) {
+      this.loadData();
+      this.addModelName(description.name);
+      return this.saveModel(description);
     },
     getGoalsList: function() {
       return JSON.parse(localStorage.getItem('goals')) || [];
@@ -29,18 +32,16 @@
     },
     loadData: function() {
       var goalName, _i, _len, _ref;
-      this.goalNames = this.getGoalsList();
-      this.goals = {};
-      _ref = this.goalNames;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        goalName = _ref[_i];
-        this.buildGoal(goalName);
+      if (!this.initialized) {
+        this.goalNames = this.getGoalsList();
+        this.goals = {};
+        _ref = this.goalNames;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          goalName = _ref[_i];
+          this.buildGoal(goalName);
+        }
+        return this.initialized = true;
       }
-      return this.initialized = true;
-    },
-    saveGoal: function(description) {
-      this.addModelName(description.name);
-      return this.saveModel(description);
     },
     addModelName: function(name) {
       if (__indexOf.call(this.goalNames, name) >= 0) {
@@ -50,11 +51,16 @@
       return localStorage.setItem('goals', JSON.stringify(this.goalNames));
     },
     saveModel: function(description) {
-      var model;
-      model = App.GoalModel.create(description);
-      this.goals[description.name] = model;
-      localStorage.setItem("goals." + description.name, JSON.stringify(description));
-      return model;
+      var Error, model;
+      try {
+        model = App.GoalModel.create(description);
+        this.goals[description.name] = model;
+        localStorage.setItem("goals." + description.name, JSON.stringify(description));
+        return true;
+      } catch (_error) {
+        Error = _error;
+        return false;
+      }
     },
     goalsAsArray: function() {
       return _.collect(this.goals, function(goal) {
@@ -83,6 +89,14 @@
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
     })
+  });
+
+  App.NewRoute = Ember.Route.extend({
+    actions: {
+      save: function() {
+        return this.transitionTo('index');
+      }
+    }
   });
 
   App.NewController = Ember.Controller.extend({

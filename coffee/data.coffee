@@ -2,10 +2,13 @@ App.GoalModel = Ember.Object.extend()
 
 window.Data =
     loadGoals: ->
-        if not @initialized
-            @loadData()
-
+        @loadData()
         @goalsAsArray()
+
+    saveGoal: (description) ->
+        @loadData()
+        @addModelName description.name
+        @saveModel description
 
     getGoalsList: ->
         JSON.parse(localStorage.getItem 'goals') or []
@@ -17,14 +20,11 @@ window.Data =
         model
 
     loadData: ->
-        @goalNames = @getGoalsList()
-        @goals = {}
-        @buildGoal goalName for goalName in @goalNames
-        @initialized = true
-
-    saveGoal: (description) ->
-        @addModelName description.name
-        @saveModel description
+        if not @initialized
+            @goalNames = @getGoalsList()
+            @goals = {}
+            @buildGoal goalName for goalName in @goalNames
+            @initialized = true
 
     addModelName: (name) ->
         if name in @goalNames
@@ -34,10 +34,13 @@ window.Data =
         localStorage.setItem 'goals', JSON.stringify @goalNames
 
     saveModel: (description) ->
-        model = App.GoalModel.create description
-        @goals[description.name] = model
-        localStorage.setItem "goals.#{description.name}", JSON.stringify description
-        model
+        try
+            model = App.GoalModel.create description
+            @goals[description.name] = model
+            localStorage.setItem "goals.#{description.name}", JSON.stringify description
+            true
+        catch Error
+            false
 
     goalsAsArray: ->
         _.collect @goals, (goal) -> goal

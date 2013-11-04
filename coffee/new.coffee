@@ -1,3 +1,8 @@
+App.NewRoute = Ember.Route.extend
+    actions:
+        save: ->
+            @transitionTo 'index'
+
 App.NewController = Ember.Controller.extend
     frequencyOptions: [
         'Every Day'
