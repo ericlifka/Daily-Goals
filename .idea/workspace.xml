@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/coffee/goal.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/goal.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/css/app.css" afterPath="$PROJECT_DIR$/platforms/ios/www/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/app.css" afterPath="$PROJECT_DIR$/www/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/app.less" afterPath="$PROJECT_DIR$/less/app.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/index.coffee" afterPath="$PROJECT_DIR$/coffee/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/data.coffee" afterPath="$PROJECT_DIR$/coffee/data.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.hbs" afterPath="$PROJECT_DIR$/templates/index.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/new.coffee" afterPath="$PROJECT_DIR$/coffee/new.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/new.hbs" afterPath="$PROJECT_DIR$/templates/new.hbs" />
@@ -62,9 +57,9 @@
       <file leaf-file-name="data.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="43" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="780">
+            <state line="8" column="19" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="780">
               <folding>
-                <marker date="1383592943000" expanded="true" signature="969:1214" placeholder="..." />
+                <marker date="1383712481000" expanded="true" signature="155:311" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -73,16 +68,34 @@
       <file leaf-file-name="index.hbs" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="8" selection-start="454" selection-end="454" vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="435">
+            <state line="8" column="51" selection-start="223" selection-end="223" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="435">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="goal.hbs" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="new.hbs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/new.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="84" selection-start="957" selection-end="957" vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="660">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="23" selection-start="397" selection-end="397" vertical-scroll-proportion="0.2892562" vertical-offset="0" max-vertical-offset="726">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goal.hbs" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/goal.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="29" selection-start="97" selection-end="97" vertical-scroll-proportion="0.06410257" vertical-offset="0" max-vertical-offset="702">
+            <state line="3" column="29" selection-start="97" selection-end="97" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="180">
               <folding />
             </state>
           </provider>
@@ -124,13 +137,13 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/coffee/index.coffee" />
-        <option value="$PROJECT_DIR$/coffee/data.coffee" />
         <option value="$PROJECT_DIR$/coffee/goal.coffee" />
-        <option value="$PROJECT_DIR$/templates/index.hbs" />
         <option value="$PROJECT_DIR$/less/app.less" />
+        <option value="$PROJECT_DIR$/templates/goal.hbs" />
+        <option value="$PROJECT_DIR$/templates/index.hbs" />
+        <option value="$PROJECT_DIR$/coffee/data.coffee" />
         <option value="$PROJECT_DIR$/templates/new.hbs" />
         <option value="$PROJECT_DIR$/coffee/new.coffee" />
-        <option value="$PROJECT_DIR$/templates/goal.hbs" />
       </list>
     </option>
   </component>
@@ -476,15 +489,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="110" column="48" selection-start="3513" selection-end="3513" vertical-scroll-proportion="0.5726698" vertical-offset="925" max-vertical-offset="2295">
           <folding>
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1383708056000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1383712901000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -500,15 +513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.16528925" vertical-offset="0" max-vertical-offset="726">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="43" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="780">
-          <folding>
-            <marker date="1383592943000" expanded="true" signature="969:1214" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -528,13 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="8" selection-start="454" selection-end="454" vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="435">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/less/app.less">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="21" selection-start="630" selection-end="630" vertical-scroll-proportion="-15.5" vertical-offset="183" max-vertical-offset="975">
@@ -542,23 +539,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
+    <entry file="file://$PROJECT_DIR$/templates/goal.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="33" selection-start="696" selection-end="696" vertical-scroll-proportion="0.4752066" vertical-offset="0" max-vertical-offset="726">
+        <state line="3" column="29" selection-start="97" selection-end="97" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="180">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="51" selection-start="223" selection-end="223" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="435">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="19" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="780">
+          <folding>
+            <marker date="1383712481000" expanded="true" signature="155:311" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/new.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="10" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.6837607" vertical-offset="0" max-vertical-offset="702">
+        <state line="23" column="84" selection-start="957" selection-end="957" vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="660">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/goal.hbs">
+    <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="29" selection-start="97" selection-end="97" vertical-scroll-proportion="0.06410257" vertical-offset="0" max-vertical-offset="702">
+        <state line="14" column="23" selection-start="397" selection-end="397" vertical-scroll-proportion="0.2892562" vertical-offset="0" max-vertical-offset="726">
           <folding />
         </state>
       </provider>

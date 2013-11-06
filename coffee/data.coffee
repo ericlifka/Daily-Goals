@@ -7,8 +7,12 @@ window.Data =
 
     saveGoal: (description) ->
         @loadData()
-        @addModelName description.name
-        @saveModel description
+        try
+            @addModelName description.name
+            @saveModel description
+            true
+        catch Error
+            false
 
     getGoalsList: ->
         JSON.parse(localStorage.getItem 'goals') or []
@@ -27,20 +31,16 @@ window.Data =
             @initialized = true
 
     addModelName: (name) ->
-        if name in @goalNames
+        if not name or name in @goalNames
             throw "Duplicate goal: #{name}"
 
         @goalNames.push name
         localStorage.setItem 'goals', JSON.stringify @goalNames
 
     saveModel: (description) ->
-        try
-            model = App.GoalModel.create description
-            @goals[description.name] = model
-            localStorage.setItem "goals.#{description.name}", JSON.stringify description
-            true
-        catch Error
-            false
+        model = App.GoalModel.create description
+        @goals[description.name] = model
+        localStorage.setItem "goals.#{description.name}", JSON.stringify description
 
     goalsAsArray: ->
         _.collect @goals, (goal) -> goal

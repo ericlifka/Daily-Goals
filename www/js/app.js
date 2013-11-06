@@ -16,9 +16,16 @@
       return this.goalsAsArray();
     },
     saveGoal: function(description) {
+      var Error;
       this.loadData();
-      this.addModelName(description.name);
-      return this.saveModel(description);
+      try {
+        this.addModelName(description.name);
+        this.saveModel(description);
+        return true;
+      } catch (_error) {
+        Error = _error;
+        return false;
+      }
     },
     getGoalsList: function() {
       return JSON.parse(localStorage.getItem('goals')) || [];
@@ -44,23 +51,17 @@
       }
     },
     addModelName: function(name) {
-      if (__indexOf.call(this.goalNames, name) >= 0) {
+      if (!name || __indexOf.call(this.goalNames, name) >= 0) {
         throw "Duplicate goal: " + name;
       }
       this.goalNames.push(name);
       return localStorage.setItem('goals', JSON.stringify(this.goalNames));
     },
     saveModel: function(description) {
-      var Error, model;
-      try {
-        model = App.GoalModel.create(description);
-        this.goals[description.name] = model;
-        localStorage.setItem("goals." + description.name, JSON.stringify(description));
-        return true;
-      } catch (_error) {
-        Error = _error;
-        return false;
-      }
+      var model;
+      model = App.GoalModel.create(description);
+      this.goals[description.name] = model;
+      return localStorage.setItem("goals." + description.name, JSON.stringify(description));
     },
     goalsAsArray: function() {
       return _.collect(this.goals, function(goal) {
@@ -102,42 +103,41 @@
   });
 
   App.NewController = Ember.Controller.extend({
-    frequencyOptions: ['Every Day', 'X Days a Week', 'X Days a Month'],
+    frequencyOptions: [
+      {
+        label: 'Every Day',
+        id: 'day'
+      }, {
+        label: 'X Days a Week',
+        id: 'week'
+      }, {
+        label: 'X Days a Month',
+        id: 'month'
+      }
+    ],
+    inputTypeOptions: [
+      {
+        label: 'Checkbox',
+        id: 'checkbox'
+      }, {
+        label: 'Number',
+        id: 'number'
+      }
+    ],
     daysPerPeriodSelection: Ember.computed('goalFrequency', function() {
-      var selection;
-      selection = this.get('goalFrequency');
-      return selection === 'X Days a Week' || selection === 'X Days a Month';
+      var _ref;
+      return (_ref = this.get('goalFrequency')) === 'week' || _ref === 'month';
     }),
-    periodType: Ember.computed('goalFrequency', function() {
-      var selection;
-      selection = this.get('goalFrequency');
-      if (selection === 'X Days a Month') {
-        return 'month';
-      } else {
-        return 'week';
-      }
-    }),
-    getGoalInputs: function() {
-      var inputs;
-      inputs = ['checkbox'];
-      if (this.get('addNumericInput')) {
-        inputs.push('integer');
-      }
-      return inputs;
-    },
-    getGoalFrequencyDescription: function() {
-      return {
-        interval: this.get('goalFrequency'),
-        daysPerPeriod: this.get('daysPerPeriod') || 1,
-        excludeWeekends: this.get('excludeWeekends') || false
-      };
-    },
     actions: {
       save: function() {
         return Data.saveGoal({
           name: this.get('goalName'),
-          inputs: this.getGoalInputs(),
-          frequency: this.getGoalFrequencyDescription()
+          input: this.get('inputType'),
+          frequency: {
+            interval: this.get('goalFrequency'),
+            daysPerPeriod: this.get('daysPerPeriod') || 1,
+            excludeWeekends: this.get('excludeWeekends') || false
+          }
         });
       }
     }
