@@ -27,9 +27,23 @@ body {
   padding: 5px 0 5px 10px;
   margin: 0px;
 }
-.goal-section .goal-list-entry .ember-checkbox {
+.goal-section .goal-list-entry > .checkbox {
+  margin: 0px;
+  padding: 0px;
+}
+.goal-section .goal-list-entry .goal-input {
   position: absolute;
-  right: 20px;
+  right: 10px;
+}
+.goal-section .goal-list-entry .goal-input.checkbox {
+  display: inline-block;
+  margin-right: 10px;
+}
+.goal-section .goal-list-entry .goal-input.number {
+  width: 60px;
+  display: inline-block;
+  padding: 0px 0px 0px 5px;
+  height: 23px;
 }
 .form-group .form-element {
   margin-bottom: 10px;

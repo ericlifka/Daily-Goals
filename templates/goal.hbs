@@ -1,6 +1,13 @@
-<div class="checkbox goal-list-entry">
-    <label>
-        {{name}}
-        {{view Ember.Checkbox}}
-    </label>
-</div>
+{{#if isCheckbox}}
+    <div class="checkbox">
+        <label>
+            {{name}}
+            {{view Ember.Checkbox class="goal-input checkbox"}}
+        </label>
+    </div>
+{{/if}}
+
+{{#if isNumber}}
+    {{name}}
+    {{input value=numberInput placeholder="0" class="form-control goal-input number"}}
+{{/if}}

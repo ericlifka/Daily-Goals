@@ -33,9 +33,27 @@ body {
         border-bottom: 1px solid darkgray;
         padding: 5px 0 5px 10px;
         margin: 0px;
-        .ember-checkbox {
+
+        > .checkbox {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .goal-input {
             position: absolute;
-            right: 20px;
+            right: 10px;
+
+            &.checkbox {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            &.number {
+                width: 60px;
+                display: inline-block;
+                padding: 0px 0px 0px 5px;
+                height: 23px;
+            }
         }
     }
 }

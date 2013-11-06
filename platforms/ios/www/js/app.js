@@ -4,6 +4,12 @@
 
   window.App = Ember.Application.create();
 
+  App.deferReadiness();
+
+  document.addEventListener("deviceready", function() {
+    return App.advanceReadiness();
+  });
+
   App.Router.map(function() {
     return this.route('new');
   });
@@ -24,6 +30,8 @@
         return true;
       } catch (_error) {
         Error = _error;
+        console.log(Error);
+        alert(Error);
         return false;
       }
     },
@@ -70,10 +78,22 @@
     }
   };
 
-  App.GoalController = Ember.ObjectController.extend();
+  App.GoalView = Ember.View.extend({
+    classNames: ['goal-list-entry']
+  });
+
+  App.GoalController = Ember.ObjectController.extend({
+    isCheckbox: Ember.computed('input', function() {
+      return 'checkbox' === this.get('input');
+    }),
+    isNumber: Ember.computed('input', function() {
+      return 'number' === this.get('input');
+    })
+  });
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
+      console.log('index route model load');
       return Data.loadGoals();
     }
   });
@@ -130,6 +150,8 @@
     }),
     actions: {
       save: function() {
+        console.log('saving goal');
+        alert('saving goal');
         return Data.saveGoal({
           name: this.get('goalName'),
           input: this.get('inputType'),

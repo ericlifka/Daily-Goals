@@ -12,6 +12,8 @@ window.Data =
             @saveModel description
             true
         catch Error
+            console.log(Error)
+            alert(Error)
             false
 
     getGoalsList: ->
