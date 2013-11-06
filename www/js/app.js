@@ -4,12 +4,6 @@
 
   window.App = Ember.Application.create();
 
-  App.deferReadiness();
-
-  document.addEventListener("deviceready", function() {
-    return App.advanceReadiness();
-  });
-
   App.Router.map(function() {
     return this.route('new');
   });
@@ -93,7 +87,6 @@
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      console.log('index route model load');
       return Data.loadGoals();
     }
   });
@@ -150,8 +143,6 @@
     }),
     actions: {
       save: function() {
-        console.log('saving goal');
-        alert('saving goal');
         return Data.saveGoal({
           name: this.get('goalName'),
           input: this.get('inputType'),

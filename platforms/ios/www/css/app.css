@@ -42,7 +42,8 @@ body {
 .goal-section .goal-list-entry .goal-input.number {
   width: 60px;
   display: inline-block;
-  padding: 0px 0px 0px 5px;
+  text-align: right;
+  padding: 0px 5px 0px 0px;
   height: 23px;
 }
 .form-group .form-element {
