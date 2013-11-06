@@ -22,8 +22,6 @@ App.NewController = Ember.Controller.extend
         inputs = ['checkbox']
         if @get 'addNumericInput'
             inputs.push 'integer'
-        if @get 'addNotesInput'
-            inputs.push 'string'
 
         inputs
 

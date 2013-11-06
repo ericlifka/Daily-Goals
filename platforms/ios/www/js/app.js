@@ -69,13 +69,15 @@
     }
   };
 
+  App.GoalController = Ember.ObjectController.extend();
+
   App.IndexRoute = Ember.Route.extend({
     model: function() {
       return Data.loadGoals();
     }
   });
 
-  App.IndexController = Ember.ObjectController.extend({
+  App.IndexController = Ember.ArrayController.extend({
     days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     today: Ember.computed(function() {
@@ -120,9 +122,6 @@
       inputs = ['checkbox'];
       if (this.get('addNumericInput')) {
         inputs.push('integer');
-      }
-      if (this.get('addNotesInput')) {
-        inputs.push('string');
       }
       return inputs;
     },

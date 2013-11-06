@@ -16,5 +16,8 @@
             {{#link-to "new" class="nav-forward"}}new{{/link-to}}
         </div>
 
+        {{#each goal in controller}}
+            {{render "goal" goal}}
+        {{/each}}
     </div>
 {{/unless}}
