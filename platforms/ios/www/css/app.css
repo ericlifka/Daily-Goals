@@ -18,12 +18,17 @@ body {
 .goal-section {
   font-size: 16px;
 }
+.goal-section.week .title,
+.goal-section.month .title {
+  padding-top: 30px;
+}
 .goal-section .title {
-  border-bottom: 1px solid darkgray;
+  border-bottom: 1px solid lightgray;
   padding-bottom: 5px;
+  font-weight: lighter;
 }
 .goal-section .goal-list-entry {
-  border-bottom: 1px solid darkgray;
+  border-bottom: 1px solid lightgray;
   padding: 5px 0 5px 10px;
   margin: 0px;
 }

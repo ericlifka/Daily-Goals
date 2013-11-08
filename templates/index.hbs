@@ -10,14 +10,43 @@
         </div>
     </div>
 {{else}}
-    <div class="goal-section today">
-        <div class="title">
-            Today's Goals
-            {{#link-to "new" class="nav-forward"}}New{{/link-to}}
-        </div>
+    {{#if hasDailyGoals}}
+        <div class="goal-section day">
+            <div class="title">
+                Today's Goals
+                {{#link-to "new" class="nav-forward"}}New{{/link-to}}
+            </div>
 
-        {{#each goal in controller}}
-            {{render "goal" goal}}
-        {{/each}}
-    </div>
+            {{#each goal in todaysGoals}}
+                {{render "goal" goal}}
+            {{/each}}
+        </div>
+    {{/if}}
+
+    {{#if hasWeeklyGoals}}
+        <div class="goal-section week">
+            <div class="title">
+                This Week's Goals
+                {{#link-to "new" class="nav-forward"}}New{{/link-to}}
+            </div>
+
+            {{#each goal in thisWeeksGoals}}
+                {{render "goal" goal}}
+            {{/each}}
+        </div>
+    {{/if}}
+
+    {{#if hasMonthlyGoals}}
+        <div class="goal-section month">
+            <div class="title">
+                This Month's Goals
+                {{#link-to "new" class="nav-forward"}}New{{/link-to}}
+            </div>
+
+            {{#each goal in thisMonthsGoals}}
+                {{render "goal" goal}}
+            {{/each}}
+        </div>
+    {{/if}}
+
 {{/unless}}

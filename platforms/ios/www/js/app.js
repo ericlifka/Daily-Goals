@@ -102,8 +102,46 @@
       day = today.getDate();
       return "" + weekday + " " + month + " " + day;
     }),
+    isWeekend: Ember.computed(function() {
+      var dayOfWeek;
+      dayOfWeek = this.days[new Date().getDay()];
+      return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
+    }),
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
+    }),
+    filterBy: function(filter) {
+      var goal, _i, _len, _ref, _results;
+      _ref = this.get('model');
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        goal = _ref[_i];
+        if (goal.frequency.interval === filter && this.checkWeekend(goal)) {
+          _results.push(goal);
+        }
+      }
+      return _results;
+    },
+    checkWeekend: function(goal) {
+      return !goal.frequency.excludeWeekends || !this.get('isWeekend');
+    },
+    todaysGoals: Ember.computed('model.@each', function() {
+      return this.filterBy('day');
+    }),
+    hasDailyGoals: Ember.computed('todaysGoals.length', function() {
+      return this.get('todaysGoals.length');
+    }),
+    thisWeeksGoals: Ember.computed('model.@each', function() {
+      return this.filterBy('week');
+    }),
+    hasWeeklyGoals: Ember.computed('thisWeeksGoals.length', function() {
+      return this.get('thisWeeksGoals.length');
+    }),
+    thisMonthsGoals: Ember.computed('model.@each', function() {
+      return this.filterBy('month');
+    }),
+    hasMonthlyGoals: Ember.computed('thisMonthsGoals.length', function() {
+      return this.get('thisMonthsGoals.length');
     })
   });
 
