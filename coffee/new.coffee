@@ -22,7 +22,7 @@ App.NewController = Ember.Controller.extend
         save: ->
             Data.saveGoal
                 name: @get 'goalName'
-                input: @get 'inputType'
+                trackNumber: @get('addNumberInput') or false
                 entries: []
                 lastCompletedOn: null
                 frequency:

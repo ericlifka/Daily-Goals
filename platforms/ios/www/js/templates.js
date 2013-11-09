@@ -38,7 +38,7 @@ function program1(depth0,data) {
   data.buffer.push("\n<button class=\"complete-goal\">Done</button>\n");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "isNumber", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers['if'].call(depth0, "trackNumber", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
   return buffer;
@@ -215,16 +215,6 @@ function program3(depth0,data) {
   hashContexts = {'content': depth0,'optionValuePath': depth0,'optionLabelPath': depth0,'value': depth0,'class': depth0};
   hashTypes = {'content': "ID",'optionValuePath': "STRING",'optionLabelPath': "STRING",'value': "ID",'class': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
-    'content': ("inputTypeOptions"),
-    'optionValuePath': ("content.id"),
-    'optionLabelPath': ("content.label"),
-    'value': ("inputType"),
-    'class': ("form-control form-element")
-  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n\n    ");
-  hashContexts = {'content': depth0,'optionValuePath': depth0,'optionLabelPath': depth0,'value': depth0,'class': depth0};
-  hashTypes = {'content': "ID",'optionValuePath': "STRING",'optionLabelPath': "STRING",'value': "ID",'class': "STRING"};
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
     'content': ("frequencyOptions"),
     'optionValuePath': ("content.id"),
     'optionLabelPath': ("content.label"),
@@ -237,6 +227,12 @@ function program3(depth0,data) {
   stack2 = helpers['if'].call(depth0, "daysPerPeriodSelection", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n\n    <div class=\"checkbox\">\n        <label>\n            ");
+  hashContexts = {'checkedBinding': depth0};
+  hashTypes = {'checkedBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{
+    'checkedBinding': ("addNumberInput")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n            Add number input for tracking\n        </label>\n    </div>\n\n    <div class=\"checkbox\">\n        <label>\n            ");
   hashContexts = {'checkedBinding': depth0};
   hashTypes = {'checkedBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Checkbox", {hash:{

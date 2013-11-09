@@ -7,12 +7,6 @@
 <div class="form-group">
     {{input value=goalName placeholder="Goal Name" class="form-control form-element"}}
 
-    {{view Ember.Select content=inputTypeOptions
-                        optionValuePath="content.id"
-                        optionLabelPath="content.label"
-                        value=inputType
-                        class="form-control form-element"}}
-
     {{view Ember.Select content=frequencyOptions
                         optionValuePath="content.id"
                         optionLabelPath="content.label"
@@ -28,6 +22,13 @@
             </div>
         </div>
     {{/if}}
+
+    <div class="checkbox">
+        <label>
+            {{view Ember.Checkbox checkedBinding="addNumberInput"}}
+            Add number input for tracking
+        </label>
+    </div>
 
     <div class="checkbox">
         <label>

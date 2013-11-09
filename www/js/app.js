@@ -78,18 +78,6 @@
   });
 
   App.GoalController = Ember.ObjectController.extend({
-    checkbox: Ember.computed(function() {
-      return this.hasEntryForToday();
-    }),
-    isCheckbox: Ember.computed('input', function() {
-      return 'checkbox' === this.get('input');
-    }),
-    isNumber: Ember.computed('input', function() {
-      return 'number' === this.get('input');
-    }),
-    checkboxChange: Ember.observer('checkbox', function() {
-      debugger;
-    }),
     hasEntryForToday: function() {
       return todaysDateKey() === this.get('lastCompletedOn');
     }
@@ -202,7 +190,7 @@
       save: function() {
         return Data.saveGoal({
           name: this.get('goalName'),
-          input: this.get('inputType'),
+          trackNumber: this.get('addNumberInput') || false,
           entries: [],
           lastCompletedOn: null,
           frequency: {
