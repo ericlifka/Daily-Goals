@@ -186,9 +186,17 @@
       var _ref;
       return (_ref = this.get('goalFrequency')) === 'week' || _ref === 'month';
     }),
+    clearForm: function() {
+      this.set('goalName', '');
+      this.set('addNumberInput', false);
+      this.set('goalFrequency', '');
+      this.set('daysPerPeriod', '');
+      return this.set('excludeWeekends', false);
+    },
     actions: {
       save: function() {
-        return Data.saveGoal({
+        var result;
+        result = Data.saveGoal({
           name: this.get('goalName'),
           trackNumber: this.get('addNumberInput') || false,
           entries: [],
@@ -199,6 +207,8 @@
             excludeWeekends: this.get('excludeWeekends') || false
           }
         });
+        this.clearForm();
+        return result;
       }
     }
   });

@@ -18,9 +18,16 @@ App.NewController = Ember.Controller.extend
     daysPerPeriodSelection: Ember.computed 'goalFrequency', ->
         @get('goalFrequency') in ['week', 'month']
 
+    clearForm: ->
+        @set 'goalName', ''
+        @set 'addNumberInput', false
+        @set 'goalFrequency', ''
+        @set 'daysPerPeriod', ''
+        @set 'excludeWeekends', false
+
     actions:
         save: ->
-            Data.saveGoal
+            result = Data.saveGoal
                 name: @get 'goalName'
                 trackNumber: @get('addNumberInput') or false
                 entries: []
@@ -29,3 +36,6 @@ App.NewController = Ember.Controller.extend
                     interval: @get 'goalFrequency'
                     daysPerPeriod: @get('daysPerPeriod') or 1
                     excludeWeekends: @get('excludeWeekends') or false
+
+            @clearForm()
+            result
