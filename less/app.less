@@ -40,27 +40,21 @@ body {
         padding: 5px 0 5px 10px;
         margin: 0px;
 
-        > .checkbox {
-            margin: 0px;
-            padding: 0px;
+        .complete-goal {
+            float: right;
+            background-color: white;
+            border: none;
+            font-weight: lighter;
+            color: #428bca;
+            padding-right: 10px;
         }
 
-        .goal-input {
-            position: absolute;
-            right: 10px;
-
-            &.checkbox {
-                display: inline-block;
-                margin-right: 10px;
-            }
-
-            &.number {
-                width: 60px;
-                display: inline-block;
-                text-align: right;
-                padding: 0px 5px 0px 0px;
-                height: 23px;
-            }
+        .goal-input.number {
+            width: 60px;
+            display: inline-block;
+            text-align: right;
+            padding: 0px 5px 0px 0px;
+            height: 23px;
         }
     }
 }

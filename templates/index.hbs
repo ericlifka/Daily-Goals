@@ -28,10 +28,7 @@
 
     {{#if hasWeeklyGoals}}
         <div class="goal-section week">
-            <div class="title">
-                This Week's Goals
-                {{#link-to "new" class="nav-forward"}}New{{/link-to}}
-            </div>
+            <div class="title">This Week's Goals</div>
 
             {{#each goal in thisWeeksGoals}}
                 {{render "goal" goal}}
@@ -41,10 +38,7 @@
 
     {{#if hasMonthlyGoals}}
         <div class="goal-section month">
-            <div class="title">
-                This Month's Goals
-                {{#link-to "new" class="nav-forward"}}New{{/link-to}}
-            </div>
+            <div class="title">This Month's Goals</div>
 
             {{#each goal in thisMonthsGoals}}
                 {{render "goal" goal}}

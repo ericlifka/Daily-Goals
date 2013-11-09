@@ -23,6 +23,8 @@ App.NewController = Ember.Controller.extend
             Data.saveGoal
                 name: @get 'goalName'
                 input: @get 'inputType'
+                entries: []
+                lastCompletedOn: null
                 frequency:
                     interval: @get 'goalFrequency'
                     daysPerPeriod: @get('daysPerPeriod') or 1

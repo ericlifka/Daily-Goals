@@ -32,17 +32,13 @@ body {
   padding: 5px 0 5px 10px;
   margin: 0px;
 }
-.goal-section .goal-list-entry > .checkbox {
-  margin: 0px;
-  padding: 0px;
-}
-.goal-section .goal-list-entry .goal-input {
-  position: absolute;
-  right: 10px;
-}
-.goal-section .goal-list-entry .goal-input.checkbox {
-  display: inline-block;
-  margin-right: 10px;
+.goal-section .goal-list-entry .complete-goal {
+  float: right;
+  background-color: white;
+  border: none;
+  font-weight: lighter;
+  color: #428bca;
+  padding-right: 10px;
 }
 .goal-section .goal-list-entry .goal-input.number {
   width: 60px;
