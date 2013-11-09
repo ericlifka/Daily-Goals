@@ -3,6 +3,9 @@ App.NewRoute = Ember.Route.extend
         save: ->
             @transitionTo 'index'
 
+        cancel: ->
+            @transitionTo 'index'
+
 App.NewController = Ember.Controller.extend
     frequencyOptions: [
         {label: 'Every Day', id: 'day'}
@@ -18,26 +21,31 @@ App.NewController = Ember.Controller.extend
     daysPerPeriodSelection: Ember.computed 'goalFrequency', ->
         @get('goalFrequency') in ['week', 'month']
 
+    saveForm: ->
+        Data.saveGoal
+            name: @get 'goalName'
+            trackNumber: @get('addNumberInput') or false
+            entries: []
+            lastCompletedOn: null
+            frequency:
+                interval: @get 'goalFrequency'
+                daysPerPeriod: @get('daysPerPeriod') or 1
+                excludeWeekends: @get('excludeWeekends') or false
+
     clearForm: ->
         @set 'goalName', ''
         @set 'addNumberInput', false
         @set 'goalFrequency', ''
         @set 'daysPerPeriod', ''
         @set 'excludeWeekends', false
+        true
 
     actions:
         save: ->
-            result = Data.saveGoal
-                name: @get 'goalName'
-                trackNumber: @get('addNumberInput') or false
-                entries: []
-                lastCompletedOn: null
-                frequency:
-                    interval: @get 'goalFrequency'
-                    daysPerPeriod: @get('daysPerPeriod') or 1
-                    excludeWeekends: @get('excludeWeekends') or false
-
-            if result
+            if @saveForm()
                 @clearForm()
+            else
+                false
 
-            result
+        cancel: ->
+            @clearForm()

@@ -33,8 +33,8 @@ window.Data =
             @initialized = true
 
     addModelName: (name) ->
-        if not name or name in @goalNames
-            throw "Duplicate goal: #{name}"
+        if not name then throw "No name entered"
+        if name in @goalNames then throw "Duplicate goal: #{name}"
 
         @goalNames.push name
         localStorage.setItem 'goals', JSON.stringify @goalNames

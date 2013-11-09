@@ -54,7 +54,10 @@
       }
     },
     addModelName: function(name) {
-      if (!name || __indexOf.call(this.goalNames, name) >= 0) {
+      if (!name) {
+        throw "No name entered";
+      }
+      if (__indexOf.call(this.goalNames, name) >= 0) {
         throw "Duplicate goal: " + name;
       }
       this.goalNames.push(name);
@@ -156,6 +159,9 @@
     actions: {
       save: function() {
         return this.transitionTo('index');
+      },
+      cancel: function() {
+        return this.transitionTo('index');
       }
     }
   });
@@ -186,29 +192,37 @@
       var _ref;
       return (_ref = this.get('goalFrequency')) === 'week' || _ref === 'month';
     }),
+    saveForm: function() {
+      return Data.saveGoal({
+        name: this.get('goalName'),
+        trackNumber: this.get('addNumberInput') || false,
+        entries: [],
+        lastCompletedOn: null,
+        frequency: {
+          interval: this.get('goalFrequency'),
+          daysPerPeriod: this.get('daysPerPeriod') || 1,
+          excludeWeekends: this.get('excludeWeekends') || false
+        }
+      });
+    },
     clearForm: function() {
       this.set('goalName', '');
       this.set('addNumberInput', false);
       this.set('goalFrequency', '');
       this.set('daysPerPeriod', '');
-      return this.set('excludeWeekends', false);
+      this.set('excludeWeekends', false);
+      return true;
     },
     actions: {
       save: function() {
-        var result;
-        result = Data.saveGoal({
-          name: this.get('goalName'),
-          trackNumber: this.get('addNumberInput') || false,
-          entries: [],
-          lastCompletedOn: null,
-          frequency: {
-            interval: this.get('goalFrequency'),
-            daysPerPeriod: this.get('daysPerPeriod') || 1,
-            excludeWeekends: this.get('excludeWeekends') || false
-          }
-        });
-        this.clearForm();
-        return result;
+        if (this.saveForm()) {
+          return this.clearForm();
+        } else {
+          return false;
+        }
+      },
+      cancel: function() {
+        return this.clearForm();
       }
     }
   });
