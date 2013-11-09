@@ -37,5 +37,7 @@ App.NewController = Ember.Controller.extend
                     daysPerPeriod: @get('daysPerPeriod') or 1
                     excludeWeekends: @get('excludeWeekends') or false
 
-            @clearForm()
+            if result
+                @clearForm()
+
             result
