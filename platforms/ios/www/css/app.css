@@ -10,10 +10,12 @@ body {
 .nav-back {
   position: absolute;
   left: 10px;
+  font-weight: lighter;
 }
 .nav-forward {
   position: absolute;
   right: 10px;
+  font-weight: lighter;
 }
 .goal-section {
   font-size: 16px;

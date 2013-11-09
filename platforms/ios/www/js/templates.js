@@ -20,10 +20,11 @@ function program1(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n    ");
-  hashContexts = {'value': depth0,'placeholder': depth0,'class': depth0};
-  hashTypes = {'value': "ID",'placeholder': "STRING",'class': "STRING"};
+  hashContexts = {'value': depth0,'pattern': depth0,'placeholder': depth0,'class': depth0};
+  hashTypes = {'value': "ID",'pattern': "STRING",'placeholder': "STRING",'class': "STRING"};
   options = {hash:{
     'value': ("numberInput"),
+    'pattern': ("\\d*"),
     'placeholder': ("0"),
     'class': ("form-control goal-input number")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
