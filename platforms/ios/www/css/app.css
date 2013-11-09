@@ -41,6 +41,8 @@ body {
   padding-right: 10px;
 }
 .goal-section .goal-list-entry .goal-input.number {
+  float: right;
+  margin-right: 5px;
   width: 60px;
   display: inline-block;
   text-align: right;
