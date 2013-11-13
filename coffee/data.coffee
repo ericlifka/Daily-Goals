@@ -1,4 +1,13 @@
-App.GoalModel = Ember.Object.extend()
+App.GoalModel = Ember.Object.extend
+    addEntry: (goalValue) ->
+        entry =
+            date: todaysDateKey()
+            goalValue: goalValue
+
+        @get('entries').unshiftObject entry
+        @set 'lastCompletedOn', entry.date
+
+        Data.save @
 
 window.Data =
     loadGoals: ->
@@ -12,8 +21,7 @@ window.Data =
             @saveModel description
             true
         catch Error
-            console.log(Error)
-            alert(Error)
+            alert Error
             false
 
     getGoalsList: ->

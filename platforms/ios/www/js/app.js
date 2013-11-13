@@ -81,6 +81,19 @@
   });
 
   App.GoalController = Ember.ObjectController.extend({
+    actions: {
+      complete: function() {
+        var entry;
+        entry = {
+          date: todaysDateKey()
+        };
+        if (this.get('trackNumber')) {
+          entry.numberValue = this.get('numberInput');
+        }
+        this.get('entries').unshiftObject(entry);
+        return this.set('lastCompletedOn', entry.date);
+      }
+    },
     hasEntryForToday: function() {
       return todaysDateKey() === this.get('lastCompletedOn');
     }
