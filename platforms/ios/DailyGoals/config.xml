@@ -29,10 +29,16 @@
     <feature name="Console">
         <param name="ios-package" value="CDVLogger" />
     </feature>
+    <feature name="File">
+        <param name="ios-package" value="CDVFile" />
+    </feature>
     <author email="dev@callback.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
     <content src="index.html" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
+    <feature name="FileTransfer">
+        <param name="ios-package" value="CDVFileTransfer" />
+    </feature>
 </widget>

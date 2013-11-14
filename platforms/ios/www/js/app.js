@@ -9,7 +9,18 @@
     return this.route('new');
   });
 
-  App.GoalModel = Ember.Object.extend();
+  App.GoalModel = Ember.Object.extend({
+    addEntry: function(goalValue) {
+      var entry;
+      entry = {
+        date: todaysDateKey(),
+        goalValue: goalValue
+      };
+      this.get('entries').unshiftObject(entry);
+      this.set('lastCompletedOn', entry.date);
+      return Data.save(this);
+    }
+  });
 
   window.Data = {
     loadGoals: function() {
@@ -25,7 +36,6 @@
         return true;
       } catch (_error) {
         Error = _error;
-        console.log(Error);
         alert(Error);
         return false;
       }
@@ -83,15 +93,7 @@
   App.GoalController = Ember.ObjectController.extend({
     actions: {
       complete: function() {
-        var entry;
-        entry = {
-          date: todaysDateKey()
-        };
-        if (this.get('trackNumber')) {
-          entry.numberValue = this.get('numberInput');
-        }
-        this.get('entries').unshiftObject(entry);
-        return this.set('lastCompletedOn', entry.date);
+        return this.get('model').addEntry(this.get('numberInput'));
       }
     },
     hasEntryForToday: function() {

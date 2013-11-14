@@ -32,6 +32,7 @@
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
 		9226024343D54B12B9671BE8 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 77715E1BFEB149D7A13BAA4C /* CDVLogger.m */; };
+		5FD0682D6D844BFD962D7746 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 296265B957A647508EA9E954 /* CDVFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = DailyGoals/config.xml; sourceTree = "<group>"; };
 		77715E1BFEB149D7A13BAA4C /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		A3A7D9EAD7D148569FACAB24 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		296265B957A647508EA9E954 /* CDVFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVFile.m"; path = "org.apache.cordova.file/CDVFile.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		D818497A4EB241B7A810A549 /* CDVFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVFile.h"; path = "org.apache.cordova.file/CDVFile.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 			children = (
 				77715E1BFEB149D7A13BAA4C /* CDVLogger.m */,
 				A3A7D9EAD7D148569FACAB24 /* CDVLogger.h */,
+				296265B957A647508EA9E954 /* CDVFile.m */,
+				D818497A4EB241B7A810A549 /* CDVFile.h */,
 			);
 			name = Plugins;
 			path = DailyGoals/Plugins;
@@ -378,6 +383,7 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				9226024343D54B12B9671BE8 /* CDVLogger.m in Sources */,
+				5FD0682D6D844BFD962D7746 /* CDVFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
