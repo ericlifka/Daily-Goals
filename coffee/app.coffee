@@ -6,3 +6,4 @@ window.App = Ember.Application.create()
 
 App.Router.map ->
     this.route 'new'
+    this.route 'manage'

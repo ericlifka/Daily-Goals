@@ -53,16 +53,16 @@ App.IndexController = Ember.ArrayController.extend
         @filterBy 'day'
 
     hasDailyGoals: Ember.computed 'todaysGoals.length', ->
-        @get 'todaysGoals.length'
+        0 < @get 'todaysGoals.length'
 
     thisWeeksGoals: Ember.computed 'model.@each', ->
         @filterBy 'week'
 
     hasWeeklyGoals: Ember.computed 'thisWeeksGoals.length', ->
-        @get 'thisWeeksGoals.length'
+        0 < @get 'thisWeeksGoals.length'
 
     thisMonthsGoals: Ember.computed 'model.@each', ->
         @filterBy 'month'
 
     hasMonthlyGoals: Ember.computed 'thisMonthsGoals.length', ->
-        @get 'thisMonthsGoals.length'
+        0 < @get 'thisMonthsGoals.length'

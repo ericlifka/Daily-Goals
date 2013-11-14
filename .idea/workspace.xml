@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/coffee/manage.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/manage.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/app.coffee" afterPath="$PROJECT_DIR$/coffee/app.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/css/app.css" afterPath="$PROJECT_DIR$/platforms/ios/www/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/app.css" afterPath="$PROJECT_DIR$/www/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals/config.xml" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/config.xml" afterPath="$PROJECT_DIR$/platforms/ios/www/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/config.xml" afterPath="$PROJECT_DIR$/www/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/ios/www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/ios.json" afterPath="$PROJECT_DIR$/plugins/ios.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/app.less" afterPath="$PROJECT_DIR$/less/app.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/data.coffee" afterPath="$PROJECT_DIR$/coffee/data.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/index.coffee" afterPath="$PROJECT_DIR$/coffee/index.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.hbs" afterPath="$PROJECT_DIR$/templates/index.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/new.hbs" afterPath="$PROJECT_DIR$/templates/new.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/templates.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/templates.js" afterPath="$PROJECT_DIR$/www/js/templates.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="daily-goals.iws" />
@@ -33,35 +39,97 @@
     <favorites_list name="daily-goals" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="data.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="8" selection-start="276" selection-end="285" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="930">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="42" selection-start="808" selection-end="808" vertical-scroll-proportion="0.41322315" vertical-offset="0" max-vertical-offset="726">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="app.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/coffee/app.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="9" column="29" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manage.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/coffee/manage.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="7" column="0" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="data.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="53" column="0" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="960">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manage.hbs" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/manage.hbs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="6" column="23" selection-start="164" selection-end="164" vertical-scroll-proportion="0.13513513" vertical-offset="0" max-vertical-offset="666">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.less" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/less/app.less">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="58" column="9" selection-start="1010" selection-end="1010" vertical-scroll-proportion="-16.875" vertical-offset="465" max-vertical-offset="1425">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="new.hbs" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/new.hbs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="1" column="4" selection-start="28" selection-end="28" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="675">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="index.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="58" column="0" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1110">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.hbs" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/index.hbs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="46" column="38" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.8055152" vertical-offset="135" max-vertical-offset="900">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="goal.hbs" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/goal.hbs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="5" column="60" selection-start="202" selection-end="202" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="165">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -79,22 +147,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/coffee/application.coffee" />
-        <option value="$PROJECT_DIR$/less/index.less" />
         <option value="$PROJECT_DIR$/www/libs/underscore-1.5.2.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/coffee/app.coffee" />
-        <option value="$PROJECT_DIR$/coffee/index.coffee" />
         <option value="$PROJECT_DIR$/coffee/helpers.coffee" />
-        <option value="$PROJECT_DIR$/templates/index.hbs" />
-        <option value="$PROJECT_DIR$/templates/new.hbs" />
         <option value="$PROJECT_DIR$/coffee/new.coffee" />
-        <option value="$PROJECT_DIR$/less/app.less" />
         <option value="$PROJECT_DIR$/templates/goal.hbs" />
         <option value="$PROJECT_DIR$/coffee/goal.coffee" />
-        <option value="$PROJECT_DIR$/coffee/data.coffee" />
         <option value="$PROJECT_DIR$/www/config.xml" />
+        <option value="$PROJECT_DIR$/templates/new.hbs" />
+        <option value="$PROJECT_DIR$/coffee/app.coffee" />
+        <option value="$PROJECT_DIR$/templates/index.hbs" />
+        <option value="$PROJECT_DIR$/less/app.less" />
+        <option value="$PROJECT_DIR$/coffee/index.coffee" />
+        <option value="$PROJECT_DIR$/coffee/data.coffee" />
+        <option value="$PROJECT_DIR$/coffee/manage.coffee" />
+        <option value="$PROJECT_DIR$/templates/manage.hbs" />
       </list>
     </option>
   </component>
@@ -271,20 +339,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="daily-goals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="less" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -412,63 +466,14 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/libs/underscore-1.5.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="39" selection-start="14358" selection-end="14358" vertical-scroll-proportion="0.05966587" vertical-offset="0" max-vertical-offset="180" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/libs/bootstrap-3.0.1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="65" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.7464455" vertical-offset="0" max-vertical-offset="30120" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="872" selection-end="872" vertical-scroll-proportion="0.31400967" vertical-offset="0" max-vertical-offset="1242" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugins/ios.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="726" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/app.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="25" selection-start="176" selection-end="176" vertical-scroll-proportion="0.16528925" vertical-offset="0" max-vertical-offset="726" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="8" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.35624123" vertical-offset="601" max-vertical-offset="3540">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/less/app.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="25" selection-start="349" selection-end="349" vertical-scroll-proportion="0.47008547" vertical-offset="0" max-vertical-offset="1320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="31" selection-start="722" selection-end="722" vertical-scroll-proportion="0.64102566" vertical-offset="0" max-vertical-offset="825" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="74" selection-start="817" selection-end="831" vertical-scroll-proportion="0.42735043" vertical-offset="0" max-vertical-offset="702" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/goal.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="60" selection-start="202" selection-end="202" vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="702">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/goal.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="53" selection-start="208" selection-end="208" vertical-scroll-proportion="0.12396694" vertical-offset="0" max-vertical-offset="726">
           <folding />
         </state>
       </provider>
@@ -480,30 +485,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
+    <entry file="file://$PROJECT_DIR$/www/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="33" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="855">
+        <state line="20" column="25" selection-start="808" selection-end="808" vertical-scroll-proportion="0.41322315" vertical-offset="0" max-vertical-offset="726">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+    <entry file="file://$PROJECT_DIR$/platforms/ios/build/device/DailyGoals.app/www/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="8" selection-start="276" selection-end="285" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="930">
+        <state line="21" column="64" selection-start="314" selection-end="314" vertical-scroll-proportion="0.65762" vertical-offset="0" max-vertical-offset="1065">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="43" selection-start="196" selection-end="196" vertical-scroll-proportion="0.16528925" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/goal.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="60" selection-start="202" selection-end="202" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/goal.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="33" selection-start="51" selection-end="66" vertical-scroll-proportion="0.021337127" vertical-offset="0" max-vertical-offset="703">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/app.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="29" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="4" selection-start="28" selection-end="28" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="675">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+        <state line="58" column="0" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1110">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/config.xml">
+    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="42" selection-start="808" selection-end="808" vertical-scroll-proportion="0.41322315" vertical-offset="0" max-vertical-offset="726">
+        <state line="46" column="38" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.8055152" vertical-offset="135" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/app.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="9" selection-start="1010" selection-end="1010" vertical-scroll-proportion="-16.875" vertical-offset="465" max-vertical-offset="1425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="960">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/manage.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/manage.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="23" selection-start="164" selection-end="164" vertical-scroll-proportion="0.13513513" vertical-offset="0" max-vertical-offset="666">
           <folding />
         </state>
       </provider>

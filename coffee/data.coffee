@@ -52,5 +52,7 @@ window.Data =
         @goals[description.name] = model
         localStorage.setItem "goals.#{description.name}", JSON.stringify description
 
+    deleteGoal: (goal) ->
+
     goalsAsArray: ->
         _.collect @goals, (goal) -> goal

@@ -6,7 +6,8 @@
   window.App = Ember.Application.create();
 
   App.Router.map(function() {
-    return this.route('new');
+    this.route('new');
+    return this.route('manage');
   });
 
   App.GoalModel = Ember.Object.extend({
@@ -79,6 +80,7 @@
       this.goals[description.name] = model;
       return localStorage.setItem("goals." + description.name, JSON.stringify(description));
     },
+    deleteGoal: function(goal) {},
     goalsAsArray: function() {
       return _.collect(this.goals, function(goal) {
         return goal;
@@ -154,20 +156,32 @@
       return this.filterBy('day');
     }),
     hasDailyGoals: Ember.computed('todaysGoals.length', function() {
-      return this.get('todaysGoals.length');
+      return 0 < this.get('todaysGoals.length');
     }),
     thisWeeksGoals: Ember.computed('model.@each', function() {
       return this.filterBy('week');
     }),
     hasWeeklyGoals: Ember.computed('thisWeeksGoals.length', function() {
-      return this.get('thisWeeksGoals.length');
+      return 0 < this.get('thisWeeksGoals.length');
     }),
     thisMonthsGoals: Ember.computed('model.@each', function() {
       return this.filterBy('month');
     }),
     hasMonthlyGoals: Ember.computed('thisMonthsGoals.length', function() {
-      return this.get('thisMonthsGoals.length');
+      return 0 < this.get('thisMonthsGoals.length');
     })
+  });
+
+  App.ManageRoute = Ember.Route.extend({
+    model: function() {
+      return Data.loadGoals();
+    }
+  });
+
+  App.ManageController = Ember.ArrayController.extend({
+    actions: {
+      "delete": function(goal) {}
+    }
   });
 
   App.NewRoute = Ember.Route.extend({

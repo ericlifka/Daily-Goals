@@ -61,7 +61,7 @@ function program1(depth0,data) {
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
   options = {hash:{
-    'class': ("nav-forward")
+    'class': ("nav-link forward")
   },inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "new", options) : helperMissing.call(depth0, "link-to", "new", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
@@ -76,7 +76,7 @@ function program2(depth0,data) {
 
 function program4(depth0,data) {
   
-  var buffer = '', stack1, hashTypes, hashContexts;
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options;
   data.buffer.push("\n\n    ");
   hashTypes = {};
   hashContexts = {};
@@ -92,7 +92,15 @@ function program4(depth0,data) {
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "hasMonthlyGoals", {hash:{},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n");
+  data.buffer.push("\n\n    <div class=\"footer-links\">\n        ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': ("nav-link backward")
+  },inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "manage", options) : helperMissing.call(depth0, "link-to", "manage", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n        <a class=\"nav-link forward\" href=\"mailto:eric.lifka@gmail.com?Subject=Daily%20Goals%20Feedback\">Send Feedback</a>\n    </div>\n\n");
   return buffer;
   }
 function program5(depth0,data) {
@@ -102,7 +110,7 @@ function program5(depth0,data) {
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
   options = {hash:{
-    'class': ("nav-forward")
+    'class': ("nav-link forward")
   },inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "new", options) : helperMissing.call(depth0, "link-to", "new", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
@@ -150,6 +158,12 @@ function program10(depth0,data) {
   return buffer;
   }
 
+function program12(depth0,data) {
+  
+  
+  data.buffer.push("Manage Data");
+  }
+
   data.buffer.push("<div class=\"title-bar\">\n    ");
   hashTypes = {};
   hashContexts = {};
@@ -160,6 +174,53 @@ function program10(depth0,data) {
   stack1 = helpers.unless.call(depth0, "hasGoals", {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
+  return buffer;
+  
+});
+Ember.TEMPLATES["manage"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("Back");
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n        <div class=\"goal-list-entry\">\n            ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "goal.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n            <button class=\"delete-goal\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "delete", "goal", {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Delete</button>\n        </div>\n    ");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"title-bar\">\n    ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': ("nav-link backward")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "index", options) : helperMissing.call(depth0, "link-to", "index", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n    Your Goals\n</div>\n\n<div class=\"goal-section\">\n    <div class=\"title\">\n        <button class=\"delete-goal\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "deleteAll", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Delete All</button>\n    </div>\n\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "goal", "in", "controller", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n</div>\n");
   return buffer;
   
 });
@@ -189,11 +250,11 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div class=\"title-bar\">\n    <a href=\"#\" class=\"nav-back\" ");
+  data.buffer.push("<div class=\"title-bar\">\n    <a href=\"#\" class=\"nav-link backward\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancel", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Cancel</a>\n    <span>New Goal</span>\n    <a href=\"#\" class=\"nav-forward\" ");
+  data.buffer.push(">Cancel</a>\n    <span>New Goal</span>\n    <a href=\"#\" class=\"nav-link forward\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "save", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

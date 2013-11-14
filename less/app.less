@@ -11,16 +11,22 @@ body {
     margin-bottom: 10px;
 }
 
-.nav-back {
-    position: absolute;
-    left: @body-padding;
+.nav-link {
     font-weight: lighter;
+
+    &.forward {
+        position: absolute;
+        right: @body-padding;
+    }
+
+    &.backward {
+        position: absolute;
+        left: @body-padding;
+    }
 }
 
-.nav-forward {
-    position: absolute;
-    right: @body-padding;
-    font-weight: lighter;
+.footer-links {
+    margin-top: 30px;
 }
 
 .goal-section {
@@ -42,6 +48,7 @@ body {
         padding: 5px 0 5px 10px;
         margin: 0px;
 
+        .delete-goal,
         .complete-goal {
             float: right;
             background-color: white;
