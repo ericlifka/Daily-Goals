@@ -20,7 +20,6 @@ App.NewController = Ember.Controller.extend
         @get('goalFrequency') in ['week', 'month']
 
     saveForm: ->
-        console.log "saving"
         Data.newGoal
             name: @get 'goalName'
             trackNumber: @get 'addNumberInput'
@@ -38,9 +37,7 @@ App.NewController = Ember.Controller.extend
 
     actions:
         save: ->
-            console.log 'save controler'
             result = @saveForm()
-            console.log "result: #{result}"
             if result
                 @clearForm()
             result

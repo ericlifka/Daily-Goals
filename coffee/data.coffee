@@ -43,11 +43,9 @@ Data =
 
     newGoal: ({name, trackNumber, interval, daysPerPeriod, excludeWeekends}) ->
         if @findGoal name
-            console.log "duplicate goal"
             alert 'Duplicate goal name'
             false
         else
-            console.log "creating goal"
             goal = App.GoalModel.create
                 name: name
                 trackNumber: trackNumber or false
@@ -58,22 +56,17 @@ Data =
                     daysPerPeriod: daysPerPeriod or 1
                     excludeWeekends: excludeWeekends or false
 
-            console.log 'goal created'
             @goals.pushObject goal
-            console.log 'calling saveGoals'
             @saveGoals()
-            console.log 'done calling saveGoals'
             true
 
     findGoal: (name) ->
         _.find @goals, (goal) -> goal.name is name
 
     saveGoals: ->
-        console.log "creating json string"
         json = JSON.stringify
             version: currentDataVersion
             goals: @getGoalsJsonArray()
-        console.log "created json string"
         @writeJsonToFile json
 
     getGoalsJsonArray: ->
@@ -115,38 +108,30 @@ Data =
         , fileReadFailed)
 
     writeJsonToFile: (json) ->
-        console.log 'starting file write'
         fileWriteFailed = (error) =>
             alert "Error occurred while saving: " + error
 
-        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
-        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR
-        console.log ".ABORT_ERR ", FileError.ABORT_ERR
-        console.log ".NOT_READABLE_ERR ", FileError.NOT_READABLE_ERR
-        console.log ".ENCODING_ERR ", FileError.ENCODING_ERR
-        console.log ".NO_MODIFICATION_ALLOWED_ERR ", FileError.NO_MODIFICATION_ALLOWED_ERR
-        console.log ".INVALID_STATE_ERR ", FileError.INVALID_STATE_ERR
-        console.log ".SYNTAX_ERR ", FileError.SYNTAX_ERR
-        console.log ".INVALID_MODIFICATION_ERR ", FileError.INVALID_MODIFICATION_ERR
-        console.log ".QUOTA_EXCEEDED_ERR ", FileError.QUOTA_EXCEEDED_ERR
-        console.log ".TYPE_MISMATCH_ERR ", FileError.TYPE_MISMATCH_ERR
-        console.log ".PATH_EXISTS_ERR ", FileError.PATH_EXISTS_ERR
+#        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
+#        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR
+#        console.log ".ABORT_ERR ", FileError.ABORT_ERR
+#        console.log ".NOT_READABLE_ERR ", FileError.NOT_READABLE_ERR
+#        console.log ".ENCODING_ERR ", FileError.ENCODING_ERR
+#        console.log ".NO_MODIFICATION_ALLOWED_ERR ", FileError.NO_MODIFICATION_ALLOWED_ERR
+#        console.log ".INVALID_STATE_ERR ", FileError.INVALID_STATE_ERR
+#        console.log ".SYNTAX_ERR ", FileError.SYNTAX_ERR
+#        console.log ".INVALID_MODIFICATION_ERR ", FileError.INVALID_MODIFICATION_ERR
+#        console.log ".QUOTA_EXCEEDED_ERR ", FileError.QUOTA_EXCEEDED_ERR
+#        console.log ".TYPE_MISMATCH_ERR ", FileError.TYPE_MISMATCH_ERR
+#        console.log ".PATH_EXISTS_ERR ", FileError.PATH_EXISTS_ERR
 
-        console.log "requestFileSystem"
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) ->
-            console.log "getFile"
             fs.root.getFile("goals.json", {create: true, exclusive: false}, (fileEntry) ->
-                console.log "createWriter"
                 fileEntry.createWriter((writer) ->
-                    console.log "data going to file: #{json}"
                     writer.write json
-                    console.log 'data gone to file'
-                , -> console.log("error createWriter"))
-            , ->
-                console.log("error getFile")
-                console.log item for item in arguments
-            )
-        , -> console.log("error requestFileSystem"))
+                    console.log 'write succeeded'
+                , fileWriteFailed)
+            , fileWriteFailed)
+        , fileWriteFailed)
 
 
 document.addEventListener "deviceready", ->

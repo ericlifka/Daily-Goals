@@ -79,11 +79,9 @@
       var daysPerPeriod, excludeWeekends, goal, interval, name, trackNumber;
       name = _arg.name, trackNumber = _arg.trackNumber, interval = _arg.interval, daysPerPeriod = _arg.daysPerPeriod, excludeWeekends = _arg.excludeWeekends;
       if (this.findGoal(name)) {
-        console.log("duplicate goal");
         alert('Duplicate goal name');
         return false;
       } else {
-        console.log("creating goal");
         goal = App.GoalModel.create({
           name: name,
           trackNumber: trackNumber || false,
@@ -95,11 +93,8 @@
             excludeWeekends: excludeWeekends || false
           }
         });
-        console.log('goal created');
         this.goals.pushObject(goal);
-        console.log('calling saveGoals');
         this.saveGoals();
-        console.log('done calling saveGoals');
         return true;
       }
     },
@@ -110,12 +105,10 @@
     },
     saveGoals: function() {
       var json;
-      console.log("creating json string");
       json = JSON.stringify({
         version: currentDataVersion,
         goals: this.getGoalsJsonArray()
       });
-      console.log("created json string");
       return this.writeJsonToFile(json);
     },
     getGoalsJsonArray: function() {
@@ -173,50 +166,20 @@
     writeJsonToFile: function(json) {
       var fileWriteFailed,
         _this = this;
-      console.log('starting file write');
       fileWriteFailed = function(error) {
         return alert("Error occurred while saving: " + error);
       };
-      console.log(".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR);
-      console.log(".SECURITY_ERR ", FileError.SECURITY_ERR);
-      console.log(".ABORT_ERR ", FileError.ABORT_ERR);
-      console.log(".NOT_READABLE_ERR ", FileError.NOT_READABLE_ERR);
-      console.log(".ENCODING_ERR ", FileError.ENCODING_ERR);
-      console.log(".NO_MODIFICATION_ALLOWED_ERR ", FileError.NO_MODIFICATION_ALLOWED_ERR);
-      console.log(".INVALID_STATE_ERR ", FileError.INVALID_STATE_ERR);
-      console.log(".SYNTAX_ERR ", FileError.SYNTAX_ERR);
-      console.log(".INVALID_MODIFICATION_ERR ", FileError.INVALID_MODIFICATION_ERR);
-      console.log(".QUOTA_EXCEEDED_ERR ", FileError.QUOTA_EXCEEDED_ERR);
-      console.log(".TYPE_MISMATCH_ERR ", FileError.TYPE_MISMATCH_ERR);
-      console.log(".PATH_EXISTS_ERR ", FileError.PATH_EXISTS_ERR);
-      console.log("requestFileSystem");
       return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
-        console.log("getFile");
         return fs.root.getFile("goals.json", {
           create: true,
           exclusive: false
         }, function(fileEntry) {
-          console.log("createWriter");
           return fileEntry.createWriter(function(writer) {
-            console.log("data going to file: " + json);
             writer.write(json);
-            return console.log('data gone to file');
-          }, function() {
-            return console.log("error createWriter");
-          });
-        }, function() {
-          var item, _i, _len, _results;
-          console.log("error getFile");
-          _results = [];
-          for (_i = 0, _len = arguments.length; _i < _len; _i++) {
-            item = arguments[_i];
-            _results.push(console.log(item));
-          }
-          return _results;
-        });
-      }, function() {
-        return console.log("error requestFileSystem");
-      });
+            return console.log('write succeeded');
+          }, fileWriteFailed);
+        }, fileWriteFailed);
+      }, fileWriteFailed);
     }
   };
 
@@ -379,7 +342,6 @@
       return (_ref = this.get('goalFrequency')) === 'week' || _ref === 'month';
     }),
     saveForm: function() {
-      console.log("saving");
       return Data.newGoal({
         name: this.get('goalName'),
         trackNumber: this.get('addNumberInput'),
@@ -399,9 +361,7 @@
     actions: {
       save: function() {
         var result;
-        console.log('save controler');
         result = this.saveForm();
-        console.log("result: " + result);
         if (result) {
           this.clearForm();
         }
