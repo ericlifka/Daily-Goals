@@ -1,6 +1,6 @@
 body {
   padding: 10px;
-  padding-top: 20px;
+  padding-top: 25px;
 }
 .title-bar {
   text-align: center;
@@ -38,14 +38,21 @@ body {
   padding: 5px 0 5px 10px;
   margin: 0px;
 }
-.goal-section .goal-list-entry .delete-goal,
 .goal-section .goal-list-entry .complete-goal {
   float: right;
-  background-color: white;
   border: none;
   font-weight: lighter;
-  color: #428bca;
+  background-color: white;
   padding-right: 10px;
+  color: #428bca;
+}
+.goal-section .goal-list-entry .delete-goal {
+  float: right;
+  border: none;
+  font-weight: lighter;
+  background-color: white;
+  padding-right: 10px;
+  color: #850205;
 }
 .goal-section .goal-list-entry .goal-input.number {
   float: right;

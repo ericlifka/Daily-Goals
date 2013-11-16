@@ -61,6 +61,10 @@ Data =
             @saveGoals()
             true
 
+    deleteGoal: (goal) ->
+        @goals.removeObject goal
+        @saveGoals()
+
     findGoal: (name) ->
         _.find @goals, (goal) -> goal.name is name
 

@@ -95,6 +95,10 @@
         return true;
       }
     },
+    deleteGoal: function(goal) {
+      this.goals.removeObject(goal);
+      return this.saveGoals();
+    },
     findGoal: function(name) {
       return _.find(this.goals, function(goal) {
         return goal.name === name;
