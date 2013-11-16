@@ -1,5 +1,3 @@
-currentDataVersion = 1
-defaultData = {"version": 1, "goals": []}
 ###
 {
     version: 1,
@@ -27,11 +25,14 @@ defaultData = {"version": 1, "goals": []}
 ###
 
 Data =
+    currentDataVersion: 1
+    defaultData: {"version": 1, "goals": []}
+
     dataLoadedPromise: new $.Deferred()
 
     initialize: (dataObject) ->
-        @goals = Ember.A()
-        @goals = (@goals.pushObject(@goalFromJson(goal)) for goal in dataObject.goals)
+        @goals = Ember.A(@goalFromJson goal for goal in dataObject.goals)
+
         @dataLoadedPromise.resolve()
 
     allGoals: ->
@@ -65,7 +66,7 @@ Data =
 
     saveGoals: ->
         json = JSON.stringify
-            version: currentDataVersion
+            version: @currentDataVersion
             goals: @getGoalsJsonArray()
         @writeJsonToFile json
 
@@ -88,7 +89,7 @@ Data =
     readDataFromFile: ->
         fileReadFailed = (error) =>
             console.log error
-            @initialize defaultData
+            @initialize @defaultData
 
         fileReadSucceeded = (event) =>
             try
@@ -111,19 +112,6 @@ Data =
         fileWriteFailed = (error) =>
             alert "Error occurred while saving: " + error
 
-#        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
-#        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR
-#        console.log ".ABORT_ERR ", FileError.ABORT_ERR
-#        console.log ".NOT_READABLE_ERR ", FileError.NOT_READABLE_ERR
-#        console.log ".ENCODING_ERR ", FileError.ENCODING_ERR
-#        console.log ".NO_MODIFICATION_ALLOWED_ERR ", FileError.NO_MODIFICATION_ALLOWED_ERR
-#        console.log ".INVALID_STATE_ERR ", FileError.INVALID_STATE_ERR
-#        console.log ".SYNTAX_ERR ", FileError.SYNTAX_ERR
-#        console.log ".INVALID_MODIFICATION_ERR ", FileError.INVALID_MODIFICATION_ERR
-#        console.log ".QUOTA_EXCEEDED_ERR ", FileError.QUOTA_EXCEEDED_ERR
-#        console.log ".TYPE_MISMATCH_ERR ", FileError.TYPE_MISMATCH_ERR
-#        console.log ".PATH_EXISTS_ERR ", FileError.PATH_EXISTS_ERR
-
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) ->
             fs.root.getFile("goals.json", {create: true, exclusive: false}, (fileEntry) ->
                 fileEntry.createWriter((writer) ->
@@ -136,3 +124,18 @@ Data =
 
 document.addEventListener "deviceready", ->
     Data.readDataFromFile()
+
+
+
+#        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
+#        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR
+#        console.log ".ABORT_ERR ", FileError.ABORT_ERR
+#        console.log ".NOT_READABLE_ERR ", FileError.NOT_READABLE_ERR
+#        console.log ".ENCODING_ERR ", FileError.ENCODING_ERR
+#        console.log ".NO_MODIFICATION_ALLOWED_ERR ", FileError.NO_MODIFICATION_ALLOWED_ERR
+#        console.log ".INVALID_STATE_ERR ", FileError.INVALID_STATE_ERR
+#        console.log ".SYNTAX_ERR ", FileError.SYNTAX_ERR
+#        console.log ".INVALID_MODIFICATION_ERR ", FileError.INVALID_MODIFICATION_ERR
+#        console.log ".QUOTA_EXCEEDED_ERR ", FileError.QUOTA_EXCEEDED_ERR
+#        console.log ".TYPE_MISMATCH_ERR ", FileError.TYPE_MISMATCH_ERR
+#        console.log ".PATH_EXISTS_ERR ", FileError.PATH_EXISTS_ERR

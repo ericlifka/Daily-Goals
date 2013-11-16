@@ -6,3 +6,4 @@ App.ManageRoute = Ember.Route.extend
 App.ManageController = Ember.ArrayController.extend
     actions:
         delete: (goal) ->
+            Data.deleteGoal goal
