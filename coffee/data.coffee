@@ -1,58 +1,153 @@
-App.GoalModel = Ember.Object.extend
-    addEntry: (goalValue) ->
-        entry =
-            date: todaysDateKey()
-            goalValue: goalValue
+currentDataVersion = 1
+defaultData = {"version": 1, "goals": []}
+###
+{
+    version: 1,
+    goals: [
+        {
+            name: string
+            trackNumber: boolean
+            lastCompletedOn: "year.month.day" or null e.g. "2012.11.06"
+            frequency: {
+                interval: string in set ['month', 'day', 'year']
+                daysPerPeriod: integer
+                excludeWeekends: boolean
+            }
+            entries: [
+                {
+                    date: "year.month.day",
+                    numberValue: number (this field only exists on goals with 'trackNumber' set to true)
+                }
+                ...
+            ]
+        }
+        ...
+    ]
+}
+###
 
-        @get('entries').unshiftObject entry
-        @set 'lastCompletedOn', entry.date
+Data =
+    dataLoadedPromise: new $.Deferred()
 
-        Data.save @
+    initialize: (dataObject) ->
+        @goals = Ember.A()
+        @goals = (@goals.pushObject(@goalFromJson(goal)) for goal in dataObject.goals)
+        @dataLoadedPromise.resolve()
 
-window.Data =
-    loadGoals: ->
-        @loadData()
-        @goalsAsArray()
+    allGoals: ->
+        goalsPromise = new $.Deferred()
+        @dataLoadedPromise.then =>
+            goalsPromise.resolve @goals
 
-    saveGoal: (description) ->
-        @loadData()
-        try
-            @addModelName description.name
-            @saveModel description
-            true
-        catch Error
-            alert Error
+        goalsPromise.promise()
+
+    newGoal: ({name, trackNumber, interval, daysPerPeriod, excludeWeekends}) ->
+        if @findGoal name
+            console.log "duplicate goal"
+            alert 'Duplicate goal name'
             false
+        else
+            console.log "creating goal"
+            goal = App.GoalModel.create
+                name: name
+                trackNumber: trackNumber or false
+                entries: []
+                lastCompletedOn: null
+                frequency:
+                    interval: interval
+                    daysPerPeriod: daysPerPeriod or 1
+                    excludeWeekends: excludeWeekends or false
 
-    getGoalsList: ->
-        JSON.parse(localStorage.getItem 'goals') or []
+            console.log 'goal created'
+            @goals.pushObject goal
+            console.log 'calling saveGoals'
+            @saveGoals()
+            console.log 'done calling saveGoals'
+            true
 
-    buildGoal: (goalName) ->
-        description = JSON.parse(localStorage.getItem "goals.#{goalName}") or {}
-        model = App.GoalModel.create description
-        @goals[description.name] = model
-        model
+    findGoal: (name) ->
+        _.find @goals, (goal) -> goal.name is name
 
-    loadData: ->
-        if not @initialized
-            @goalNames = @getGoalsList()
-            @goals = {}
-            @buildGoal goalName for goalName in @goalNames
-            @initialized = true
+    saveGoals: ->
+        console.log "creating json string"
+        json = JSON.stringify
+            version: currentDataVersion
+            goals: @getGoalsJsonArray()
+        console.log "created json string"
+        @writeJsonToFile json
 
-    addModelName: (name) ->
-        if not name then throw "No name entered"
-        if name in @goalNames then throw "Duplicate goal: #{name}"
+    getGoalsJsonArray: ->
+        @goalToJson goal for goal in @goals
 
-        @goalNames.push name
-        localStorage.setItem 'goals', JSON.stringify @goalNames
+    goalFromJson: (json) ->
+        App.GoalModel.create json
 
-    saveModel: (description) ->
-        model = App.GoalModel.create description
-        @goals[description.name] = model
-        localStorage.setItem "goals.#{description.name}", JSON.stringify description
+    goalToJson: (goal) ->
+        name: goal.name
+        trackNumber: goal.trackNumber
+        lastCompletedOn: goal.lastCompletedOn
+        entries: goal.entries
+        frequency:
+            interval: goal.frequency.interval
+            daysPerPeriod: goal.frequency.daysPerPeriod
+            excludeWeekends: goal.frequency.excludeWeekends
 
-    deleteGoal: (goal) ->
+    readDataFromFile: ->
+        fileReadFailed = (error) =>
+            console.log error
+            @initialize defaultData
 
-    goalsAsArray: ->
-        _.collect @goals, (goal) -> goal
+        fileReadSucceeded = (event) =>
+            try
+                @initialize JSON.parse event.target.result
+            catch
+                fileReadFailed()
+
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) ->
+            fs.root.getFile("goals.json", null, (fileEntry) ->
+                fileEntry.file((file) ->
+                    reader = new FileReader()
+                    reader.onerror = fileReadFailed
+                    reader.onload = fileReadSucceeded
+                    reader.readAsText file
+                , fileReadFailed)
+            , fileReadFailed)
+        , fileReadFailed)
+
+    writeJsonToFile: (json) ->
+        console.log 'starting file write'
+        fileWriteFailed = (error) =>
+            alert "Error occurred while saving: " + error
+
+        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
+        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR
+        console.log ".ABORT_ERR ", FileError.ABORT_ERR
+        console.log ".NOT_READABLE_ERR ", FileError.NOT_READABLE_ERR
+        console.log ".ENCODING_ERR ", FileError.ENCODING_ERR
+        console.log ".NO_MODIFICATION_ALLOWED_ERR ", FileError.NO_MODIFICATION_ALLOWED_ERR
+        console.log ".INVALID_STATE_ERR ", FileError.INVALID_STATE_ERR
+        console.log ".SYNTAX_ERR ", FileError.SYNTAX_ERR
+        console.log ".INVALID_MODIFICATION_ERR ", FileError.INVALID_MODIFICATION_ERR
+        console.log ".QUOTA_EXCEEDED_ERR ", FileError.QUOTA_EXCEEDED_ERR
+        console.log ".TYPE_MISMATCH_ERR ", FileError.TYPE_MISMATCH_ERR
+        console.log ".PATH_EXISTS_ERR ", FileError.PATH_EXISTS_ERR
+
+        console.log "requestFileSystem"
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) ->
+            console.log "getFile"
+            fs.root.getFile("goals.json", {create: true, exclusive: false}, (fileEntry) ->
+                console.log "createWriter"
+                fileEntry.createWriter((writer) ->
+                    console.log "data going to file: #{json}"
+                    writer.write json
+                    console.log 'data gone to file'
+                , -> console.log("error createWriter"))
+            , ->
+                console.log("error getFile")
+                console.log item for item in arguments
+            )
+        , -> console.log("error requestFileSystem"))
+
+
+document.addEventListener "deviceready", ->
+    Data.readDataFromFile()

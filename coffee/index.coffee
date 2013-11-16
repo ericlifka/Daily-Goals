@@ -1,6 +1,6 @@
 App.IndexRoute = Ember.Route.extend
     model: ->
-        Data.loadGoals()
+        Data.allGoals()
 
 App.IndexController = Ember.ArrayController.extend
     days: [
