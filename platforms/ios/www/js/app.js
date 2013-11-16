@@ -152,6 +152,7 @@
         }
       };
       return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+        console.log(fs.root.fullPath);
         return fs.root.getFile("goals.json", null, function(fileEntry) {
           return fileEntry.file(function(file) {
             var reader;

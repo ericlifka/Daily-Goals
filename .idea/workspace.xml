@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/data.coffee" afterPath="$PROJECT_DIR$/coffee/data.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/new.coffee" afterPath="$PROJECT_DIR$/coffee/new.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="daily-goals.iws" />
@@ -30,8 +31,10 @@
       <file leaf-file-name="data.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="12" selection-start="3316" selection-end="3316" vertical-scroll-proportion="1.5991735" vertical-offset="519" max-vertical-offset="2160">
-              <folding />
+            <state line="132" column="98" selection-start="4521" selection-end="4521" vertical-scroll-proportion="0.75206614" vertical-offset="1074" max-vertical-offset="1800">
+              <folding>
+                <element signature="e#65#699#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,8 +134,8 @@
         <option value="$PROJECT_DIR$/coffee/manage.coffee" />
         <option value="$PROJECT_DIR$/coffee/app.coffee" />
         <option value="$PROJECT_DIR$/coffee/index.coffee" />
-        <option value="$PROJECT_DIR$/coffee/data.coffee" />
         <option value="$PROJECT_DIR$/coffee/new.coffee" />
+        <option value="$PROJECT_DIR$/coffee/data.coffee" />
       </list>
     </option>
   </component>
@@ -493,8 +496,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="12" selection-start="3316" selection-end="3316" vertical-scroll-proportion="1.5991735" vertical-offset="519" max-vertical-offset="2160">
-          <folding />
+        <state line="132" column="98" selection-start="4521" selection-end="4521" vertical-scroll-proportion="0.75206614" vertical-offset="1074" max-vertical-offset="1800">
+          <folding>
+            <element signature="e#65#699#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
