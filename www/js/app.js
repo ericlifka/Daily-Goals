@@ -209,11 +209,11 @@
     })
   });
 
-  App.GoalView = Ember.View.extend({
+  App.GoalListEntryView = Ember.View.extend({
     classNames: ['goal-list-entry']
   });
 
-  App.GoalController = Ember.ObjectController.extend({
+  App.GoalListEntryController = Ember.ObjectController.extend({
     actions: {
       complete: function() {
         return this.get('model').addEntry(this.get('numberInput'));

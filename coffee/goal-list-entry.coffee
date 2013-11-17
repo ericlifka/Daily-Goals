@@ -13,11 +13,11 @@ App.GoalModel = Ember.Object.extend
         todaysDateKey() is @get 'lastCompletedOn'
 
 
-App.GoalView = Ember.View.extend
+App.GoalListEntryView = Ember.View.extend
     classNames: ['goal-list-entry']
 
 
-App.GoalController = Ember.ObjectController.extend
+App.GoalListEntryController = Ember.ObjectController.extend
     actions:
         complete: -> @get('model').addEntry @get('numberInput')
 

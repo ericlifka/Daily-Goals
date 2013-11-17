@@ -21,7 +21,7 @@
 
         {{#if hasUnfinishedDailyGoals}}
             {{#each goal in unfinishedDailyGoals}}
-                {{render "goal" goal}}
+                {{render "goal-list-entry" goal}}
             {{/each}}
         {{else}}
             {{#if hasDailyGoals}}
@@ -37,7 +37,7 @@
 
         {{#if hasUnfinishedWeeklyGoals}}
             {{#each goal in unfinishedWeeklyGoals}}
-                {{render "goal" goal}}
+                {{render "goal-list-entry" goal}}
             {{/each}}
         {{else}}
             {{#if hasWeeklyGoals}}
@@ -53,7 +53,7 @@
 
         {{#if hasUnfinishedMonthlyGoals}}
             {{#each goal in unfinishedMonthlyGoals}}
-                {{render "goal" goal}}
+                {{render "goal-list-entry" goal}}
             {{/each}}
         {{else}}
             {{#if hasMonthlyGoals}}
