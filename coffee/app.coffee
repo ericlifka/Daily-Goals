@@ -1,9 +1,9 @@
 window.App = Ember.Application.create()
 
-
-App.deferReadiness()
-document.addEventListener "deviceready", ->
-    App.advanceReadiness()
+if navigator.userAgent.match /(iPhone|iPod|iPad|Android|BlackBerry)/
+    App.deferReadiness()
+    document.addEventListener "deviceready", ->
+        App.advanceReadiness()
 
 
 App.Router.map ->

@@ -13,38 +13,56 @@
 
 {{else}}
 
-    {{#if hasDailyGoals}}
-        <div class="goal-section day">
-            <div class="title">
-                Today's Goals
-                {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
-            </div>
+    <div class="goal-section day">
+        <div class="title">
+            Today's Goals
+            {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
+        </div>
 
-            {{#each goal in todaysGoals}}
+        {{#if hasUnfinishedDailyGoals}}
+            {{#each goal in unfinishedDailyGoals}}
                 {{render "goal" goal}}
             {{/each}}
-        </div>
-    {{/if}}
+        {{else}}
+            {{#if hasDailyGoals}}
+                <div class="goal-list-entry">All Done!</div>
+            {{else}}
+                <div class="goal-list-entry">You don't have any Daily goals</div>
+            {{/if}}
+        {{/if}}
+    </div>
 
-    {{#if hasWeeklyGoals}}
-        <div class="goal-section week">
-            <div class="title">This Week's Goals</div>
+    <div class="goal-section week">
+        <div class="title">This Week's Goals</div>
 
-            {{#each goal in thisWeeksGoals}}
+        {{#if hasUnfinishedWeeklyGoals}}
+            {{#each goal in unfinishedWeeklyGoals}}
                 {{render "goal" goal}}
             {{/each}}
-        </div>
-    {{/if}}
+        {{else}}
+            {{#if hasWeeklyGoals}}
+                <div class="goal-list-entry">All Done!</div>
+            {{else}}
+                <div class="goal-list-entry">You don't have any Weekly goals</div>
+            {{/if}}
+        {{/if}}
+    </div>
 
-    {{#if hasMonthlyGoals}}
-        <div class="goal-section month">
-            <div class="title">This Month's Goals</div>
+    <div class="goal-section month">
+        <div class="title">This Month's Goals</div>
 
-            {{#each goal in thisMonthsGoals}}
+        {{#if hasUnfinishedMonthlyGoals}}
+            {{#each goal in unfinishedMonthlyGoals}}
                 {{render "goal" goal}}
             {{/each}}
-        </div>
-    {{/if}}
+        {{else}}
+            {{#if hasMonthlyGoals}}
+                <div class="goal-list-entry">All Done!</div>
+            {{else}}
+                <div class="goal-list-entry">You don't have any Monthly goals</div>
+            {{/if}}
+        {{/if}}
+    </div>
 
     <div class="footer-links">
         {{#link-to "manage" class="nav-link backward"}}Manage Data{{/link-to}}

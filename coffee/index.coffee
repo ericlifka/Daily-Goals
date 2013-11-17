@@ -2,6 +2,7 @@ App.IndexRoute = Ember.Route.extend
     model: ->
         Data.allGoals()
 
+
 App.IndexController = Ember.ArrayController.extend
     days: [
         'Sunday'
@@ -43,26 +44,50 @@ App.IndexController = Ember.ArrayController.extend
     hasGoals: Ember.computed 'length', ->
         0 < @get 'length'
 
-    filterBy: (filter) ->
-        goal for goal in @get('model') when goal.frequency.interval is filter and @checkWeekend goal
 
-    checkWeekend: (goal) ->
-        not goal.frequency.excludeWeekends or not @get 'isWeekend'
+    filterByInterval: (interval) ->
+        _.filter @get('model'), (goal) ->
+            interval is goal.get 'frequency.interval'
 
-    todaysGoals: Ember.computed 'model.@each', ->
-        @filterBy 'day'
+    filterByUnfinished: (goals) ->
+        _.filter goals, (goal) ->
+            complete = goal.get('hasEntryForToday') or
+                goal.get('frequency.excludeWeekends') and @get('isWeekend')
 
-    hasDailyGoals: Ember.computed 'todaysGoals.length', ->
-        0 < @get 'todaysGoals.length'
+            not complete
 
-    thisWeeksGoals: Ember.computed 'model.@each', ->
-        @filterBy 'week'
+    dailyGoals: Ember.computed 'model.@each', ->
+        @filterByInterval 'day'
 
-    hasWeeklyGoals: Ember.computed 'thisWeeksGoals.length', ->
-        0 < @get 'thisWeeksGoals.length'
+    weeklyGoals: Ember.computed 'model.@each', ->
+        @filterByInterval 'week'
 
-    thisMonthsGoals: Ember.computed 'model.@each', ->
-        @filterBy 'month'
+    monthlyGoals: Ember.computed 'model.@each', ->
+        @filterByInterval 'month'
 
-    hasMonthlyGoals: Ember.computed 'thisMonthsGoals.length', ->
-        0 < @get 'thisMonthsGoals.length'
+    unfinishedDailyGoals: Ember.computed 'dailyGoals.@each', ->
+        @filterByUnfinished @get 'dailyGoals'
+
+    unfinishedWeeklyGoals: Ember.computed 'weeklyGoals.@each', ->
+        @filterByUnfinished @get 'weeklyGoals'
+
+    unfinishedMonthlyGoals: Ember.computed 'monthlyGoals.@each', ->
+        @filterByUnfinished @get 'monthlyGoals'
+
+    hasDailyGoals: Ember.computed 'dailyGoals.length', ->
+        0 < @get 'dailyGoals.length'
+
+    hasWeeklyGoals: Ember.computed 'weeklyGoals.length', ->
+        0 < @get 'weeklyGoals.length'
+
+    hasMonthlyGoals: Ember.computed 'monthlyGoals.length', ->
+        0 < @get 'monthlyGoals.length'
+
+    hasUnfinishedDailyGoals: Ember.computed 'unfinishedDailyGoals.length', ->
+        0 < @get 'unfinishedDailyGoals.length'
+
+    hasUnfinishedWeeklyGoals: Ember.computed 'unfinishedWeeklyGoals.length', ->
+        0 < @get 'unfinishedWeeklyGoals.length'
+
+    hasUnfinishedMonthlyGoals: Ember.computed 'unfinishedMonthlyGoals.length', ->
+        0 < @get 'unfinishedMonthlyGoals.length'

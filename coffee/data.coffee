@@ -126,10 +126,11 @@ Data =
         , fileWriteFailed)
 
 
-document.addEventListener "deviceready", ->
+if navigator.userAgent.match /(iPhone|iPod|iPad|Android|BlackBerry)/
+    document.addEventListener "deviceready", ->
+        Data.readDataFromFile()
+else
     Data.readDataFromFile()
-
-
 
 #        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
 #        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR

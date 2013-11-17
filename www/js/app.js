@@ -4,11 +4,12 @@
 
   window.App = Ember.Application.create();
 
-  App.deferReadiness();
-
-  document.addEventListener("deviceready", function() {
-    return App.advanceReadiness();
-  });
+  if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+    App.deferReadiness();
+    document.addEventListener("deviceready", function() {
+      return App.advanceReadiness();
+    });
+  }
 
   App.Router.map(function() {
     this.route('new');
@@ -184,9 +185,13 @@
     }
   };
 
-  document.addEventListener("deviceready", function() {
-    return Data.readDataFromFile();
-  });
+  if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+    document.addEventListener("deviceready", function() {
+      return Data.readDataFromFile();
+    });
+  } else {
+    Data.readDataFromFile();
+  }
 
   App.GoalModel = Ember.Object.extend({
     addEntry: function(goalValue) {
@@ -198,7 +203,10 @@
       this.get('entries').unshiftObject(entry);
       this.set('lastCompletedOn', entry.date);
       return Data.saveGoals();
-    }
+    },
+    hasEntryForToday: Ember.computed('lastCompletedOn', function() {
+      return todaysDateKey() === this.get('lastCompletedOn');
+    })
   });
 
   App.GoalView = Ember.View.extend({
@@ -210,9 +218,6 @@
       complete: function() {
         return this.get('model').addEntry(this.get('numberInput'));
       }
-    },
-    hasEntryForToday: function() {
-      return todaysDateKey() === this.get('lastCompletedOn');
     }
   });
 
@@ -258,38 +263,53 @@
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
     }),
-    filterBy: function(filter) {
-      var goal, _i, _len, _ref, _results;
-      _ref = this.get('model');
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        goal = _ref[_i];
-        if (goal.frequency.interval === filter && this.checkWeekend(goal)) {
-          _results.push(goal);
-        }
-      }
-      return _results;
+    filterByInterval: function(interval) {
+      return _.filter(this.get('model'), function(goal) {
+        return interval === goal.get('frequency.interval');
+      });
     },
-    checkWeekend: function(goal) {
-      return !goal.frequency.excludeWeekends || !this.get('isWeekend');
+    filterByUnfinished: function(goals) {
+      return _.filter(goals, function(goal) {
+        var complete;
+        complete = goal.get('hasEntryForToday') || goal.get('frequency.excludeWeekends') && this.get('isWeekend');
+        return !complete;
+      });
     },
-    todaysGoals: Ember.computed('model.@each', function() {
-      return this.filterBy('day');
+    dailyGoals: Ember.computed('model.@each', function() {
+      return this.filterByInterval('day');
     }),
-    hasDailyGoals: Ember.computed('todaysGoals.length', function() {
-      return 0 < this.get('todaysGoals.length');
+    weeklyGoals: Ember.computed('model.@each', function() {
+      return this.filterByInterval('week');
     }),
-    thisWeeksGoals: Ember.computed('model.@each', function() {
-      return this.filterBy('week');
+    monthlyGoals: Ember.computed('model.@each', function() {
+      return this.filterByInterval('month');
     }),
-    hasWeeklyGoals: Ember.computed('thisWeeksGoals.length', function() {
-      return 0 < this.get('thisWeeksGoals.length');
+    unfinishedDailyGoals: Ember.computed('dailyGoals.@each', function() {
+      return this.filterByUnfinished(this.get('dailyGoals'));
     }),
-    thisMonthsGoals: Ember.computed('model.@each', function() {
-      return this.filterBy('month');
+    unfinishedWeeklyGoals: Ember.computed('weeklyGoals.@each', function() {
+      return this.filterByUnfinished(this.get('weeklyGoals'));
     }),
-    hasMonthlyGoals: Ember.computed('thisMonthsGoals.length', function() {
-      return 0 < this.get('thisMonthsGoals.length');
+    unfinishedMonthlyGoals: Ember.computed('monthlyGoals.@each', function() {
+      return this.filterByUnfinished(this.get('monthlyGoals'));
+    }),
+    hasDailyGoals: Ember.computed('dailyGoals.length', function() {
+      return 0 < this.get('dailyGoals.length');
+    }),
+    hasWeeklyGoals: Ember.computed('weeklyGoals.length', function() {
+      return 0 < this.get('weeklyGoals.length');
+    }),
+    hasMonthlyGoals: Ember.computed('monthlyGoals.length', function() {
+      return 0 < this.get('monthlyGoals.length');
+    }),
+    hasUnfinishedDailyGoals: Ember.computed('unfinishedDailyGoals.length', function() {
+      return 0 < this.get('unfinishedDailyGoals.length');
+    }),
+    hasUnfinishedWeeklyGoals: Ember.computed('unfinishedWeeklyGoals.length', function() {
+      return 0 < this.get('unfinishedWeeklyGoals.length');
+    }),
+    hasUnfinishedMonthlyGoals: Ember.computed('unfinishedMonthlyGoals.length', function() {
+      return 0 < this.get('unfinishedMonthlyGoals.length');
     })
   });
 
