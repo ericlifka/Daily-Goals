@@ -65,7 +65,13 @@
     </div>
 
     <div class="footer-links">
-        {{#link-to "manage" class="nav-link backward"}}Manage Data{{/link-to}}
+        <a href="#" class="nav-link backward" {{action toggleShowAll}}>
+            {{#if showAll}}
+                Hide Completed
+            {{else}}
+                Show Completed
+            {{/if}}
+        </a>
         <a class="nav-link forward" href="mailto:eric.lifka@gmail.com?Subject=Daily%20Goals%20Feedback">Send Feedback</a>
     </div>
 

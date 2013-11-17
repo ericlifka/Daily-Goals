@@ -44,7 +44,6 @@ App.IndexController = Ember.ArrayController.extend
     hasGoals: Ember.computed 'length', ->
         0 < @get 'length'
 
-
     filterByInterval: (interval) ->
         _.filter @get('model'), (goal) ->
             interval is goal.get 'frequency.interval'
@@ -65,14 +64,23 @@ App.IndexController = Ember.ArrayController.extend
     monthlyGoals: Ember.computed 'model.@each', ->
         @filterByInterval 'month'
 
-    unfinishedDailyGoals: Ember.computed 'dailyGoals.@each.hasEntryForToday', ->
-        @filterByUnfinished @get 'dailyGoals'
+    unfinishedDailyGoals: Ember.computed 'dailyGoals.@each.hasEntryForToday', 'showAll', ->
+        if @get 'showAll'
+            @get 'dailyGoals'
+        else
+            @filterByUnfinished @get 'dailyGoals'
 
-    unfinishedWeeklyGoals: Ember.computed 'weeklyGoals.@each.hasEntryForToday', ->
-        @filterByUnfinished @get 'weeklyGoals'
+    unfinishedWeeklyGoals: Ember.computed 'weeklyGoals.@each.hasEntryForToday', 'showAll', ->
+        if @get 'showAll'
+            @get 'weeklyGoals'
+        else
+            @filterByUnfinished @get 'weeklyGoals'
 
-    unfinishedMonthlyGoals: Ember.computed 'monthlyGoals.@each.hasEntryForToday', ->
-        @filterByUnfinished @get 'monthlyGoals'
+    unfinishedMonthlyGoals: Ember.computed 'monthlyGoals.@each.hasEntryForToday', 'showAll', ->
+        if @get 'showAll'
+            @get 'monthlyGoals'
+        else
+            @filterByUnfinished @get 'monthlyGoals'
 
     hasDailyGoals: Ember.computed 'dailyGoals.length', ->
         0 < @get 'dailyGoals.length'
@@ -91,3 +99,7 @@ App.IndexController = Ember.ArrayController.extend
 
     hasUnfinishedMonthlyGoals: Ember.computed 'unfinishedMonthlyGoals.length', ->
         0 < @get 'unfinishedMonthlyGoals.length'
+
+    actions:
+        toggleShowAll: ->
+            @set 'showAll', not @get 'showAll'

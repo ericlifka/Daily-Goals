@@ -284,14 +284,26 @@
     monthlyGoals: Ember.computed('model.@each', function() {
       return this.filterByInterval('month');
     }),
-    unfinishedDailyGoals: Ember.computed('dailyGoals.@each.hasEntryForToday', function() {
-      return this.filterByUnfinished(this.get('dailyGoals'));
+    unfinishedDailyGoals: Ember.computed('dailyGoals.@each.hasEntryForToday', 'showAll', function() {
+      if (this.get('showAll')) {
+        return this.get('dailyGoals');
+      } else {
+        return this.filterByUnfinished(this.get('dailyGoals'));
+      }
     }),
-    unfinishedWeeklyGoals: Ember.computed('weeklyGoals.@each.hasEntryForToday', function() {
-      return this.filterByUnfinished(this.get('weeklyGoals'));
+    unfinishedWeeklyGoals: Ember.computed('weeklyGoals.@each.hasEntryForToday', 'showAll', function() {
+      if (this.get('showAll')) {
+        return this.get('weeklyGoals');
+      } else {
+        return this.filterByUnfinished(this.get('weeklyGoals'));
+      }
     }),
-    unfinishedMonthlyGoals: Ember.computed('monthlyGoals.@each.hasEntryForToday', function() {
-      return this.filterByUnfinished(this.get('monthlyGoals'));
+    unfinishedMonthlyGoals: Ember.computed('monthlyGoals.@each.hasEntryForToday', 'showAll', function() {
+      if (this.get('showAll')) {
+        return this.get('monthlyGoals');
+      } else {
+        return this.filterByUnfinished(this.get('monthlyGoals'));
+      }
     }),
     hasDailyGoals: Ember.computed('dailyGoals.length', function() {
       return 0 < this.get('dailyGoals.length');
@@ -310,7 +322,12 @@
     }),
     hasUnfinishedMonthlyGoals: Ember.computed('unfinishedMonthlyGoals.length', function() {
       return 0 < this.get('unfinishedMonthlyGoals.length');
-    })
+    }),
+    actions: {
+      toggleShowAll: function() {
+        return this.set('showAll', !this.get('showAll'));
+      }
+    }
   });
 
   App.ManageRoute = Ember.Route.extend({

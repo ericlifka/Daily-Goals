@@ -100,15 +100,16 @@ function program4(depth0,data) {
   hashContexts = {};
   stack2 = helpers['if'].call(depth0, "hasUnfinishedMonthlyGoals", {hash:{},inverse:self.program(20, program20, data),fn:self.program(18, program18, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    </div>\n\n    <div class=\"footer-links\">\n        ");
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
-  options = {hash:{
-    'class': ("nav-link backward")
-  },inverse:self.noop,fn:self.program(23, program23, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "manage", options) : helperMissing.call(depth0, "link-to", "manage", options));
+  data.buffer.push("\n    </div>\n\n    <div class=\"footer-links\">\n        <a href=\"#\" class=\"nav-link backward\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "toggleShowAll", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n            ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "showAll", {hash:{},inverse:self.program(25, program25, data),fn:self.program(23, program23, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n        <a class=\"nav-link forward\" href=\"mailto:eric.lifka@gmail.com?Subject=Daily%20Goals%20Feedback\">Send Feedback</a>\n    </div>\n\n");
+  data.buffer.push("\n        </a>\n        <a class=\"nav-link forward\" href=\"mailto:eric.lifka@gmail.com?Subject=Daily%20Goals%20Feedback\">Send Feedback</a>\n    </div>\n\n");
   return buffer;
   }
 function program5(depth0,data) {
@@ -218,7 +219,13 @@ function program21(depth0,data) {
 function program23(depth0,data) {
   
   
-  data.buffer.push("Manage Data");
+  data.buffer.push("\n                Hide Completed\n            ");
+  }
+
+function program25(depth0,data) {
+  
+  
+  data.buffer.push("\n                Show Completed\n            ");
   }
 
   data.buffer.push("<div class=\"title-bar\">\n    ");
