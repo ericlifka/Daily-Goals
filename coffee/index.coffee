@@ -65,13 +65,13 @@ App.IndexController = Ember.ArrayController.extend
     monthlyGoals: Ember.computed 'model.@each', ->
         @filterByInterval 'month'
 
-    unfinishedDailyGoals: Ember.computed 'dailyGoals.@each', ->
+    unfinishedDailyGoals: Ember.computed 'dailyGoals.@each.hasEntryForToday', ->
         @filterByUnfinished @get 'dailyGoals'
 
-    unfinishedWeeklyGoals: Ember.computed 'weeklyGoals.@each', ->
+    unfinishedWeeklyGoals: Ember.computed 'weeklyGoals.@each.hasEntryForToday', ->
         @filterByUnfinished @get 'weeklyGoals'
 
-    unfinishedMonthlyGoals: Ember.computed 'monthlyGoals.@each', ->
+    unfinishedMonthlyGoals: Ember.computed 'monthlyGoals.@each.hasEntryForToday', ->
         @filterByUnfinished @get 'monthlyGoals'
 
     hasDailyGoals: Ember.computed 'dailyGoals.length', ->

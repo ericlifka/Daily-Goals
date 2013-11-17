@@ -284,13 +284,13 @@
     monthlyGoals: Ember.computed('model.@each', function() {
       return this.filterByInterval('month');
     }),
-    unfinishedDailyGoals: Ember.computed('dailyGoals.@each', function() {
+    unfinishedDailyGoals: Ember.computed('dailyGoals.@each.hasEntryForToday', function() {
       return this.filterByUnfinished(this.get('dailyGoals'));
     }),
-    unfinishedWeeklyGoals: Ember.computed('weeklyGoals.@each', function() {
+    unfinishedWeeklyGoals: Ember.computed('weeklyGoals.@each.hasEntryForToday', function() {
       return this.filterByUnfinished(this.get('weeklyGoals'));
     }),
-    unfinishedMonthlyGoals: Ember.computed('monthlyGoals.@each', function() {
+    unfinishedMonthlyGoals: Ember.computed('monthlyGoals.@each.hasEntryForToday', function() {
       return this.filterByUnfinished(this.get('monthlyGoals'));
     }),
     hasDailyGoals: Ember.computed('dailyGoals.length', function() {
