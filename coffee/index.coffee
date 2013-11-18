@@ -2,6 +2,11 @@ App.IndexRoute = Ember.Route.extend
     model: ->
         Data.allGoals()
 
+    actions:
+        detail: (goal) ->
+            console.log "go to goal: ", goal.get 'id'
+            @transitionTo 'detail', goal
+
 
 App.IndexController = Ember.ArrayController.extend
     days: [

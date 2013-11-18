@@ -1,6 +1,6 @@
 ###
 {
-    version: 1,
+    version: 1
     goals: [
         {
             name: string
@@ -25,6 +25,7 @@
 ###
 
 Data =
+    id_counter: 1
     currentDataVersion: 1
     defaultData: {"version": 1, "goals": []}
 
@@ -43,7 +44,7 @@ Data =
         goalsPromise.promise()
 
     newGoal: ({name, trackNumber, interval, daysPerPeriod, excludeWeekends}) ->
-        if @findGoal name
+        if @findGoalByName name
             alert 'Duplicate goal name'
             false
         else
@@ -65,8 +66,13 @@ Data =
         @goals.removeObject goal
         @saveGoals()
 
-    findGoal: (name) ->
-        _.find @goals, (goal) -> goal.name is name
+    getGoalById: (id) ->
+        _.find @goals, (goal) ->
+            goal.get('id') is id
+
+    findGoalByName: (name) ->
+        _.find @goals, (goal) ->
+            goal.get('name') is name
 
     saveGoals: ->
         json = JSON.stringify
@@ -78,7 +84,10 @@ Data =
         @goalToJson goal for goal in @goals
 
     goalFromJson: (json) ->
-        App.GoalModel.create json
+        goal = App.GoalModel.create json
+        goal.set 'id', @id_counter
+        @id_counter++
+        goal
 
     goalToJson: (goal) ->
         name: goal.name
@@ -125,12 +134,29 @@ Data =
             , fileWriteFailed)
         , fileWriteFailed)
 
+    readInFakeData: ->
+        @initialize
+            version: 1
+            goals: [
+                {
+                    name: "something"
+                    trackNumber: true
+                    lastCompletedOn: null
+                    frequency: {
+                        interval: 'day'
+                        daysPerPeriod: 1
+                        excludeWeekends: false
+                    }
+                    entries: []
+                }
+            ]
 
 if navigator.userAgent.match /(iPhone|iPod|iPad|Android|BlackBerry)/
     document.addEventListener "deviceready", ->
         Data.readDataFromFile()
 else
-    Data.readDataFromFile()
+    jQuery ->
+        Data.readInFakeData()
 
 #        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
 #        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR

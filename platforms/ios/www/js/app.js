@@ -13,12 +13,15 @@
 
   App.Router.map(function() {
     this.route('new');
-    return this.route('manage');
+    this.route('manage');
+    return this.route('detail', {
+      path: '/detail/:goal_id'
+    });
   });
 
   /*
   {
-      version: 1,
+      version: 1
       goals: [
           {
               name: string
@@ -44,6 +47,7 @@
 
 
   Data = {
+    id_counter: 1,
     currentDataVersion: 1,
     defaultData: {
       "version": 1,
@@ -76,7 +80,7 @@
     newGoal: function(_arg) {
       var daysPerPeriod, excludeWeekends, goal, interval, name, trackNumber;
       name = _arg.name, trackNumber = _arg.trackNumber, interval = _arg.interval, daysPerPeriod = _arg.daysPerPeriod, excludeWeekends = _arg.excludeWeekends;
-      if (this.findGoal(name)) {
+      if (this.findGoalByName(name)) {
         alert('Duplicate goal name');
         return false;
       } else {
@@ -100,9 +104,14 @@
       this.goals.removeObject(goal);
       return this.saveGoals();
     },
-    findGoal: function(name) {
+    getGoalById: function(id) {
       return _.find(this.goals, function(goal) {
-        return goal.name === name;
+        return goal.get('id') === id;
+      });
+    },
+    findGoalByName: function(name) {
+      return _.find(this.goals, function(goal) {
+        return goal.get('name') === name;
       });
     },
     saveGoals: function() {
@@ -124,7 +133,11 @@
       return _results;
     },
     goalFromJson: function(json) {
-      return App.GoalModel.create(json);
+      var goal;
+      goal = App.GoalModel.create(json);
+      goal.set('id', this.id_counter);
+      this.id_counter++;
+      return goal;
     },
     goalToJson: function(goal) {
       return {
@@ -182,6 +195,24 @@
           }, fileWriteFailed);
         }, fileWriteFailed);
       }, fileWriteFailed);
+    },
+    readInFakeData: function() {
+      return this.initialize({
+        version: 1,
+        goals: [
+          {
+            name: "something",
+            trackNumber: true,
+            lastCompletedOn: null,
+            frequency: {
+              interval: 'day',
+              daysPerPeriod: 1,
+              excludeWeekends: false
+            },
+            entries: []
+          }
+        ]
+      });
     }
   };
 
@@ -190,12 +221,18 @@
       return Data.readDataFromFile();
     });
   } else {
-    Data.readDataFromFile();
+    jQuery(function() {
+      return Data.readInFakeData();
+    });
   }
 
-  App.GoalListEntryView = Ember.View.extend({
-    classNames: ['goal-list-entry']
+  App.DetailRoute = Ember.Route.extend({
+    model: function(params) {
+      return Data.getGoalById(params.goal_id);
+    }
   });
+
+  App.DetailController = Ember.ObjectController.extend();
 
   App.GoalListEntryController = Ember.ObjectController.extend({
     actions: {
@@ -241,6 +278,12 @@
   App.IndexRoute = Ember.Route.extend({
     model: function() {
       return Data.allGoals();
+    },
+    actions: {
+      detail: function(goal) {
+        console.log("go to goal: ", goal.get('id'));
+        return this.transitionTo('detail', goal);
+      }
     }
   });
 

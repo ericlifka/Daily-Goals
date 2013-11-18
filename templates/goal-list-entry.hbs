@@ -1,11 +1,13 @@
-{{name}}
+<div class="goal-list-entry">
+    <a href="#" {{action detail model}} class="goal-title-link">{{name}}</a>
 
-{{#if model.hasEntryForToday}}
-    <input type="checkbox" checked="checked" disabled="disabled" class="goal-input complete">
-{{else}}
-    <button class="complete-goal" {{action complete}}>Done</button>
-{{/if}}
+    {{#if model.hasEntryForToday}}
+        <input type="checkbox" checked="checked" disabled="disabled" class="goal-input complete">
+    {{else}}
+        <button class="complete-goal" {{action complete}}>Done</button>
+    {{/if}}
 
-{{#if trackNumber}}
-    {{input value=numberInput pattern="\d*" placeholder="0" class="form-control goal-input number"}}
-{{/if}}
+    {{#if trackNumber}}
+        {{input value=numberInput pattern="\d*" placeholder="0" class="form-control goal-input number"}}
+    {{/if}}
+</div>

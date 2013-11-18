@@ -38,6 +38,9 @@ body {
   padding: 5px 0 5px 10px;
   margin: 0px;
 }
+.goal-section .goal-list-entry .goal-title-link {
+  color: black;
+}
 .goal-section .goal-list-entry .complete-goal {
   float: right;
   border: none;
