@@ -193,6 +193,18 @@
     Data.readDataFromFile();
   }
 
+  App.GoalListEntryView = Ember.View.extend({
+    classNames: ['goal-list-entry']
+  });
+
+  App.GoalListEntryController = Ember.ObjectController.extend({
+    actions: {
+      complete: function() {
+        return this.get('model').addEntry(this.get('numberInput'));
+      }
+    }
+  });
+
   App.GoalModel = Ember.Object.extend({
     addEntry: function(goalValue) {
       var entry;
@@ -207,18 +219,6 @@
     hasEntryForToday: Ember.computed('lastCompletedOn', function() {
       return todaysDateKey() === this.get('lastCompletedOn');
     })
-  });
-
-  App.GoalListEntryView = Ember.View.extend({
-    classNames: ['goal-list-entry']
-  });
-
-  App.GoalListEntryController = Ember.ObjectController.extend({
-    actions: {
-      complete: function() {
-        return this.get('model').addEntry(this.get('numberInput'));
-      }
-    }
   });
 
   padNumber = function(number) {

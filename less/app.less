@@ -66,14 +66,22 @@ body {
             color: #850205;
         }
 
-        .goal-input.number {
+        .goal-input {
             float: right;
             margin-right: 5px;
-            width: 60px;
             display: inline-block;
-            text-align: right;
             padding: 0px 5px 0px 0px;
             height: 23px;
+
+            &.number {
+                width: 60px;
+                text-align: right;
+            }
+
+            &.complete {
+                margin-top: 0px;
+                margin-right: 20px;
+            }
         }
     }
 }

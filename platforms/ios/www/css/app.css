@@ -54,14 +54,20 @@ body {
   padding-right: 10px;
   color: #850205;
 }
-.goal-section .goal-list-entry .goal-input.number {
+.goal-section .goal-list-entry .goal-input {
   float: right;
   margin-right: 5px;
-  width: 60px;
   display: inline-block;
-  text-align: right;
   padding: 0px 5px 0px 0px;
   height: 23px;
+}
+.goal-section .goal-list-entry .goal-input.number {
+  width: 60px;
+  text-align: right;
+}
+.goal-section .goal-list-entry .goal-input.complete {
+  margin-top: 0px;
+  margin-right: 20px;
 }
 .form-group .form-element {
   margin-bottom: 10px;
