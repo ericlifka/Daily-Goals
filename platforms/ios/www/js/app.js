@@ -69,13 +69,29 @@
       return this.dataLoadedPromise.resolve();
     },
     allGoals: function() {
-      var goalsPromise,
+      var promise,
         _this = this;
-      goalsPromise = new $.Deferred();
+      promise = new $.Deferred();
       this.dataLoadedPromise.then(function() {
-        return goalsPromise.resolve(_this.goals);
+        return promise.resolve(_this.goals);
       });
-      return goalsPromise.promise();
+      return promise.promise();
+    },
+    getGoalById: function(id) {
+      var promise,
+        _this = this;
+      if (typeof id === 'string') {
+        id = parseInt(id);
+      }
+      promise = new $.Deferred();
+      this.dataLoadedPromise.then(function() {
+        var goal;
+        goal = _.find(_this.goals, function(g) {
+          return id === g.get('id');
+        });
+        return promise.resolve(goal);
+      });
+      return promise.promise();
     },
     newGoal: function(_arg) {
       var daysPerPeriod, excludeWeekends, goal, interval, name, trackNumber;
@@ -104,11 +120,6 @@
     deleteGoal: function(goal) {
       this.goals.removeObject(goal);
       return this.saveGoals();
-    },
-    getGoalById: function(id) {
-      return _.find(this.goals, function(goal) {
-        return goal.get('id') === id;
-      });
     },
     findGoalByName: function(name) {
       return _.find(this.goals, function(goal) {
@@ -224,13 +235,19 @@
     });
   } else {
     jQuery(function() {
-      return Data.readInFakeData();
+      Data.readInFakeData();
+      return Data.writeJsonToFile = (function() {});
     });
   }
 
   App.DetailRoute = Ember.Route.extend({
     model: function(params) {
       return Data.getGoalById(params.goal_id);
+    },
+    afterModel: function(goal) {
+      if (!goal) {
+        return this.transitionTo('index');
+      }
     },
     actions: {
       "delete": function() {

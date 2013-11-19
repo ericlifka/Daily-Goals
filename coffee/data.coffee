@@ -37,11 +37,20 @@ Data =
         @dataLoadedPromise.resolve()
 
     allGoals: ->
-        goalsPromise = new $.Deferred()
+        promise = new $.Deferred()
         @dataLoadedPromise.then =>
-            goalsPromise.resolve @goals
+            promise.resolve @goals
+        promise.promise()
 
-        goalsPromise.promise()
+    getGoalById: (id) ->
+        if typeof id is 'string'
+            id = parseInt id
+
+        promise = new $.Deferred()
+        @dataLoadedPromise.then =>
+            goal = _.find @goals, (g) -> id is g.get 'id'
+            promise.resolve goal
+        promise.promise()
 
     newGoal: ({name, trackNumber, interval, daysPerPeriod, excludeWeekends}) ->
         if @findGoalByName name
@@ -66,10 +75,6 @@ Data =
     deleteGoal: (goal) ->
         @goals.removeObject goal
         @saveGoals()
-
-    getGoalById: (id) ->
-        _.find @goals, (goal) ->
-            goal.get('id') is id
 
     findGoalByName: (name) ->
         _.find @goals, (goal) ->
@@ -159,6 +164,7 @@ if navigator.userAgent.match /(iPhone|iPod|iPad|Android|BlackBerry)/
 else
     jQuery ->
         Data.readInFakeData()
+        Data.writeJsonToFile = ( -> )
 
 #        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
 #        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR

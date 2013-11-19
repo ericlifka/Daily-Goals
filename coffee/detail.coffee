@@ -2,6 +2,10 @@ App.DetailRoute = Ember.Route.extend
     model: (params) ->
         Data.getGoalById params.goal_id
 
+    afterModel: (goal) ->
+        if not goal
+            @transitionTo 'index'
+
     actions:
         delete: ->
             @transitionTo 'index'
