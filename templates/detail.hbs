@@ -1,1 +1,18 @@
-{{name}}
+<div class="detail-page">
+    <div class="title-bar">
+        {{#link-to 'index' class="nav-link backward"}}Back{{/link-to}}
+        <a href="#" class="nav-link forward delete" {{action delete}}>Delete</a>
+
+        <div>{{name}}</div>
+    </div>
+
+    <div class="goal-description-line">{{frequencyDescription}}</div>
+
+    {{#if frequency.excludeWeekends}}
+        <div class="goal-description-line">Exclude Weekends</div>
+    {{/if}}
+
+    {{#if trackNumber}}
+        <div class="goal-description-line">Include a Number Input for tracking</div>
+    {{/if}}
+</div>

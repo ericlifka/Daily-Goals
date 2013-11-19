@@ -1,4 +1,6 @@
 @body-padding: 10px;
+@link-color: #428bca;
+@delete-color: #BE0509;
 
 body {
     padding: @body-padding;
@@ -22,6 +24,10 @@ body {
     &.backward {
         position: absolute;
         left: @body-padding;
+    }
+
+    &.delete {
+        color: @delete-color;
     }
 }
 
@@ -58,16 +64,7 @@ body {
             font-weight: lighter;
             background-color: white;
             padding-right: 10px;
-            color: #428bca;
-        }
-
-        .delete-goal {
-            float: right;
-            border: none;
-            font-weight: lighter;
-            background-color: white;
-            padding-right: 10px;
-            color: #850205;
+            color: @link-color;
         }
 
         .goal-input {
@@ -105,5 +102,14 @@ body {
 
     .control-label {
         font-weight: normal;
+    }
+}
+
+.detail-page {
+    .goal-description-line {
+        font-size: 110%;
+        line-height: 200%;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }

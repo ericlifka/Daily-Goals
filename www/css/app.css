@@ -18,6 +18,9 @@ body {
   position: absolute;
   left: 10px;
 }
+.nav-link.delete {
+  color: #be0509;
+}
 .footer-links {
   margin-top: 30px;
 }
@@ -49,14 +52,6 @@ body {
   padding-right: 10px;
   color: #428bca;
 }
-.goal-section .goal-list-entry .delete-goal {
-  float: right;
-  border: none;
-  font-weight: lighter;
-  background-color: white;
-  padding-right: 10px;
-  color: #850205;
-}
 .goal-section .goal-list-entry .goal-input {
   float: right;
   margin-right: 5px;
@@ -83,4 +78,10 @@ body {
 }
 .form-group .control-label {
   font-weight: normal;
+}
+.detail-page .goal-description-line {
+  font-size: 110%;
+  line-height: 200%;
+  padding-left: 5px;
+  padding-right: 5px;
 }

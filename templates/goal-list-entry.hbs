@@ -8,6 +8,8 @@
     {{/if}}
 
     {{#if trackNumber}}
-        {{input value=numberInput pattern="\d*" placeholder="0" class="form-control goal-input number"}}
+        {{#unless model.hasEntryForToday}}
+            {{input value=numberInput pattern="\d*" placeholder="0" class="form-control goal-input number"}}
+        {{/unless}}
     {{/if}}
 </div>

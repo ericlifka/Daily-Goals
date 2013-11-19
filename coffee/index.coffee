@@ -4,7 +4,6 @@ App.IndexRoute = Ember.Route.extend
 
     actions:
         detail: (goal) ->
-            console.log "go to goal: ", goal.get 'id'
             @transitionTo 'detail', goal
 
 
@@ -50,14 +49,13 @@ App.IndexController = Ember.ArrayController.extend
         0 < @get 'length'
 
     filterByInterval: (interval) ->
-        _.filter @get('model'), (goal) ->
+        _.filter @get('model'), (goal) =>
             interval is goal.get 'frequency.interval'
 
     filterByUnfinished: (goals) ->
-        _.filter goals, (goal) ->
+        _.filter goals, (goal) =>
             complete = goal.get('hasEntryForToday') or
                 goal.get('frequency.excludeWeekends') and @get('isWeekend')
-
             not complete
 
     dailyGoals: Ember.computed 'model.@each', ->

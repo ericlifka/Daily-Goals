@@ -49,13 +49,14 @@ Data =
             false
         else
             goal = App.GoalModel.create
+                id: @newId()
                 name: name
                 trackNumber: trackNumber or false
                 entries: []
                 lastCompletedOn: null
                 frequency:
                     interval: interval
-                    daysPerPeriod: daysPerPeriod or 1
+                    daysPerPeriod: parseInt(daysPerPeriod) or 1
                     excludeWeekends: excludeWeekends or false
 
             @goals.pushObject goal
@@ -84,10 +85,8 @@ Data =
         @goalToJson goal for goal in @goals
 
     goalFromJson: (json) ->
-        goal = App.GoalModel.create json
-        goal.set 'id', @id_counter
-        @id_counter++
-        goal
+        App.GoalModel.create json,
+            id: @newId()
 
     goalToJson: (goal) ->
         name: goal.name
@@ -98,6 +97,9 @@ Data =
             interval: goal.frequency.interval
             daysPerPeriod: goal.frequency.daysPerPeriod
             excludeWeekends: goal.frequency.excludeWeekends
+
+    newId: ->
+        @id_counter++
 
     readDataFromFile: ->
         fileReadFailed = (error) =>
