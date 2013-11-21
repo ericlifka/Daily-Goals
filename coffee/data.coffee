@@ -5,7 +5,17 @@
         {
             name: string
             trackNumber: boolean
-            lastCompletedOn: "year.month.day" or null e.g. "2012.11.06"
+            lastCompletedOn: ISO Date String
+            currentStreak: {
+                length: number
+                start: ISO Date String
+                end: ISO Date String
+            }
+            longestStreak: {
+                length: number
+                start: ISO Date String
+                end: ISO Date String
+            }
             frequency: {
                 interval: string in set ['month', 'day', 'year']
                 daysPerPeriod: integer
@@ -13,7 +23,7 @@
             }
             entries: [
                 {
-                    date: "year.month.day",
+                    date: ISO Date String,
                     numberValue: number (this field only exists on goals with 'trackNumber' set to true)
                 }
                 ...
@@ -63,6 +73,14 @@ Data =
                 trackNumber: trackNumber or false
                 entries: []
                 lastCompletedOn: null
+                currentStreak:
+                    length: 0
+                    start: null
+                    end: null
+                longestStreak:
+                    length: 0
+                    start: null
+                    end: null
                 frequency:
                     interval: interval
                     daysPerPeriod: parseInt(daysPerPeriod) or 1
@@ -147,14 +165,33 @@ Data =
             goals: [
                 {
                     name: "something"
-                    trackNumber: true
+                    trackNumber: false
                     lastCompletedOn: null
+                    currentStreak:
+                        length: 0
+                        start: null
+                        end: null
+                    longestStreak:
+                        length: 0
+                        start: null
+                        end: null
                     frequency: {
                         interval: 'day'
                         daysPerPeriod: 1
                         excludeWeekends: false
                     }
-                    entries: []
+                    entries: [
+#                        {date: "2013-11-19T05:00:00.000Z"}
+#                        {date: "2013-11-17T05:00:00.000Z"}
+#                        {date: "2013-11-17T05:00:00.000Z"}
+#                        {date: "2013-11-15T05:00:00.000Z"}
+#                        {date: "2013-11-15T05:00:00.000Z"}
+#                        {date: "2013-11-14T05:00:00.000Z"}
+#                        {date: "2013-11-13T05:00:00.000Z"}
+#                        {date: "2013-11-12T05:00:00.000Z"}
+#                        {date: "2013-11-11T05:00:00.000Z"}
+#                        {date: "2013-11-10T05:00:00.000Z"}
+                    ]
                 }
             ]
 

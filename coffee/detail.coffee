@@ -3,8 +3,7 @@ App.DetailRoute = Ember.Route.extend
         Data.getGoalById params.goal_id
 
     afterModel: (goal) ->
-        if not goal
-            @transitionTo 'index'
+        if not goal then @transitionTo 'index'
 
     actions:
         delete: ->
@@ -19,17 +18,14 @@ App.DetailController = Ember.ObjectController.extend
         if interval is 'day'
             "#{prelude} Every Day"
         else
-            number = if count is 1
-                    "Once"
-                else if count is 2
-                    "Twice"
-                else
-                    "#{count} times"
+            number = switch
+                when count is 1 then "Once"
+                when count is 2 then "Twice"
+                else "#{count} times"
 
-            period = if interval is 'week'
-                    "Week"
-                else
-                    "Month"
+            period = switch
+                when interval is 'week' then "Week"
+                else "Month"
 
             "#{prelude} at least #{number} a #{period}"
 
