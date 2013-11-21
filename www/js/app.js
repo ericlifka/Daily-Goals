@@ -253,6 +253,50 @@
               excludeWeekends: false
             },
             entries: []
+          }, {
+            name: "weekly test",
+            trackNumber: false,
+            lastCompletedOn: null,
+            currentStreak: {
+              length: 0,
+              start: null,
+              end: null
+            },
+            longestStreak: {
+              length: 0,
+              start: null,
+              end: null
+            },
+            frequency: {
+              interval: 'week',
+              daysPerPeriod: 2,
+              excludeWeekends: false
+            },
+            entries: [
+              {
+                date: "2013-11-19T05:00:00.000Z"
+              }, {
+                date: "2013-11-17T05:00:00.000Z"
+              }, {
+                date: "2013-11-15T05:00:00.000Z"
+              }, {
+                date: "2013-11-14T05:00:00.000Z"
+              }, {
+                date: "2013-11-13T05:00:00.000Z"
+              }, {
+                date: "2013-11-12T05:00:00.000Z"
+              }, {
+                date: "2013-11-11T05:00:00.000Z"
+              }, {
+                date: "2013-11-10T05:00:00.000Z"
+              }, {
+                date: "2013-10-31T05:00:00.000Z"
+              }, {
+                date: "2013-10-30T05:00:00.000Z"
+              }, {
+                date: "2013-10-29T05:00:00.000Z"
+              }
+            ]
           }
         ]
       });
@@ -364,6 +408,13 @@
       }
       return this.updateLongestStreak();
     },
+    setCurrentStreak: function(_arg) {
+      var end, length, start;
+      length = _arg.length, start = _arg.start, end = _arg.end;
+      this.set('currentStreak.length', length);
+      this.set('currentStreak.start', start);
+      return this.set('currentStreak.end', end);
+    },
     updateLongestStreak: function() {
       var current, longest;
       current = this.get('currentStreak.length');
@@ -378,29 +429,122 @@
       var end, length, start, _ref;
       _ref = this.findStartOfCurrentDayStreak(this.entries), start = _ref[0], length = _ref[1];
       end = App.time.todaysKey();
-      this.set('currentStreak.length', length);
-      this.set('currentStreak.start', start);
-      return this.set('currentStreak.end', end);
+      return this.setCurrentStreak({
+        length: length,
+        start: start,
+        end: end
+      });
     },
-    calculateWeekStreak: function() {},
-    calculateMonthStreak: function() {},
-    findStartOfCurrentDayStreak: function(entries, length) {
+    findStartOfCurrentDayStreak: function(entries, streakLength) {
       var first, next, _ref;
-      if (length == null) {
-        length = 0;
+      if (streakLength == null) {
+        streakLength = 0;
       }
       if (!entries || entries.length === 0) {
-        return [null, 0];
+        return [null, streakLength];
       } else if (entries.length === 1) {
-        return [_.first(entries).date, length + 1];
+        return [_.first(entries).date, streakLength + 1];
       } else {
         _ref = _.first(entries, 2), first = _ref[0], next = _ref[1];
-        console.log("Comparing first:'" + first.date + "', next:'" + next.date + "'");
         if (moment(first.date).diff(moment(next.date), 'days') > 1) {
-          return [first.date, length + 1];
+          return [first.date, streakLength + 1];
         } else {
-          return this.findStartOfCurrentDayStreak(_.rest(entries), length + 1);
+          return this.findStartOfCurrentDayStreak(_.rest(entries), streakLength + 1);
         }
+      }
+    },
+    calculateWeekStreak: function() {
+      var end, length, start, _ref;
+      _ref = this.findCurrentWeekStreak(), start = _ref[0], length = _ref[1];
+      end = App.time.todaysKey();
+      return this.setCurrentStreak({
+        length: length,
+        start: start,
+        end: end
+      });
+    },
+    findCurrentWeekStreak: function() {
+      var bucketedEntries, sortedWeekResults, weekResults;
+      bucketedEntries = this.bucketEntriesByWeek(this.entries);
+      weekResults = this.calculateResultsByWeek(bucketedEntries, this.get('frequency.daysPerPeriod'));
+      sortedWeekResults = _.sortBy(weekResults, 'weekKey');
+      return this.findStartOfCurrentWeekStreak(sortedWeekResults);
+    },
+    bucketEntriesByWeek: function(entries) {
+      var _this = this;
+      return _.groupBy(entries, function(entry) {
+        var date, week, year;
+        date = moment(entry.date);
+        year = date.year();
+        week = _this.pad(date.week());
+        return "" + year + "." + week;
+      });
+    },
+    calculateResultsByWeek: function(bucketedEntries, targetCount) {
+      var _this = this;
+      return _.map(bucketedEntries, function(entries, weekKey) {
+        var metThisWeek;
+        metThisWeek = entries.length >= targetCount;
+        return {
+          weekKey: weekKey,
+          metThisWeek: metThisWeek
+        };
+      });
+    },
+    findStartOfCurrentWeekStreak: function(weekResults, streakLength) {
+      var currentWeek, previousWeek, streakLengthResult, streakStartResult, week, _ref, _ref1;
+      if (streakLength == null) {
+        streakLength = 0;
+      }
+      if (!weekResults || weekResults.length === 0) {
+        return [null, streakLength];
+      } else if (weekResults.length === 1) {
+        week = _.first(weekResults);
+        if (!week.metThisWeek) {
+          return [null, streakLength];
+        } else {
+          return [this.startOfWeekForWeekKey(week.weekKey), streakLength + 1];
+        }
+      } else {
+        _ref = _.last(weekResults, 2), previousWeek = _ref[0], currentWeek = _ref[1];
+        if (!currentWeek.metThisWeek) {
+          return [null, streakLength];
+        } else if (!this.weeksAreOneApart(currentWeek, previousWeek)) {
+          return [this.startOfWeekForWeekKey(currentWeek.weekKey), streakLength + 1];
+        } else {
+          _ref1 = this.findStartOfCurrentWeekStreak(_.initial(weekResults), streakLength + 1), streakStartResult = _ref1[0], streakLengthResult = _ref1[1];
+          if (!streakStartResult) {
+            streakStartResult = this.startOfWeekForWeekKey(currentWeek.weekKey);
+          }
+          return [streakStartResult, streakLengthResult];
+        }
+      }
+    },
+    startOfWeekForWeekKey: function(weekKey) {
+      var week, year, _ref;
+      _ref = weekKey.split('.'), year = _ref[0], week = _ref[1];
+      return moment({
+        year: year
+      }).week(week).day(0).toISOString();
+    },
+    weeksAreOneApart: function(currentWeek, previousWeek) {
+      var current, previous, weekCurrent, weekPrevious, yearCurrent, yearPrevious, _ref, _ref1;
+      _ref = currentWeek.weekKey.split('.'), yearCurrent = _ref[0], weekCurrent = _ref[1];
+      _ref1 = previousWeek.weekKey.split('.'), yearPrevious = _ref1[0], weekPrevious = _ref1[1];
+      current = moment({
+        year: yearCurrent
+      }).weeks(weekCurrent);
+      previous = moment({
+        year: yearPrevious
+      }).weeks(weekPrevious);
+      return 1 === current.diff(previous, 'weeks');
+    },
+    calculateMonthStreak: function() {},
+    pad: function(number) {
+      if (number < 10) {
+        return "0" + number;
+      } else {
+        return "" + number;
       }
     }
   });

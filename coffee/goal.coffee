@@ -21,6 +21,11 @@ App.GoalModel = Ember.Object.extend
 
         @updateLongestStreak()
 
+    setCurrentStreak: ({length, start, end}) ->
+        @set 'currentStreak.length', length
+        @set 'currentStreak.start', start
+        @set 'currentStreak.end', end
+
     updateLongestStreak: ->
         current = @get 'currentStreak.length'
         longest = @get 'longestStreak.length'
@@ -29,27 +34,88 @@ App.GoalModel = Ember.Object.extend
             @set 'longestStreak.start', @get 'currentStreak.start'
             @set 'longestStreak.end', @get 'currentStreak.end'
 
+
+
     calculateDayStreak: ->
         [start, length] = @findStartOfCurrentDayStreak @entries
         end = App.time.todaysKey()
 
-        @set 'currentStreak.length', length
-        @set 'currentStreak.start', start
-        @set 'currentStreak.end', end
+        @setCurrentStreak {length, start, end}
+
+    findStartOfCurrentDayStreak: (entries, streakLength=0) ->
+        if not entries or entries.length is 0
+            [null, streakLength]
+        else if entries.length is 1
+            [_.first(entries).date, streakLength + 1]
+        else
+            [first, next] = _.first entries, 2
+            if moment(first.date).diff(moment(next.date), 'days') > 1
+                [first.date, streakLength + 1]
+            else
+                @findStartOfCurrentDayStreak _.rest(entries), streakLength + 1
+
+
 
     calculateWeekStreak: ->
+        [start, length] = @findCurrentWeekStreak()
+        end = App.time.todaysKey()
+
+        @setCurrentStreak {length, start, end}
+
+    findCurrentWeekStreak: ->
+        bucketedEntries = @bucketEntriesByWeek @entries
+        weekResults = @calculateResultsByWeek bucketedEntries, @get 'frequency.daysPerPeriod'
+        sortedWeekResults = _.sortBy weekResults, 'weekKey'
+        @findStartOfCurrentWeekStreak sortedWeekResults
+
+    bucketEntriesByWeek: (entries) ->
+        _.groupBy entries, (entry) =>
+            date = moment entry.date
+            year = date.year()
+            week = @pad date.week()
+            "#{year}.#{week}"
+
+    calculateResultsByWeek: (bucketedEntries, targetCount) ->
+        _.map bucketedEntries, (entries, weekKey) =>
+            metThisWeek = entries.length >= targetCount
+            {weekKey, metThisWeek}
+
+    findStartOfCurrentWeekStreak: (weekResults, streakLength=0) ->
+        if not weekResults or weekResults.length is 0
+            [null, streakLength]
+        else if weekResults.length is 1
+            week = _.first weekResults
+            if not week.metThisWeek
+                [null, streakLength]
+            else
+                [@startOfWeekForWeekKey(week.weekKey), streakLength + 1]
+        else
+            # uses last instead of first because list is sorted in ascending order, not descending
+            [previousWeek, currentWeek] = _.last weekResults, 2
+            if not currentWeek.metThisWeek
+                [null, streakLength]
+            else if not @weeksAreOneApart currentWeek, previousWeek
+                [@startOfWeekForWeekKey(currentWeek.weekKey), streakLength + 1]
+            else
+                [streakStartResult, streakLengthResult] = @findStartOfCurrentWeekStreak _.initial(weekResults), streakLength + 1
+                if not streakStartResult
+                    streakStartResult = @startOfWeekForWeekKey currentWeek.weekKey
+                [streakStartResult, streakLengthResult]
+
+    startOfWeekForWeekKey: (weekKey) ->
+        [year, week] = weekKey.split '.'
+        moment({year}).week(week).day(0).toISOString()
+
+    weeksAreOneApart: (currentWeek, previousWeek) ->
+        [yearCurrent, weekCurrent] = currentWeek.weekKey.split '.'
+        [yearPrevious, weekPrevious] = previousWeek.weekKey.split '.'
+        current = moment(year: yearCurrent).weeks weekCurrent
+        previous = moment(year: yearPrevious).weeks weekPrevious
+        1 is current.diff previous, 'weeks'
+
+
 
     calculateMonthStreak: ->
 
-    findStartOfCurrentDayStreak: (entries, length=0) ->
-        if not entries or entries.length is 0
-            [null, 0]
-        else if entries.length is 1
-            [_.first(entries).date, length + 1]
-        else
-            [first, next] = _.first entries, 2
-            console.log "Comparing first:'#{first.date}', next:'#{next.date}'"
-            if moment(first.date).diff(moment(next.date), 'days') > 1
-                [first.date, length + 1]
-            else
-                @findStartOfCurrentDayStreak _.rest(entries), length + 1
+    pad: (number) ->
+        if number < 10 then "0#{number}" else "#{number}"
