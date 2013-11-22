@@ -252,7 +252,31 @@
               daysPerPeriod: 1,
               excludeWeekends: false
             },
-            entries: []
+            entries: [
+              {
+                date: "2013-11-20T05:00:00.000Z"
+              }, {
+                date: "2013-11-19T05:00:00.000Z"
+              }, {
+                date: "2013-11-18T05:00:00.000Z"
+              }, {
+                date: "2013-11-17T05:00:00.000Z"
+              }, {
+                date: "2013-11-16T05:00:00.000Z"
+              }, {
+                date: "2013-11-15T05:00:00.000Z"
+              }, {
+                date: "2013-11-14T05:00:00.000Z"
+              }, {
+                date: "2013-11-13T05:00:00.000Z"
+              }, {
+                date: "2013-11-12T05:00:00.000Z"
+              }, {
+                date: "2013-11-11T05:00:00.000Z"
+              }, {
+                date: "2013-11-10T05:00:00.000Z"
+              }
+            ]
           }, {
             name: "weekly test",
             trackNumber: false,
@@ -331,6 +355,37 @@
   });
 
   App.DetailController = Ember.ObjectController.extend({
+    hasLongestStreak: Ember.computed('longestStreak.start', 'longestStreak.end', function() {
+      return this.get('longestStreak.start') && this.get('longestStreak.end');
+    }),
+    startOfLongestStreak: Ember.computed('frequency.interval', 'longestStreak.start', function() {
+      var streakStartDate;
+      streakStartDate = moment(this.get('longestStreak.start'));
+      switch (this.get('frequency.interval')) {
+        case 'day':
+          return streakStartDate.format('MMMM Do YYYY');
+        case 'week':
+          return streakStartDate.format('MMMM Do YYYY');
+        case 'month':
+          return streakStartDate.format('MMMM YYYY');
+      }
+    }),
+    endOfLongestStreak: Ember.computed('frequency.interval', 'longestStreak.end', function() {
+      var streakEndDate;
+      streakEndDate = this.get('longestStreak.end');
+      if (streakEndDate === App.time.todaysKey()) {
+        return "through today";
+      } else {
+        switch (this.get('frequency.interval')) {
+          case 'day':
+            return "until " + (streakEndDate.format('MMMM Do YYYY'));
+          case 'week':
+            return "until " + (streakEndDate.format('MMMM Do YYYY'));
+          case 'month':
+            return "until " + (streakEndDate.format('MMMM YYYY'));
+        }
+      }
+    }),
     frequencyDescription: Ember.computed('frequency.interval', 'frequency.daysPerPeriod', function() {
       var count, interval, number, period, prelude;
       interval = this.get('frequency.interval');

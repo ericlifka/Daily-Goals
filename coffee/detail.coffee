@@ -10,6 +10,25 @@ App.DetailRoute = Ember.Route.extend
             @transitionTo 'index'
 
 App.DetailController = Ember.ObjectController.extend
+    hasLongestStreak: Ember.computed 'longestStreak.start', 'longestStreak.end', ->
+        @get('longestStreak.start') and @get('longestStreak.end')
+
+    startOfLongestStreak: Ember.computed 'frequency.interval', 'longestStreak.start', ->
+        streakStartDate = moment(@get 'longestStreak.start')
+        if 'month' is @get 'frequency.interval'
+            streakStartDate.format 'MMMM YYYY'
+        else
+            streakStartDate.format 'MMMM Do YYYY'
+
+    endOfLongestStreak: Ember.computed 'frequency.interval', 'longestStreak.end', ->
+        streakEndDate = @get 'longestStreak.end'
+        if streakEndDate is App.time.todaysKey()
+            "through today"
+        else if 'month' is @get 'frequency.interval'
+            "until #{streakEndDate.format('MMMM YYYY')}"
+        else
+            "until #{streakEndDate.format('MMMM Do YYYY')}"
+
     frequencyDescription: Ember.computed 'frequency.interval', 'frequency.daysPerPeriod', ->
         interval = @get 'frequency.interval'
         count = @get 'frequency.daysPerPeriod'

@@ -15,4 +15,11 @@
     {{#if trackNumber}}
         <div class="goal-description-line">Include a Number Input for tracking</div>
     {{/if}}
+
+    {{#if hasLongestStreak}}
+        <div class="goal-description-line">
+            Your longest continuous streak of {{frequency.interval}}s is {{longestStreak.length}},
+            starting {{startOfLongestStreak}} and running {{endOfLongestStreak}}.
+        </div>
+    {{/if}}
 </div>
