@@ -361,13 +361,10 @@
     startOfLongestStreak: Ember.computed('frequency.interval', 'longestStreak.start', function() {
       var streakStartDate;
       streakStartDate = moment(this.get('longestStreak.start'));
-      switch (this.get('frequency.interval')) {
-        case 'day':
-          return streakStartDate.format('MMMM Do YYYY');
-        case 'week':
-          return streakStartDate.format('MMMM Do YYYY');
-        case 'month':
-          return streakStartDate.format('MMMM YYYY');
+      if ('month' === this.get('frequency.interval')) {
+        return streakStartDate.format('MMMM YYYY');
+      } else {
+        return streakStartDate.format('MMMM Do YYYY');
       }
     }),
     endOfLongestStreak: Ember.computed('frequency.interval', 'longestStreak.end', function() {
@@ -375,15 +372,10 @@
       streakEndDate = this.get('longestStreak.end');
       if (streakEndDate === App.time.todaysKey()) {
         return "through today";
+      } else if ('month' === this.get('frequency.interval')) {
+        return "until " + (streakEndDate.format('MMMM YYYY'));
       } else {
-        switch (this.get('frequency.interval')) {
-          case 'day':
-            return "until " + (streakEndDate.format('MMMM Do YYYY'));
-          case 'week':
-            return "until " + (streakEndDate.format('MMMM Do YYYY'));
-          case 'month':
-            return "until " + (streakEndDate.format('MMMM YYYY'));
-        }
+        return "until " + (streakEndDate.format('MMMM Do YYYY'));
       }
     }),
     frequencyDescription: Ember.computed('frequency.interval', 'frequency.daysPerPeriod', function() {
