@@ -431,6 +431,16 @@
     hasEntryForToday: Ember.computed('lastCompletedOn', function() {
       return App.time.todaysKey() === this.get('lastCompletedOn');
     }),
+    hasCurrentStreak: Ember.computed('currentStreak.length', function() {
+      return 0 < this.get('currentStreak.length');
+    }),
+    streakDisplayString: Ember.computed('currentStreak.length', 'frequency.interval', function() {
+      var count, plural, timeSpan;
+      count = this.get('currentStreak.length');
+      timeSpan = this.get('frequency.interval');
+      plural = count > 1 ? 's' : '';
+      return " (" + count + " " + timeSpan + plural + ")";
+    }),
     addEntry: function(goalValue) {
       var entry;
       entry = {

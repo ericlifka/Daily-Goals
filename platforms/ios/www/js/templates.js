@@ -103,11 +103,22 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n            ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "streakDisplayString", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n        ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
   
   data.buffer.push("\n        <input type=\"checkbox\" checked=\"checked\" disabled=\"disabled\" class=\"goal-input complete\">\n    ");
   }
 
-function program3(depth0,data) {
+function program5(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
   data.buffer.push("\n        <button class=\"complete-goal\" ");
@@ -118,18 +129,18 @@ function program3(depth0,data) {
   return buffer;
   }
 
-function program5(depth0,data) {
+function program7(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts;
   data.buffer.push("\n        ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers.unless.call(depth0, "model.hasEntryForToday", {hash:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.unless.call(depth0, "model.hasEntryForToday", {hash:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n    ");
   return buffer;
   }
-function program6(depth0,data) {
+function program8(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n            ");
@@ -150,19 +161,24 @@ function program6(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "detail", "model", {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" class=\"goal-title-link\">");
+  data.buffer.push(" class=\"goal-title-link\">\n        ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</a>\n\n    ");
+  data.buffer.push("\n        ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "model.hasEntryForToday", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers['if'].call(depth0, "hasCurrentStreak", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </a>\n\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "model.hasEntryForToday", {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "trackNumber", {hash:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers['if'].call(depth0, "trackNumber", {hash:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n</div>\n");
   return buffer;

@@ -2,6 +2,15 @@ App.GoalModel = Ember.Object.extend
     hasEntryForToday: Ember.computed 'lastCompletedOn', ->
         App.time.todaysKey() is @get 'lastCompletedOn'
 
+    hasCurrentStreak: Ember.computed 'currentStreak.length', ->
+        0 < @get 'currentStreak.length'
+
+    streakDisplayString: Ember.computed 'currentStreak.length', 'frequency.interval', ->
+        count = @get 'currentStreak.length'
+        timeSpan = @get 'frequency.interval'
+        plural = if count > 1 then 's' else ''
+        " (#{count} #{timeSpan}#{plural})"
+
     addEntry: (goalValue) ->
         entry =
             date: App.time.todaysKey()

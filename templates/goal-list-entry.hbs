@@ -1,5 +1,10 @@
 <div class="goal-list-entry">
-    <a href="#" {{action detail model}} class="goal-title-link">{{name}}</a>
+    <a href="#" {{action detail model}} class="goal-title-link">
+        {{name}}
+        {{#if hasCurrentStreak}}
+            {{streakDisplayString}}
+        {{/if}}
+    </a>
 
     {{#if model.hasEntryForToday}}
         <input type="checkbox" checked="checked" disabled="disabled" class="goal-input complete">
