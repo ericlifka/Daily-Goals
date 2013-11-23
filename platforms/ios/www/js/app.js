@@ -355,29 +355,6 @@
   });
 
   App.DetailController = Ember.ObjectController.extend({
-    hasLongestStreak: Ember.computed('longestStreak.start', 'longestStreak.end', function() {
-      return this.get('longestStreak.start') && this.get('longestStreak.end');
-    }),
-    startOfLongestStreak: Ember.computed('frequency.interval', 'longestStreak.start', function() {
-      var streakStartDate;
-      streakStartDate = moment(this.get('longestStreak.start'));
-      if ('month' === this.get('frequency.interval')) {
-        return streakStartDate.format('MMMM YYYY');
-      } else {
-        return streakStartDate.format('MMMM Do YYYY');
-      }
-    }),
-    endOfLongestStreak: Ember.computed('frequency.interval', 'longestStreak.end', function() {
-      var streakEndDate;
-      streakEndDate = this.get('longestStreak.end');
-      if (streakEndDate === App.time.todaysKey()) {
-        return "through today";
-      } else if ('month' === this.get('frequency.interval')) {
-        return "until " + (streakEndDate.format('MMMM YYYY'));
-      } else {
-        return "until " + (streakEndDate.format('MMMM Do YYYY'));
-      }
-    }),
     frequencyDescription: Ember.computed('frequency.interval', 'frequency.daysPerPeriod', function() {
       var count, interval, number, period, prelude;
       interval = this.get('frequency.interval');
@@ -434,13 +411,40 @@
     hasCurrentStreak: Ember.computed('currentStreak.length', function() {
       return 0 < this.get('currentStreak.length');
     }),
-    streakDisplayString: Ember.computed('currentStreak.length', 'frequency.interval', function() {
+    hasLongestStreak: Ember.computed('longestStreak.length', function() {
+      return 0 < this.get('longestStreak.length');
+    }),
+    currentStreakDisplayString: Ember.computed('currentStreak.length', 'frequency.interval', function() {
       var count, plural, timeSpan;
       count = this.get('currentStreak.length');
       timeSpan = this.get('frequency.interval');
       plural = count > 1 ? 's' : '';
       return " (" + count + " " + timeSpan + plural + ")";
     }),
+    longestStreakDisplayString: Ember.computed('longestStreak.length', 'frequency.interval', function() {
+      var count, plural, timeSpan;
+      count = this.get('longestStreak.length');
+      timeSpan = this.get('frequency.interval');
+      plural = count > 1 ? 's' : '';
+      return "" + count + " " + timeSpan + plural;
+    }),
+    longestStreakEndDate: Ember.computed('longestStreak.start', 'longestStreak.end', 'frequency.interval', function() {
+      var formatString;
+      formatString = this.getDateFormatString();
+      return moment(this.get('longestStreak.end')).format(formatString);
+    }),
+    longestStreakStartDate: Ember.computed('longestStreak.start', 'frequency.interval', function() {
+      var formatString;
+      formatString = this.getDateFormatString();
+      return moment(this.get('longestStreak.start')).format(formatString);
+    }),
+    getDateFormatString: function() {
+      if ('month' === this.get('frequency.interval')) {
+        return 'MMMM YYYY';
+      } else {
+        return 'MMMM Do YYYY';
+      }
+    },
     addEntry: function(goalValue) {
       var entry;
       entry = {

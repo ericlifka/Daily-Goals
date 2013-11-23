@@ -18,8 +18,9 @@
 
     {{#if hasLongestStreak}}
         <div class="goal-description-line">
-            Your longest continuous streak of {{frequency.interval}}s is {{longestStreak.length}},
-            starting {{startOfLongestStreak}} and running {{endOfLongestStreak}}.
+            <div>Longest Streak: {{longestStreakDisplayString}}</div>
+            <div>Start: {{longestStreakStartDate}}</div>
+            <div>End: {{longestStreakEndDate}}</div>
         </div>
     {{/if}}
 </div>

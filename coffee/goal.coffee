@@ -5,11 +5,34 @@ App.GoalModel = Ember.Object.extend
     hasCurrentStreak: Ember.computed 'currentStreak.length', ->
         0 < @get 'currentStreak.length'
 
-    streakDisplayString: Ember.computed 'currentStreak.length', 'frequency.interval', ->
+    hasLongestStreak: Ember.computed 'longestStreak.length', ->
+        0 < @get 'longestStreak.length'
+
+    currentStreakDisplayString: Ember.computed 'currentStreak.length', 'frequency.interval', ->
         count = @get 'currentStreak.length'
         timeSpan = @get 'frequency.interval'
         plural = if count > 1 then 's' else ''
         " (#{count} #{timeSpan}#{plural})"
+
+    longestStreakDisplayString: Ember.computed 'longestStreak.length', 'frequency.interval', ->
+        count = @get 'longestStreak.length'
+        timeSpan = @get 'frequency.interval'
+        plural = if count > 1 then 's' else ''
+        "#{count} #{timeSpan}#{plural}"
+
+    longestStreakEndDate: Ember.computed 'longestStreak.start', 'longestStreak.end', 'frequency.interval', ->
+        formatString = @getDateFormatString()
+        moment(@get 'longestStreak.end').format formatString
+
+    longestStreakStartDate: Ember.computed 'longestStreak.start', 'frequency.interval', ->
+        formatString = @getDateFormatString()
+        moment(@get 'longestStreak.start').format formatString
+
+    getDateFormatString: ->
+        if 'month' is @get 'frequency.interval'
+            'MMMM YYYY'
+        else
+            'MMMM Do YYYY'
 
     addEntry: (goalValue) ->
         entry =
