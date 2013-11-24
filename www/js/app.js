@@ -72,13 +72,6 @@
         _this = this;
       promise = new $.Deferred();
       this.dataLoadedPromise.then(function() {
-        var goal, _i, _len, _ref;
-        console.log('resolved promise with all goals');
-        _ref = _this.goals;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          goal = _ref[_i];
-          console.log(goal);
-        }
         return promise.resolve(_this.goals);
       });
       return promise.promise();
@@ -328,6 +321,33 @@
   });
 
   App.DetailController = Ember.ObjectController.extend({
+    actions: {
+      "delete": function() {
+        if (confirm("Delete this goal?")) {
+          App.data.deleteGoal(this.get('model'));
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  });
+
+  App.GoalListEntryController = Ember.ObjectController.extend({
+    actions: {
+      complete: function() {
+        return this.get('model').addEntry(this.get('numberInput'));
+      }
+    }
+  });
+
+  App.GoalModel = Ember.Object.extend({
+    hasEntryForToday: Ember.computed('lastCompletedOn', function() {
+      return App.time.todaysKey() === this.get('lastCompletedOn');
+    }),
+    nonDayPeriodGoal: Ember.computed('frequency.interval', function() {
+      return 'day' !== this.get('frequency.interval');
+    }),
     frequencyDescription: Ember.computed('frequency.interval', 'frequency.daysPerPeriod', function() {
       var count, interval, number, period, prelude;
       interval = this.get('frequency.interval');
@@ -357,29 +377,12 @@
         return "" + prelude + " at least " + number + " a " + period;
       }
     }),
-    actions: {
-      "delete": function() {
-        if (confirm("Delete this goal?")) {
-          App.data.deleteGoal(this.get('model'));
-          return true;
-        } else {
-          return false;
-        }
-      }
-    }
-  });
-
-  App.GoalListEntryController = Ember.ObjectController.extend({
-    actions: {
-      complete: function() {
-        return this.get('model').addEntry(this.get('numberInput'));
-      }
-    }
-  });
-
-  App.GoalModel = Ember.Object.extend({
-    hasEntryForToday: Ember.computed('lastCompletedOn', function() {
-      return App.time.todaysKey() === this.get('lastCompletedOn');
+    statusReport: Ember.computed('frequency.interval', 'entries.@each', function() {
+      var count, period, plural;
+      count = this.entriesCompletedThisPeriod();
+      plural = count === 1 ? "" : "s";
+      period = this.get('frequency.interval');
+      return "This goal has been completed " + count + " time" + plural + " this " + period + ".";
     }),
     addEntry: function(goalValue) {
       var entry;
@@ -390,12 +393,23 @@
       this.get('entries').unshiftObject(entry);
       this.set('lastCompletedOn', entry.date);
       return App.data.saveGoals();
+    },
+    entriesCompletedThisPeriod: function() {
+      return this.entriesForThisPeriod().length;
+    },
+    entriesForThisPeriod: function() {
+      var currentPeriod, intervalFunction, now;
+      now = moment();
+      intervalFunction = 'week' === this.get('frequency.interval') ? now.weeks : now.months;
+      currentPeriod = intervalFunction.apply(now);
+      return _.filter(this.entries, function(entry) {
+        return currentPeriod === intervalFunction.apply(moment(entry.date));
+      });
     }
   });
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      console.log('index route - asking for all goals');
       return App.data.allGoals();
     },
     actions: {
