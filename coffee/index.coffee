@@ -8,10 +8,6 @@ App.IndexRoute = Ember.Route.extend
 
 
 App.IndexController = Ember.ArrayController.extend
-    isWeekend: Ember.computed ->
-        dayOfWeek = @days[new Date().getDay()]
-        dayOfWeek in ['Saturday', 'Sunday']
-
     hasGoals: Ember.computed 'length', ->
         0 < @get 'length'
 
@@ -22,7 +18,7 @@ App.IndexController = Ember.ArrayController.extend
     filterByUnfinished: (goals) ->
         _.filter goals, (goal) =>
             complete = goal.get('hasEntryForToday') or
-                goal.get('frequency.excludeWeekends') and @get('isWeekend')
+                goal.get('frequency.excludeWeekends') and App.get('time.isWeekend')
             not complete
 
     dailyGoals: Ember.computed 'model.@each', ->

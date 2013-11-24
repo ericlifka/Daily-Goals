@@ -2,6 +2,9 @@ Time = Ember.Object.extend
     todayDisplay: Ember.computed ->
         moment().format 'dddd MMMM Do'
 
+    isWeekend: Ember.computed ->
+        moment().days() in [0, 6]
+
     today: ->
         n = moment()
         moment

@@ -420,11 +420,6 @@
   });
 
   App.IndexController = Ember.ArrayController.extend({
-    isWeekend: Ember.computed(function() {
-      var dayOfWeek;
-      dayOfWeek = this.days[new Date().getDay()];
-      return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
-    }),
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
     }),
@@ -438,7 +433,7 @@
       var _this = this;
       return _.filter(goals, function(goal) {
         var complete;
-        complete = goal.get('hasEntryForToday') || goal.get('frequency.excludeWeekends') && _this.get('isWeekend');
+        complete = goal.get('hasEntryForToday') || goal.get('frequency.excludeWeekends') && App.get('time.isWeekend');
         return !complete;
       });
     },
@@ -569,6 +564,10 @@
   Time = Ember.Object.extend({
     todayDisplay: Ember.computed(function() {
       return moment().format('dddd MMMM Do');
+    }),
+    isWeekend: Ember.computed(function() {
+      var _ref;
+      return (_ref = moment().days()) === 0 || _ref === 6;
     }),
     today: function() {
       var n;

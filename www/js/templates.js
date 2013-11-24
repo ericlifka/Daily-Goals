@@ -326,13 +326,13 @@ function program21(depth0,data) {
 function program23(depth0,data) {
   
   
-  data.buffer.push("\n                Hide Completed\n            ");
+  data.buffer.push("\n                Show Uncompleted\n            ");
   }
 
 function program25(depth0,data) {
   
   
-  data.buffer.push("\n                Show Completed\n            ");
+  data.buffer.push("\n                Show All\n            ");
   }
 
   data.buffer.push("<div class=\"title-bar\">\n    ");
