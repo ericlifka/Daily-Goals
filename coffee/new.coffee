@@ -20,7 +20,7 @@ App.NewController = Ember.Controller.extend
         @get('goalFrequency') in ['week', 'month']
 
     saveForm: ->
-        Data.newGoal
+        App.data.newGoal
             name: @get 'goalName'
             trackNumber: @get 'addNumberInput'
             interval: @get 'goalFrequency'

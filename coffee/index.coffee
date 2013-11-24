@@ -1,6 +1,6 @@
 App.IndexRoute = Ember.Route.extend
     model: ->
-        Data.allGoals()
+        App.data.allGoals()
 
     actions:
         detail: (goal) ->

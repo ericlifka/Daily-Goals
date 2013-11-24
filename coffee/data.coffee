@@ -6,16 +6,6 @@
             name: string
             trackNumber: boolean
             lastCompletedOn: ISO Date String
-            currentStreak: {
-                length: number
-                start: ISO Date String
-                end: ISO Date String
-            }
-            longestStreak: {
-                length: number
-                start: ISO Date String
-                end: ISO Date String
-            }
             frequency: {
                 interval: string in set ['month', 'day', 'year']
                 daysPerPeriod: integer
@@ -34,7 +24,7 @@
 }
 ###
 
-Data =
+Data = Ember.Object.extend
     id_counter: 1
     currentDataVersion: 1
     defaultData: {"version": 1, "goals": []}
@@ -73,14 +63,6 @@ Data =
                 trackNumber: trackNumber or false
                 entries: []
                 lastCompletedOn: null
-                currentStreak:
-                    length: 0
-                    start: null
-                    end: null
-                longestStreak:
-                    length: 0
-                    start: null
-                    end: null
                 frequency:
                     interval: interval
                     daysPerPeriod: parseInt(daysPerPeriod) or 1
@@ -132,8 +114,8 @@ Data =
         fileReadSucceeded = (event) =>
             try
                 @initialize JSON.parse event.target.result
-            catch
-                fileReadFailed()
+            catch error
+                fileReadFailed error
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) ->
             fs.root.getFile("goals.json", null, (fileEntry) ->
@@ -167,14 +149,6 @@ Data =
                     name: "something"
                     trackNumber: false
                     lastCompletedOn: null
-                    currentStreak:
-                        length: 0
-                        start: null
-                        end: null
-                    longestStreak:
-                        length: 0
-                        start: null
-                        end: null
                     frequency: {
                         interval: 'day'
                         daysPerPeriod: 1
@@ -198,14 +172,6 @@ Data =
                     name: "weekly test"
                     trackNumber: false
                     lastCompletedOn: null
-                    currentStreak:
-                        length: 0
-                        start: null
-                        end: null
-                    longestStreak:
-                        length: 0
-                        start: null
-                        end: null
                     frequency: {
                         interval: 'week'
                         daysPerPeriod: 2
@@ -229,13 +195,15 @@ Data =
                 }
             ]
 
+App.data = Data.create()
+
 if navigator.userAgent.match /(iPhone|iPod|iPad|Android|BlackBerry)/
     document.addEventListener "deviceready", ->
-        Data.readDataFromFile()
+        App.data.readDataFromFile()
 else
     jQuery ->
-        Data.readInFakeData()
-        Data.writeJsonToFile = ( -> )
+        App.data.writeJsonToFile = ( -> )
+        App.data.readInFakeData()
 
 #        console.log ".NOT_FOUND_ERR ", FileError.NOT_FOUND_ERR
 #        console.log ".SECURITY_ERR ", FileError.SECURITY_ERR

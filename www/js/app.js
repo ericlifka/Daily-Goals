@@ -13,7 +13,6 @@
 
   App.Router.map(function() {
     this.route('new');
-    this.route('manage');
     return this.route('detail', {
       path: '/detail/:goal_id'
     });
@@ -27,16 +26,6 @@
               name: string
               trackNumber: boolean
               lastCompletedOn: ISO Date String
-              currentStreak: {
-                  length: number
-                  start: ISO Date String
-                  end: ISO Date String
-              }
-              longestStreak: {
-                  length: number
-                  start: ISO Date String
-                  end: ISO Date String
-              }
               frequency: {
                   interval: string in set ['month', 'day', 'year']
                   daysPerPeriod: integer
@@ -56,7 +45,7 @@
   */
 
 
-  Data = {
+  Data = Ember.Object.extend({
     id_counter: 1,
     currentDataVersion: 1,
     defaultData: {
@@ -116,16 +105,6 @@
           trackNumber: trackNumber || false,
           entries: [],
           lastCompletedOn: null,
-          currentStreak: {
-            length: 0,
-            start: null,
-            end: null
-          },
-          longestStreak: {
-            length: 0,
-            start: null,
-            end: null
-          },
           frequency: {
             interval: interval,
             daysPerPeriod: parseInt(daysPerPeriod) || 1,
@@ -193,10 +172,12 @@
         return _this.initialize(_this.defaultData);
       };
       fileReadSucceeded = function(event) {
+        var error;
         try {
           return _this.initialize(JSON.parse(event.target.result));
         } catch (_error) {
-          return fileReadFailed();
+          error = _error;
+          return fileReadFailed(error);
         }
       };
       return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
@@ -237,16 +218,6 @@
             name: "something",
             trackNumber: false,
             lastCompletedOn: null,
-            currentStreak: {
-              length: 0,
-              start: null,
-              end: null
-            },
-            longestStreak: {
-              length: 0,
-              start: null,
-              end: null
-            },
             frequency: {
               interval: 'day',
               daysPerPeriod: 1,
@@ -281,16 +252,6 @@
             name: "weekly test",
             trackNumber: false,
             lastCompletedOn: null,
-            currentStreak: {
-              length: 0,
-              start: null,
-              end: null
-            },
-            longestStreak: {
-              length: 0,
-              start: null,
-              end: null
-            },
             frequency: {
               interval: 'week',
               daysPerPeriod: 2,
@@ -325,22 +286,24 @@
         ]
       });
     }
-  };
+  });
+
+  App.data = Data.create();
 
   if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
     document.addEventListener("deviceready", function() {
-      return Data.readDataFromFile();
+      return App.data.readDataFromFile();
     });
   } else {
     jQuery(function() {
-      Data.readInFakeData();
-      return Data.writeJsonToFile = (function() {});
+      App.data.writeJsonToFile = (function() {});
+      return App.data.readInFakeData();
     });
   }
 
   App.DetailRoute = Ember.Route.extend({
     model: function(params) {
-      return Data.getGoalById(params.goal_id);
+      return App.data.getGoalById(params.goal_id);
     },
     afterModel: function(goal) {
       if (!goal) {
@@ -387,7 +350,7 @@
     actions: {
       "delete": function() {
         if (confirm("Delete this goal?")) {
-          Data.deleteGoal(this.get('model'));
+          App.data.deleteGoal(this.get('model'));
           return true;
         } else {
           return false;
@@ -408,43 +371,6 @@
     hasEntryForToday: Ember.computed('lastCompletedOn', function() {
       return App.time.todaysKey() === this.get('lastCompletedOn');
     }),
-    hasCurrentStreak: Ember.computed('currentStreak.length', function() {
-      return 0 < this.get('currentStreak.length');
-    }),
-    hasLongestStreak: Ember.computed('longestStreak.length', function() {
-      return 0 < this.get('longestStreak.length');
-    }),
-    currentStreakDisplayString: Ember.computed('currentStreak.length', 'frequency.interval', function() {
-      var count, plural, timeSpan;
-      count = this.get('currentStreak.length');
-      timeSpan = this.get('frequency.interval');
-      plural = count > 1 ? 's' : '';
-      return " (" + count + " " + timeSpan + plural + ")";
-    }),
-    longestStreakDisplayString: Ember.computed('longestStreak.length', 'frequency.interval', function() {
-      var count, plural, timeSpan;
-      count = this.get('longestStreak.length');
-      timeSpan = this.get('frequency.interval');
-      plural = count > 1 ? 's' : '';
-      return "" + count + " " + timeSpan + plural;
-    }),
-    longestStreakEndDate: Ember.computed('longestStreak.start', 'longestStreak.end', 'frequency.interval', function() {
-      var formatString;
-      formatString = this.getDateFormatString();
-      return moment(this.get('longestStreak.end')).format(formatString);
-    }),
-    longestStreakStartDate: Ember.computed('longestStreak.start', 'frequency.interval', function() {
-      var formatString;
-      formatString = this.getDateFormatString();
-      return moment(this.get('longestStreak.start')).format(formatString);
-    }),
-    getDateFormatString: function() {
-      if ('month' === this.get('frequency.interval')) {
-        return 'MMMM YYYY';
-      } else {
-        return 'MMMM Do YYYY';
-      }
-    },
     addEntry: function(goalValue) {
       var entry;
       entry = {
@@ -453,166 +379,13 @@
       };
       this.get('entries').unshiftObject(entry);
       this.set('lastCompletedOn', entry.date);
-      this.calculateCurrentStreak();
-      return Data.saveGoals();
-    },
-    calculateCurrentStreak: function() {
-      switch (this.get('frequency.interval')) {
-        case 'day':
-          this.calculateDayStreak();
-          break;
-        case 'week':
-          this.calculateWeekStreak();
-          break;
-        case 'month':
-          this.calculateMonthStreak();
-      }
-      return this.updateLongestStreak();
-    },
-    setCurrentStreak: function(_arg) {
-      var end, length, start;
-      length = _arg.length, start = _arg.start, end = _arg.end;
-      this.set('currentStreak.length', length);
-      this.set('currentStreak.start', start);
-      return this.set('currentStreak.end', end);
-    },
-    updateLongestStreak: function() {
-      var current, longest;
-      current = this.get('currentStreak.length');
-      longest = this.get('longestStreak.length');
-      if (current > longest) {
-        this.set('longestStreak.length', current);
-        this.set('longestStreak.start', this.get('currentStreak.start'));
-        return this.set('longestStreak.end', this.get('currentStreak.end'));
-      }
-    },
-    calculateDayStreak: function() {
-      var end, length, start, _ref;
-      _ref = this.findStartOfCurrentDayStreak(this.entries), start = _ref[0], length = _ref[1];
-      end = App.time.todaysKey();
-      return this.setCurrentStreak({
-        length: length,
-        start: start,
-        end: end
-      });
-    },
-    findStartOfCurrentDayStreak: function(entries, streakLength) {
-      var first, next, _ref;
-      if (streakLength == null) {
-        streakLength = 0;
-      }
-      if (!entries || entries.length === 0) {
-        return [null, streakLength];
-      } else if (entries.length === 1) {
-        return [_.first(entries).date, streakLength + 1];
-      } else {
-        _ref = _.first(entries, 2), first = _ref[0], next = _ref[1];
-        if (moment(first.date).diff(moment(next.date), 'days') > 1) {
-          return [first.date, streakLength + 1];
-        } else {
-          return this.findStartOfCurrentDayStreak(_.rest(entries), streakLength + 1);
-        }
-      }
-    },
-    calculateWeekStreak: function() {
-      var end, length, start, _ref;
-      _ref = this.findCurrentWeekStreak(), start = _ref[0], length = _ref[1];
-      end = App.time.todaysKey();
-      return this.setCurrentStreak({
-        length: length,
-        start: start,
-        end: end
-      });
-    },
-    findCurrentWeekStreak: function() {
-      var bucketedEntries, sortedWeekResults, weekResults;
-      bucketedEntries = this.bucketEntriesByWeek(this.entries);
-      weekResults = this.calculateResultsByWeek(bucketedEntries, this.get('frequency.daysPerPeriod'));
-      sortedWeekResults = _.sortBy(weekResults, 'weekKey');
-      return this.findStartOfCurrentWeekStreak(sortedWeekResults);
-    },
-    bucketEntriesByWeek: function(entries) {
-      var _this = this;
-      return _.groupBy(entries, function(entry) {
-        var date, week, year;
-        date = moment(entry.date);
-        year = date.year();
-        week = _this.pad(date.week());
-        return "" + year + "." + week;
-      });
-    },
-    calculateResultsByWeek: function(bucketedEntries, targetCount) {
-      var _this = this;
-      return _.map(bucketedEntries, function(entries, weekKey) {
-        var metThisWeek;
-        metThisWeek = entries.length >= targetCount;
-        return {
-          weekKey: weekKey,
-          metThisWeek: metThisWeek
-        };
-      });
-    },
-    findStartOfCurrentWeekStreak: function(weekResults, streakLength) {
-      var currentWeek, previousWeek, streakLengthResult, streakStartResult, week, _ref, _ref1;
-      if (streakLength == null) {
-        streakLength = 0;
-      }
-      if (!weekResults || weekResults.length === 0) {
-        return [null, streakLength];
-      } else if (weekResults.length === 1) {
-        week = _.first(weekResults);
-        if (!week.metThisWeek) {
-          return [null, streakLength];
-        } else {
-          return [this.startOfWeekForWeekKey(week.weekKey), streakLength + 1];
-        }
-      } else {
-        _ref = _.last(weekResults, 2), previousWeek = _ref[0], currentWeek = _ref[1];
-        if (!currentWeek.metThisWeek) {
-          return [null, streakLength];
-        } else if (!this.weeksAreOneApart(currentWeek, previousWeek)) {
-          return [this.startOfWeekForWeekKey(currentWeek.weekKey), streakLength + 1];
-        } else {
-          _ref1 = this.findStartOfCurrentWeekStreak(_.initial(weekResults), streakLength + 1), streakStartResult = _ref1[0], streakLengthResult = _ref1[1];
-          if (!streakStartResult) {
-            streakStartResult = this.startOfWeekForWeekKey(currentWeek.weekKey);
-          }
-          return [streakStartResult, streakLengthResult];
-        }
-      }
-    },
-    startOfWeekForWeekKey: function(weekKey) {
-      var week, year, _ref;
-      _ref = weekKey.split('.'), year = _ref[0], week = _ref[1];
-      return moment({
-        year: year
-      }).week(week).day(0).toISOString();
-    },
-    weeksAreOneApart: function(currentWeek, previousWeek) {
-      var current, previous, weekCurrent, weekPrevious, yearCurrent, yearPrevious, _ref, _ref1;
-      _ref = currentWeek.weekKey.split('.'), yearCurrent = _ref[0], weekCurrent = _ref[1];
-      _ref1 = previousWeek.weekKey.split('.'), yearPrevious = _ref1[0], weekPrevious = _ref1[1];
-      current = moment({
-        year: yearCurrent
-      }).weeks(weekCurrent);
-      previous = moment({
-        year: yearPrevious
-      }).weeks(weekPrevious);
-      return 1 === current.diff(previous, 'weeks');
-    },
-    calculateMonthStreak: function() {},
-    pad: function(number) {
-      if (number < 10) {
-        return "0" + number;
-      } else {
-        return "" + number;
-      }
+      return App.data.saveGoals();
     }
   });
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
-      return Data.allGoals();
+      return App.data.allGoals();
     },
     actions: {
       detail: function(goal) {
@@ -699,20 +472,6 @@
     }
   });
 
-  App.ManageRoute = Ember.Route.extend({
-    model: function() {
-      return Data.allGoals();
-    }
-  });
-
-  App.ManageController = Ember.ArrayController.extend({
-    actions: {
-      "delete": function(goal) {
-        return Data.deleteGoal(goal);
-      }
-    }
-  });
-
   App.NewRoute = Ember.Route.extend({
     actions: {
       save: function() {
@@ -751,7 +510,7 @@
       return (_ref = this.get('goalFrequency')) === 'week' || _ref === 'month';
     }),
     saveForm: function() {
-      return Data.newGoal({
+      return App.data.newGoal({
         name: this.get('goalName'),
         trackNumber: this.get('addNumberInput'),
         interval: this.get('goalFrequency'),
