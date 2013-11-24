@@ -114,6 +114,7 @@ Data = Ember.Object.extend
         fileReadSucceeded = (event) =>
             try
                 @initialize JSON.parse event.target.result
+                console.log 'data read and app initialized'
             catch error
                 fileReadFailed error
 
@@ -198,7 +199,9 @@ Data = Ember.Object.extend
 App.data = Data.create()
 
 if navigator.userAgent.match /(iPhone|iPod|iPad|Android|BlackBerry)/
+    console.log 'mobile device detected, waiting for deviceready event'
     document.addEventListener "deviceready", ->
+        console.log 'deviceready fired'
         App.data.readDataFromFile()
 else
     jQuery ->

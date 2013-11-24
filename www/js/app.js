@@ -72,6 +72,13 @@
         _this = this;
       promise = new $.Deferred();
       this.dataLoadedPromise.then(function() {
+        var goal, _i, _len, _ref;
+        console.log('resolved promise with all goals');
+        _ref = _this.goals;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          goal = _ref[_i];
+          console.log(goal);
+        }
         return promise.resolve(_this.goals);
       });
       return promise.promise();
@@ -174,7 +181,8 @@
       fileReadSucceeded = function(event) {
         var error;
         try {
-          return _this.initialize(JSON.parse(event.target.result));
+          _this.initialize(JSON.parse(event.target.result));
+          return console.log('data read and app initialized');
         } catch (_error) {
           error = _error;
           return fileReadFailed(error);
@@ -291,7 +299,9 @@
   App.data = Data.create();
 
   if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+    console.log('mobile device detected, waiting for deviceready event');
     document.addEventListener("deviceready", function() {
+      console.log('deviceready fired');
       return App.data.readDataFromFile();
     });
   } else {
@@ -385,6 +395,7 @@
 
   App.IndexRoute = Ember.Route.extend({
     model: function() {
+      console.log('index route - asking for all goals');
       return App.data.allGoals();
     },
     actions: {
