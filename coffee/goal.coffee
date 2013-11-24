@@ -31,6 +31,30 @@ App.GoalModel = Ember.Object.extend
 
         "This goal has been completed #{count} time#{plural} this #{period}."
 
+    statusForThisPeriod: Ember.computed 'entries.@each', 'hasEntryForToday', ->
+        if 'day' is @get 'frequency.interval'
+            if @get 'hasEntryForToday' then 'complete' else 'uncomplete'
+        else
+            completed = @entriesCompletedThisPeriod()
+            required = @get 'frequency.daysPerPeriod'
+            remaining = required - completed
+            daysRemaining = App.time.daysLeftInPeriod @get 'frequency.interval'
+            if not @get 'hasEntryForToday'
+                daysRemaining += 1
+
+            switch
+                when remaining <= 0 then 'complete'
+                when daysRemaining is remaining then 'danger'
+                when remaining > daysRemaining then 'failed'
+                else 'uncomplete'
+
+    goalCompleteForPeriod: ->
+        if 'day' is @get 'frequency.interval'
+            @get 'hasEntryForToday'
+        else
+            completed = @entriesCompletedThisPeriod()
+            completed >= @get 'frequency.daysPerPeriod'
+
     addEntry: (goalValue) ->
         entry =
             date: App.time.todaysKey()

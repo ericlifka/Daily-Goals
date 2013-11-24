@@ -41,6 +41,15 @@ body {
   padding: 5px 0 5px 10px;
   margin: 0px;
 }
+.goal-section .goal-list-entry.complete {
+  background-color: #c2eec0;
+}
+.goal-section .goal-list-entry.danger {
+  background-color: #ffffe0;
+}
+.goal-section .goal-list-entry.failed {
+  background-color: #ff9c99;
+}
 .goal-section .goal-list-entry .goal-title-link {
   color: black;
 }
@@ -48,7 +57,7 @@ body {
   float: right;
   border: none;
   font-weight: lighter;
-  background-color: white;
+  background-color: inherit;
   padding-right: 10px;
   color: #428bca;
 }

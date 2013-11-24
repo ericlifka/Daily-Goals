@@ -1,9 +1,9 @@
 Time = Ember.Object.extend
     todayDisplay: Ember.computed ->
-        moment().format 'dddd MMMM Do'
+        @today().format 'dddd MMMM Do'
 
     isWeekend: Ember.computed ->
-        moment().days() in [0, 6]
+        @today().days() in [0, 6]
 
     today: ->
         n = moment()
@@ -15,9 +15,18 @@ Time = Ember.Object.extend
     todaysKey: ->
         @today().toISOString()
 
-    streakLengthInDays: (start) ->
-        startDate = moment start
-        @today().diff startDate, 'days'
+    daysLeftInPeriod: (period) ->
+        switch period
+            when 'day' then 0
+            when 'week' then @daysLeftInWeek()
+            when 'month' then @daysLeftInMonth()
+
+    daysLeftInWeek: ->
+        6 - @today().days()
+
+    daysLeftInMonth: ->
+        today = @today()
+        today.daysInMonth() - today.date()
 
 
 App.time = Time.create()

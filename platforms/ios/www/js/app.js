@@ -333,6 +333,13 @@
     }
   });
 
+  App.GoalListEntryView = Ember.View.extend({
+    classNameBindings: [':goal-list-entry', 'goalStatus'],
+    goalStatus: Ember.computed('controller.statusForThisPeriod', function() {
+      return this.get('controller.statusForThisPeriod');
+    })
+  });
+
   App.GoalListEntryController = Ember.ObjectController.extend({
     actions: {
       complete: function() {
@@ -384,6 +391,43 @@
       period = this.get('frequency.interval');
       return "This goal has been completed " + count + " time" + plural + " this " + period + ".";
     }),
+    statusForThisPeriod: Ember.computed('entries.@each', 'hasEntryForToday', function() {
+      var completed, daysRemaining, remaining, required;
+      if ('day' === this.get('frequency.interval')) {
+        if (this.get('hasEntryForToday')) {
+          return 'complete';
+        } else {
+          return 'uncomplete';
+        }
+      } else {
+        completed = this.entriesCompletedThisPeriod();
+        required = this.get('frequency.daysPerPeriod');
+        remaining = required - completed;
+        daysRemaining = App.time.daysLeftInPeriod(this.get('frequency.interval'));
+        if (!this.get('hasEntryForToday')) {
+          daysRemaining += 1;
+        }
+        switch (false) {
+          case !(remaining <= 0):
+            return 'complete';
+          case daysRemaining !== remaining:
+            return 'danger';
+          case !(remaining > daysRemaining):
+            return 'failed';
+          default:
+            return 'uncomplete';
+        }
+      }
+    }),
+    goalCompleteForPeriod: function() {
+      var completed;
+      if ('day' === this.get('frequency.interval')) {
+        return this.get('hasEntryForToday');
+      } else {
+        completed = this.entriesCompletedThisPeriod();
+        return completed >= this.get('frequency.daysPerPeriod');
+      }
+    },
     addEntry: function(goalValue) {
       var entry;
       entry = {
@@ -563,11 +607,11 @@
 
   Time = Ember.Object.extend({
     todayDisplay: Ember.computed(function() {
-      return moment().format('dddd MMMM Do');
+      return this.today().format('dddd MMMM Do');
     }),
     isWeekend: Ember.computed(function() {
       var _ref;
-      return (_ref = moment().days()) === 0 || _ref === 6;
+      return (_ref = this.today().days()) === 0 || _ref === 6;
     }),
     today: function() {
       var n;
@@ -581,10 +625,23 @@
     todaysKey: function() {
       return this.today().toISOString();
     },
-    streakLengthInDays: function(start) {
-      var startDate;
-      startDate = moment(start);
-      return this.today().diff(startDate, 'days');
+    daysLeftInPeriod: function(period) {
+      switch (period) {
+        case 'day':
+          return 0;
+        case 'week':
+          return this.daysLeftInWeek();
+        case 'month':
+          return this.daysLeftInMonth();
+      }
+    },
+    daysLeftInWeek: function() {
+      return 6 - this.today().days();
+    },
+    daysLeftInMonth: function() {
+      var today;
+      today = this.today();
+      return today.daysInMonth() - today.date();
     }
   });
 

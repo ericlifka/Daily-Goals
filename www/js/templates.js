@@ -92,35 +92,35 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  data.buffer.push("\n        <input type=\"checkbox\" checked=\"checked\" disabled=\"disabled\" class=\"goal-input complete\">\n    ");
+  data.buffer.push("\n    <input type=\"checkbox\" checked=\"checked\" disabled=\"disabled\" class=\"goal-input complete\">\n");
   }
 
 function program3(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
-  data.buffer.push("\n        <button class=\"complete-goal\" ");
+  data.buffer.push("\n    <button class=\"complete-goal\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "complete", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Done</button>\n    ");
+  data.buffer.push(">Done</button>\n");
   return buffer;
   }
 
 function program5(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts;
-  data.buffer.push("\n        ");
+  data.buffer.push("\n    ");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers.unless.call(depth0, "model.hasEntryForToday", {hash:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n    ");
+  data.buffer.push("\n");
   return buffer;
   }
 function program6(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
-  data.buffer.push("\n            ");
+  data.buffer.push("\n        ");
   hashContexts = {'value': depth0,'pattern': depth0,'placeholder': depth0,'class': depth0};
   hashTypes = {'value': "ID",'pattern': "STRING",'placeholder': "STRING",'class': "STRING"};
   options = {hash:{
@@ -130,29 +130,29 @@ function program6(depth0,data) {
     'class': ("form-control goal-input number")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n        ");
+  data.buffer.push("\n    ");
   return buffer;
   }
 
-  data.buffer.push("<div class=\"goal-list-entry\">\n    <a href=\"#\" ");
+  data.buffer.push("<a href=\"#\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "detail", "model", {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" class=\"goal-title-link\">\n        ");
+  data.buffer.push(" class=\"goal-title-link\">\n    ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n    </a>\n\n    ");
+  data.buffer.push("\n</a>\n\n");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "model.hasEntryForToday", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n    ");
+  data.buffer.push("\n\n");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers['if'].call(depth0, "trackNumber", {hash:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n</div>\n");
+  data.buffer.push("\n");
   return buffer;
   
 });
@@ -326,7 +326,7 @@ function program21(depth0,data) {
 function program23(depth0,data) {
   
   
-  data.buffer.push("\n                Show Uncompleted\n            ");
+  data.buffer.push("\n                Hide Completed\n            ");
   }
 
 function program25(depth0,data) {

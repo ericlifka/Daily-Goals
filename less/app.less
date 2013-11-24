@@ -54,6 +54,16 @@ body {
         padding: 5px 0 5px 10px;
         margin: 0px;
 
+        &.complete {
+            background-color: #c2eec0;
+        }
+        &.danger {
+            background-color: #ffffe0;
+        }
+        &.failed {
+            background-color: #ff9c99;
+        }
+
         .goal-title-link {
             color: black;
         }
@@ -62,7 +72,7 @@ body {
             float: right;
             border: none;
             font-weight: lighter;
-            background-color: white;
+            background-color: inherit;
             padding-right: 10px;
             color: @link-color;
         }
