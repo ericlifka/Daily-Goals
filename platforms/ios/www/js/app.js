@@ -18,6 +18,66 @@
     });
   });
 
+  App.CalendarController = Ember.ObjectController.extend();
+
+  App.CalendarView = Ember.View.extend({
+    didInsertElement: function() {
+      return this.renderCalendars();
+    },
+    renderCalendars: function() {
+      var today;
+      today = App.time.today();
+      return this.renderForMonth(today.month(), today.year());
+    },
+    renderForMonth: function(month, year) {
+      var length, start, table, _ref;
+      _ref = this.getMonthRange(month, year), start = _ref.start, length = _ref.length;
+      table = this.newCalendarTable();
+      this.addFirstRow(table, start);
+      return this.$().append(table);
+    },
+    getMonthRange: function(month, year) {
+      var length, m, start;
+      m = moment({
+        month: month,
+        year: year
+      });
+      start = m.startOf('month').day();
+      length = m.daysInMonth();
+      return {
+        start: start,
+        length: length
+      };
+    },
+    newCalendarTable: function() {
+      var header, table;
+      table = $('<table>');
+      header = $('<th>');
+      _.each(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], function(day) {
+        var cell;
+        cell = $('<td>');
+        cell.text(day);
+        return header.append(cell);
+      });
+      return table.append(header);
+    },
+    addFirstRow: function(table, start) {
+      var currentDay, row;
+      row = $('<tr>');
+      currentDay = 1;
+      _.each([0, 1, 2, 3, 4, 5, 6], function(day) {
+        var cell;
+        cell = $('<td>');
+        if (day >= start) {
+          cell.text(currentDay++);
+        }
+        return row.append(cell);
+      });
+      table.append(row);
+      return currentDay;
+    }
+  });
+
   /*
   {
       version: 1
