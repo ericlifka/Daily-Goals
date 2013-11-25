@@ -30,10 +30,13 @@
       return this.renderForMonth(today.month(), today.year());
     },
     renderForMonth: function(month, year) {
-      var length, start, table, _ref;
+      var currentDay, length, start, table, _ref;
       _ref = this.getMonthRange(month, year), start = _ref.start, length = _ref.length;
       table = this.newCalendarTable();
-      this.addFirstRow(table, start);
+      currentDay = this.addFirstRow(table, start);
+      while (currentDay <= length) {
+        currentDay = this.addRow(table, currentDay, length);
+      }
       return this.$().append(table);
     },
     getMonthRange: function(month, year) {
@@ -69,6 +72,20 @@
         var cell;
         cell = $('<td>');
         if (day >= start) {
+          cell.text(currentDay++);
+        }
+        return row.append(cell);
+      });
+      table.append(row);
+      return currentDay;
+    },
+    addRow: function(table, currentDay, length) {
+      var row;
+      row = $('<tr>');
+      _.each([0, 1, 2, 3, 4, 5, 6], function() {
+        var cell;
+        cell = $('<td>');
+        if (currentDay <= length) {
           cell.text(currentDay++);
         }
         return row.append(cell);
