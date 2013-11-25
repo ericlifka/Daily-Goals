@@ -22,9 +22,9 @@ App.CalendarView = Ember.View.extend
 
     newCalendarTable: ->
         table = $ '<table>'
-        header = $ '<th>'
+        header = $ '<tr>'
         _.each ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], (day) ->
-            cell = $ '<td>'
+            cell = $ '<th>'
             cell.text day
             header.append cell
         table.append header

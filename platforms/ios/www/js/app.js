@@ -52,10 +52,10 @@
     newCalendarTable: function() {
       var header, table;
       table = $('<table>');
-      header = $('<th>');
+      header = $('<tr>');
       _.each(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], function(day) {
         var cell;
-        cell = $('<td>');
+        cell = $('<th>');
         cell.text(day);
         return header.append(cell);
       });

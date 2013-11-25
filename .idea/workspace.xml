@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/coffee/calendar.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/detail.hbs" afterPath="$PROJECT_DIR$/templates/detail.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/templates.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/templates.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/templates.js" afterPath="$PROJECT_DIR$/www/js/templates.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/calendar.coffee" afterPath="$PROJECT_DIR$/coffee/calendar.coffee" />
     </list>
     <ignored path="daily-goals.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +28,7 @@
       <file leaf-file-name="calendar.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="13" selection-start="873" selection-end="873" vertical-scroll-proportion="0.6181319" vertical-offset="0" max-vertical-offset="728">
+            <state line="26" column="25" selection-start="785" selection-end="785" vertical-scroll-proportion="0.53571427" vertical-offset="0" max-vertical-offset="728">
               <folding />
             </state>
           </provider>
@@ -441,7 +435,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="13" selection-start="873" selection-end="873" vertical-scroll-proportion="0.6181319" vertical-offset="0" max-vertical-offset="728">
+        <state line="26" column="25" selection-start="785" selection-end="785" vertical-scroll-proportion="0.53571427" vertical-offset="0" max-vertical-offset="728">
           <folding />
         </state>
       </provider>
