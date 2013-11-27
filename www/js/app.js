@@ -33,9 +33,9 @@
       var currentDay, length, start, table, _ref;
       _ref = this.getMonthRange(month, year), start = _ref.start, length = _ref.length;
       table = this.newCalendarTable();
-      currentDay = this.addFirstRow(table, start);
+      currentDay = 1;
       while (currentDay <= length) {
-        currentDay = this.addRow(table, currentDay, length);
+        currentDay = this.addRow(table, currentDay, start, length);
       }
       return this.$().append(table);
     },
@@ -57,36 +57,21 @@
       table = $('<table>');
       header = $('<tr>');
       _.each(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], function(day) {
-        var cell;
-        cell = $('<th>');
-        cell.text(day);
-        return header.append(cell);
+        return header.append($('<th>').text(day));
       });
       return table.append(header);
     },
-    addFirstRow: function(table, start) {
-      var currentDay, row;
+    addRow: function(table, currentDay, start, length) {
+      var row,
+        _this = this;
       row = $('<tr>');
-      currentDay = 1;
       _.each([0, 1, 2, 3, 4, 5, 6], function(day) {
         var cell;
         cell = $('<td>');
-        if (day >= start) {
-          cell.text(currentDay++);
-        }
-        return row.append(cell);
-      });
-      table.append(row);
-      return currentDay;
-    },
-    addRow: function(table, currentDay, length) {
-      var row;
-      row = $('<tr>');
-      _.each([0, 1, 2, 3, 4, 5, 6], function() {
-        var cell;
-        cell = $('<td>');
-        if (currentDay <= length) {
-          cell.text(currentDay++);
+        if (day >= start || currentDay > 1) {
+          if (currentDay <= length) {
+            cell.text(currentDay++);
+          }
         }
         return row.append(cell);
       });

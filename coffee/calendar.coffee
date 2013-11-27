@@ -11,9 +11,9 @@ App.CalendarView = Ember.View.extend
     renderForMonth: (month, year) ->
         {start, length} = @getMonthRange month, year
         table = @newCalendarTable()
-        currentDay = @addFirstRow table, start
+        currentDay = 1
         while currentDay <= length
-            currentDay = @addRow table, currentDay, length
+            currentDay = @addRow table, currentDay, start, length
         @$().append table
 
     getMonthRange: (month, year) ->
@@ -26,28 +26,16 @@ App.CalendarView = Ember.View.extend
         table = $ '<table>'
         header = $ '<tr>'
         _.each ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], (day) ->
-            cell = $ '<th>'
-            cell.text day
-            header.append cell
+            header.append $('<th>').text day
         table.append header
 
-    addFirstRow: (table, start) ->
+    addRow: (table, currentDay, start, length) ->
         row = $ '<tr>'
-        currentDay = 1
-        _.each [0..6], (day) ->
+        _.each [0..6], (day) =>
             cell = $ '<td>'
-            if day >= start
-                cell.text currentDay++
-            row.append cell
-        table.append row
-        currentDay
-
-    addRow: (table, currentDay, length) ->
-        row = $ '<tr>'
-        _.each [0..6], ->
-            cell = $ '<td>'
-            if currentDay <= length
-                cell.text currentDay++
+            if day >= start or currentDay > 1
+                if currentDay <= length
+                    cell.text currentDay++
             row.append cell
         table.append row
         currentDay
