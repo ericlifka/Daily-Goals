@@ -447,7 +447,7 @@ function program1(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "save", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Save</a>\n</div>\n\n<div class=\"form-group\">\n    ");
+  data.buffer.push(">Save</a>\n</div>\n\n<div class=\"form-group required\">\n    ");
   hashContexts = {'value': depth0,'placeholder': depth0,'class': depth0};
   hashTypes = {'value': "ID",'placeholder': "STRING",'class': "STRING"};
   options = {hash:{
@@ -456,7 +456,7 @@ function program1(depth0,data) {
     'class': ("form-control form-element")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n\n    ");
+  data.buffer.push("\n</div>\n\n<div class=\"form-group\">\n    ");
   hashContexts = {'content': depth0,'optionValuePath': depth0,'optionLabelPath': depth0,'value': depth0,'class': depth0};
   hashTypes = {'content': "ID",'optionValuePath': "STRING",'optionLabelPath': "STRING",'value': "ID",'class': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{

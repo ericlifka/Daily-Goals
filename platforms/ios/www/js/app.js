@@ -157,7 +157,10 @@
     newGoal: function(_arg) {
       var daysPerPeriod, excludeWeekends, goal, interval, name, trackNumber;
       name = _arg.name, trackNumber = _arg.trackNumber, interval = _arg.interval, daysPerPeriod = _arg.daysPerPeriod, excludeWeekends = _arg.excludeWeekends;
-      if (this.findGoalByName(name)) {
+      if (!name) {
+        alert('Goal name is required');
+        return false;
+      } else if (this.findGoalByName(name)) {
         alert('Duplicate goal name');
         return false;
       } else {
@@ -580,16 +583,22 @@
       this.set('goalFrequency', '');
       this.set('daysPerPeriod', '');
       this.set('excludeWeekends', false);
+      this.removeErrorHighlight();
       return true;
+    },
+    highlightInputErrors: function() {
+      return $('.form-group.required').addClass('has-error');
+    },
+    removeErrorHighlight: function() {
+      return $('.form-group.required').removeClass('has-error');
     },
     actions: {
       save: function() {
-        var result;
-        result = this.saveForm();
-        if (result) {
-          this.clearForm();
+        if (this.saveForm()) {
+          return this.clearForm();
+        } else {
+          return this.highlightInputErrors();
         }
-        return result;
       },
       cancel: function() {
         return this.clearForm();

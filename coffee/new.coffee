@@ -33,14 +33,21 @@ App.NewController = Ember.Controller.extend
         @set 'goalFrequency', ''
         @set 'daysPerPeriod', ''
         @set 'excludeWeekends', false
+        @removeErrorHighlight()
         true
+
+    highlightInputErrors: ->
+        $('.form-group.required').addClass 'has-error'
+
+    removeErrorHighlight: ->
+        $('.form-group.required').removeClass 'has-error'
 
     actions:
         save: ->
-            result = @saveForm()
-            if result
+            if @saveForm()
                 @clearForm()
-            result
+            else
+                @highlightInputErrors()
 
         cancel: ->
             @clearForm()

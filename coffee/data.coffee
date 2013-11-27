@@ -53,7 +53,10 @@ Data = Ember.Object.extend
         promise.promise()
 
     newGoal: ({name, trackNumber, interval, daysPerPeriod, excludeWeekends}) ->
-        if @findGoalByName name
+        if not name
+            alert 'Goal name is required'
+            false
+        else if @findGoalByName name
             alert 'Duplicate goal name'
             false
         else
