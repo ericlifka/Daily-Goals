@@ -6,65 +6,80 @@
 
     <div class="goal-section none">
         <div class="title">
-            You don't have any goals yet
+            You haven't made any goals yet
             {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
         </div>
     </div>
 
 {{else}}
 
-    <div class="goal-section day">
-        <div class="title">
-            Today's Goals
-            {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
+    {{#if hasDailyGoals}}
+        <div class="goal-section day">
+            <div class="title">
+                Today's Goals
+                {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
+            </div>
+
+            {{#if hasUnfinishedDailyGoals}}
+                {{#each goal in unfinishedDailyGoals}}
+                    {{render "goal-list-entry" goal}}
+                {{/each}}
+            {{else}}
+                {{#if hasDailyGoals}}
+                    <div class="goal-list-entry">All Done!</div>
+                {{else}}
+                    <div class="goal-list-entry">You don't have any Daily goals</div>
+                {{/if}}
+            {{/if}}
         </div>
+    {{/if}}
 
-        {{#if hasUnfinishedDailyGoals}}
-            {{#each goal in unfinishedDailyGoals}}
-                {{render "goal-list-entry" goal}}
-            {{/each}}
-        {{else}}
-            {{#if hasDailyGoals}}
-                <div class="goal-list-entry">All Done!</div>
+    {{#if hasWeeklyGoals}}
+        <div class="goal-section week">
+            <div class="title">
+                This Week's Goals
+                {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
+            </div>
+
+            {{#if hasUnfinishedWeeklyGoals}}
+                {{#each goal in unfinishedWeeklyGoals}}
+                    {{render "goal-list-entry" goal}}
+                {{/each}}
             {{else}}
-                <div class="goal-list-entry">You don't have any Daily goals</div>
+                {{#if hasWeeklyGoals}}
+                    <div class="goal-list-entry">All Done!</div>
+                {{else}}
+                    <div class="goal-list-entry">You don't have any Weekly goals</div>
+                {{/if}}
             {{/if}}
-        {{/if}}
-    </div>
+        </div>
+    {{/if}}
 
-    <div class="goal-section week">
-        <div class="title">This Week's Goals</div>
+    {{#if hasMonthlyGoals}}
+        <div class="goal-section month">
+            <div class="title">
+                This Month's Goals
+                {{#link-to "new" class="nav-link forward"}}New{{/link-to}}
+            </div>
 
-        {{#if hasUnfinishedWeeklyGoals}}
-            {{#each goal in unfinishedWeeklyGoals}}
-                {{render "goal-list-entry" goal}}
-            {{/each}}
-        {{else}}
-            {{#if hasWeeklyGoals}}
-                <div class="goal-list-entry">All Done!</div>
+            {{#if hasUnfinishedMonthlyGoals}}
+                {{#each goal in unfinishedMonthlyGoals}}
+                    {{render "goal-list-entry" goal}}
+                {{/each}}
             {{else}}
-                <div class="goal-list-entry">You don't have any Weekly goals</div>
+                {{#if hasMonthlyGoals}}
+                    <div class="goal-list-entry">All Done!</div>
+                {{else}}
+                    <div class="goal-list-entry">You don't have any Monthly goals</div>
+                {{/if}}
             {{/if}}
-        {{/if}}
-    </div>
+        </div>
+    {{/if}}
 
-    <div class="goal-section month">
-        <div class="title">This Month's Goals</div>
+{{/unless}}
 
-        {{#if hasUnfinishedMonthlyGoals}}
-            {{#each goal in unfinishedMonthlyGoals}}
-                {{render "goal-list-entry" goal}}
-            {{/each}}
-        {{else}}
-            {{#if hasMonthlyGoals}}
-                <div class="goal-list-entry">All Done!</div>
-            {{else}}
-                <div class="goal-list-entry">You don't have any Monthly goals</div>
-            {{/if}}
-        {{/if}}
-    </div>
-
-    <div class="footer-links">
+<div class="footer-links">
+    {{#if hasGoals}}
         <a href="#" class="nav-link backward" {{action toggleShowAll}}>
             {{#if showAll}}
                 Hide Completed
@@ -72,7 +87,8 @@
                 Show All
             {{/if}}
         </a>
-        <a class="nav-link forward" href="mailto:eric.lifka@gmail.com?Subject=Daily%20Goals%20Feedback">Send Feedback</a>
-    </div>
+    {{/if}}
 
-{{/unless}}
+    <a class="nav-link forward" href="mailto:eric.lifka@gmail.com?Subject=Daily%20Goals%20Feedback">Send
+        Feedback</a>
+</div>
