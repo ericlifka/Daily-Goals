@@ -35,7 +35,7 @@
       table = this.newCalendarTable();
       currentDay = 1;
       while (currentDay <= length) {
-        currentDay = this.addRow(table, currentDay, start, length);
+        currentDay = this.addRow(table, year, month, currentDay, start, length);
       }
       return this.$().append(table);
     },
@@ -61,22 +61,25 @@
       });
       return table.append(header);
     },
-    addRow: function(table, currentDay, start, length) {
+    addRow: function(table, year, month, currentDay, start, length) {
       var row,
         _this = this;
       row = $('<tr>');
       _.each([0, 1, 2, 3, 4, 5, 6], function(day) {
         var cell;
         cell = $('<td>');
-        if (day >= start || currentDay > 1) {
-          if (currentDay <= length) {
-            cell.text(currentDay++);
-          }
+        if ((day >= start || currentDay > 1) && currentDay <= length) {
+          cell.text(currentDay);
+          cell.addClass(_this.getDateStatus(year, month, currentDay));
+          currentDay += 1;
         }
         return row.append(cell);
       });
       table.append(row);
       return currentDay;
+    },
+    getDateStatus: function(year, month, currentDay) {
+      return "";
     }
   });
 

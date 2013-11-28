@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/data.coffee" afterPath="$PROJECT_DIR$/coffee/data.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/new.coffee" afterPath="$PROJECT_DIR$/coffee/new.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/new.hbs" afterPath="$PROJECT_DIR$/templates/new.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/calendar.coffee" afterPath="$PROJECT_DIR$/coffee/calendar.coffee" />
     </list>
     <ignored path="daily-goals.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,28 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new.coffee" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
+      <file leaf-file-name="calendar.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="45" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.79395604" vertical-offset="52" max-vertical-offset="885">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.hbs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/new.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="31" selection-start="226" selection-end="226" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="705">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="12" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.0" vertical-offset="538" max-vertical-offset="3465">
+            <state line="15" column="53" selection-start="495" selection-end="495" vertical-scroll-proportion="0.30906594" vertical-offset="0" max-vertical-offset="765">
               <folding />
             </state>
           </provider>
@@ -85,12 +62,12 @@
         <option value="$PROJECT_DIR$/coffee/goal-list-entry.coffee" />
         <option value="$PROJECT_DIR$/templates/detail.hbs" />
         <option value="$PROJECT_DIR$/templates/calendar.hbs" />
-        <option value="$PROJECT_DIR$/coffee/calendar.coffee" />
         <option value="$PROJECT_DIR$/templates/index.hbs" />
         <option value="$PROJECT_DIR$/less/app.less" />
         <option value="$PROJECT_DIR$/coffee/data.coffee" />
         <option value="$PROJECT_DIR$/templates/new.hbs" />
         <option value="$PROJECT_DIR$/coffee/new.coffee" />
+        <option value="$PROJECT_DIR$/coffee/calendar.coffee" />
       </list>
     </option>
   </component>
@@ -386,24 +363,9 @@
         <state line="1" column="43" selection-start="11" selection-end="11" vertical-scroll-proportion="0.021306818" vertical-offset="0" max-vertical-offset="704" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/goal-list-entry.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="28" selection-start="479" selection-end="479" vertical-scroll-proportion="0.31960228" vertical-offset="0" max-vertical-offset="704" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coffee/goal.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="16" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.19642857" vertical-offset="502" max-vertical-offset="1230" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/goal-list-entry.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="8" selection-start="176" selection-end="176" vertical-scroll-proportion="0.061813187" vertical-offset="0" max-vertical-offset="728" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="54" selection-start="412" selection-end="412" vertical-scroll-proportion="-0.14423077" vertical-offset="330" max-vertical-offset="1155" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/css/app.css">
@@ -422,22 +384,6 @@
             <element signature="e#789#814#0" expanded="false" />
             <element signature="e#1883#2106#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="41" selection-start="922" selection-end="922" vertical-scroll-proportion="0.59752744" vertical-offset="0" max-vertical-offset="728">
-          <folding>
-            <marker date="1385525861000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="58" selection-start="246" selection-end="249" vertical-scroll-proportion="0.19176136" vertical-offset="0" max-vertical-offset="1500">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -462,23 +408,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+    <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="12" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.0" vertical-offset="538" max-vertical-offset="3465">
+        <state line="24" column="51" selection-start="688" selection-end="688" vertical-scroll-proportion="0.27884614" vertical-offset="157" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/goal-list-entry.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="8" selection-start="176" selection-end="176" vertical-scroll-proportion="0.061813187" vertical-offset="0" max-vertical-offset="728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/goal-list-entry.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="49" selection-start="479" selection-end="479" vertical-scroll-proportion="0.31960228" vertical-offset="0" max-vertical-offset="704">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="58" selection-start="246" selection-end="249" vertical-scroll-proportion="0.19176136" vertical-offset="0" max-vertical-offset="1500">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/new.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="31" selection-start="226" selection-end="226" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="705">
+        <state line="6" column="31" selection-start="226" selection-end="226" vertical-scroll-proportion="0.13024601" vertical-offset="0" max-vertical-offset="705">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
+    <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="45" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.79395604" vertical-offset="52" max-vertical-offset="885">
+        <state line="15" column="54" selection-start="412" selection-end="412" vertical-scroll-proportion="0.30906594" vertical-offset="0" max-vertical-offset="1155">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="12" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.51785713" vertical-offset="538" max-vertical-offset="3465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="53" selection-start="495" selection-end="495" vertical-scroll-proportion="0.30906594" vertical-offset="0" max-vertical-offset="765">
           <folding />
         </state>
       </provider>
