@@ -79,6 +79,7 @@
       return currentDay;
     },
     getDateStatus: function(year, month, currentDay) {
+      this.get('controller.model').hasEntryFor;
       return "";
     }
   });
@@ -624,6 +625,13 @@
         years: n.year(),
         months: n.month(),
         days: n.date()
+      });
+    },
+    date: function(year, month, day) {
+      return moment({
+        years: year,
+        months: month,
+        days: day
       });
     },
     todaysKey: function() {

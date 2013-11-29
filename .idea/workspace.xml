@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/calendar.coffee" afterPath="$PROJECT_DIR$/coffee/calendar.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/time.coffee" afterPath="$PROJECT_DIR$/coffee/time.coffee" />
     </list>
     <ignored path="daily-goals.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,10 +28,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="calendar.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="calendar.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="53" selection-start="495" selection-end="495" vertical-scroll-proportion="0.30906594" vertical-offset="0" max-vertical-offset="765">
+            <state line="44" column="45" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="780">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="time.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coffee/time.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="21" selection-start="425" selection-end="425" vertical-scroll-proportion="0.3708791" vertical-offset="0" max-vertical-offset="728">
               <folding />
             </state>
           </provider>
@@ -57,7 +69,6 @@
         <option value="$PROJECT_DIR$/coffee/detail.coffee" />
         <option value="$PROJECT_DIR$/coffee/index.coffee" />
         <option value="$PROJECT_DIR$/templates/goal-list-entry.hbs" />
-        <option value="$PROJECT_DIR$/coffee/time.coffee" />
         <option value="$PROJECT_DIR$/coffee/goal.coffee" />
         <option value="$PROJECT_DIR$/coffee/goal-list-entry.coffee" />
         <option value="$PROJECT_DIR$/templates/detail.hbs" />
@@ -68,6 +79,7 @@
         <option value="$PROJECT_DIR$/templates/new.hbs" />
         <option value="$PROJECT_DIR$/coffee/new.coffee" />
         <option value="$PROJECT_DIR$/coffee/calendar.coffee" />
+        <option value="$PROJECT_DIR$/coffee/time.coffee" />
       </list>
     </option>
   </component>
@@ -401,13 +413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/time.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="40" selection-start="711" selection-end="711" vertical-scroll-proportion="0.6593407" vertical-offset="0" max-vertical-offset="728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coffee/new.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="51" selection-start="688" selection-end="688" vertical-scroll-proportion="0.27884614" vertical-offset="157" max-vertical-offset="885">
@@ -459,7 +464,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="53" selection-start="495" selection-end="495" vertical-scroll-proportion="0.30906594" vertical-offset="0" max-vertical-offset="765">
+        <state line="44" column="45" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/time.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="21" selection-start="425" selection-end="425" vertical-scroll-proportion="0.3708791" vertical-offset="0" max-vertical-offset="728">
           <folding />
         </state>
       </provider>

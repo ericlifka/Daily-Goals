@@ -42,4 +42,5 @@ App.CalendarView = Ember.View.extend
         currentDay
 
     getDateStatus: (year, month, currentDay) ->
+        @get('controller.model').hasEntryFor
         ""

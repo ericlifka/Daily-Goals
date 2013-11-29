@@ -12,6 +12,12 @@ Time = Ember.Object.extend
             months: n.month()
             days: n.date()
 
+    date: (year, month, day) ->
+        moment
+            years: year
+            months: month
+            days: day
+
     todaysKey: ->
         @today().toISOString()
 
