@@ -74,3 +74,6 @@ App.GoalModel = Ember.Object.extend
         currentPeriod = intervalFunction.apply now
         _.filter @entries, (entry) ->
             currentPeriod is intervalFunction.apply moment entry.date
+
+    hasEntryFor: (time) ->
+        _.find @entries, (entry) -> entry.date is time

@@ -21,6 +21,9 @@ Time = Ember.Object.extend
     todaysKey: ->
         @today().toISOString()
 
+    dateKey: (year, month, day) ->
+        @date(year, month, day).toISOString()
+
     daysLeftInPeriod: (period) ->
         switch period
             when 'day' then 0

@@ -79,8 +79,14 @@
       return currentDay;
     },
     getDateStatus: function(year, month, currentDay) {
-      this.get('controller.model').hasEntryFor;
-      return "";
+      var dateKey, model;
+      dateKey = App.time.dateKey(year, month, currentDay);
+      model = this.get('controller.model');
+      if (model.hasEntryFor(dateKey)) {
+        return "complete";
+      } else {
+        return "failed";
+      }
     }
   });
 
@@ -448,6 +454,11 @@
       return _.filter(this.entries, function(entry) {
         return currentPeriod === intervalFunction.apply(moment(entry.date));
       });
+    },
+    hasEntryFor: function(time) {
+      return _.find(this.entries, function(entry) {
+        return entry.date === time;
+      });
     }
   });
 
@@ -636,6 +647,9 @@
     },
     todaysKey: function() {
       return this.today().toISOString();
+    },
+    dateKey: function(year, month, day) {
+      return this.date(year, month, day).toISOString();
     },
     daysLeftInPeriod: function(period) {
       switch (period) {
