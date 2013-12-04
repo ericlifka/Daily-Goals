@@ -26,13 +26,15 @@
 
 Data = Ember.Object.extend
     id_counter: 1
-    currentDataVersion: 1
+    currentDataVersion: 2
     defaultData: {"version": 1, "goals": []}
 
     dataLoadedPromise: new $.Deferred()
 
     initialize: (dataObject) ->
         @goals = Ember.A(@goalFromJson goal for goal in dataObject.goals)
+
+        if dataObject.version < 2 then @migrateTo2()
 
         @dataLoadedPromise.resolve()
 
@@ -66,6 +68,7 @@ Data = Ember.Object.extend
                 trackNumber: trackNumber or false
                 entries: []
                 lastCompletedOn: null
+                startDate: App.time.todaysKey()
                 frequency:
                     interval: interval
                     daysPerPeriod: parseInt(daysPerPeriod) or 1
@@ -101,6 +104,7 @@ Data = Ember.Object.extend
         trackNumber: goal.trackNumber
         lastCompletedOn: goal.lastCompletedOn
         entries: goal.entries
+        startDate: goal.startDate
         frequency:
             interval: goal.frequency.interval
             daysPerPeriod: goal.frequency.daysPerPeriod
@@ -144,6 +148,15 @@ Data = Ember.Object.extend
                 , fileWriteFailed)
             , fileWriteFailed)
         , fileWriteFailed)
+
+    #Migrations
+    migrateTo2: ->
+        console.log 'Running migration: v1 to v2'
+        _.each @goals, (goal) => @setStartDate goal
+
+    setStartDate: (goal) ->
+        firstEntry = _.last goal.entries
+        goal.set 'startDate', firstEntry.date
 
     readInFakeData: ->
         @initialize

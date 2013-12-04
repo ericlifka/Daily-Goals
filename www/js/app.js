@@ -119,7 +119,7 @@
 
   Data = Ember.Object.extend({
     id_counter: 1,
-    currentDataVersion: 1,
+    currentDataVersion: 2,
     defaultData: {
       "version": 1,
       "goals": []
@@ -137,6 +137,9 @@
         }
         return _results;
       }).call(this));
+      if (dataObject.version < 2) {
+        this.migrateTo2();
+      }
       return this.dataLoadedPromise.resolve();
     },
     allGoals: function() {
@@ -180,6 +183,7 @@
           trackNumber: trackNumber || false,
           entries: [],
           lastCompletedOn: null,
+          startDate: App.time.todaysKey(),
           frequency: {
             interval: interval,
             daysPerPeriod: parseInt(daysPerPeriod) || 1,
@@ -229,6 +233,7 @@
         trackNumber: goal.trackNumber,
         lastCompletedOn: goal.lastCompletedOn,
         entries: goal.entries,
+        startDate: goal.startDate,
         frequency: {
           interval: goal.frequency.interval,
           daysPerPeriod: goal.frequency.daysPerPeriod,
@@ -285,6 +290,18 @@
           }, fileWriteFailed);
         }, fileWriteFailed);
       }, fileWriteFailed);
+    },
+    migrateTo2: function() {
+      var _this = this;
+      console.log('Running migration: v1 to v2');
+      return _.each(this.goals, function(goal) {
+        return _this.setStartDate(goal);
+      });
+    },
+    setStartDate: function(goal) {
+      var firstEntry;
+      firstEntry = _.last(goal.entries);
+      return goal.set('startDate', firstEntry.date);
     },
     readInFakeData: function() {
       return this.initialize({
