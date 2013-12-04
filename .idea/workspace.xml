@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/data.coffee" afterPath="$PROJECT_DIR$/coffee/data.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="daily-goals.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,9 +29,9 @@
       <file leaf-file-name="data.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="49" selection-start="4541" selection-end="4541" vertical-scroll-proportion="0.35302198" vertical-offset="2038" max-vertical-offset="2925">
+            <state line="160" column="39" selection-start="4785" selection-end="4785" vertical-scroll-proportion="0.49725273" vertical-offset="2038" max-vertical-offset="2940">
               <folding>
-                <element signature="e#4796#6945#0" expanded="false" />
+                <element signature="e#4871#7020#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -455,9 +452,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="49" selection-start="4541" selection-end="4541" vertical-scroll-proportion="0.35302198" vertical-offset="2038" max-vertical-offset="2925">
+        <state line="160" column="39" selection-start="4785" selection-end="4785" vertical-scroll-proportion="0.49725273" vertical-offset="2038" max-vertical-offset="2940">
           <folding>
-            <element signature="e#4796#6945#0" expanded="false" />
+            <element signature="e#4871#7020#0" expanded="false" />
           </folding>
         </state>
       </provider>

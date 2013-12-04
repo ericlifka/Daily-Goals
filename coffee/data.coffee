@@ -156,7 +156,8 @@ Data = Ember.Object.extend
 
     setStartDate: (goal) ->
         firstEntry = _.last goal.entries
-        goal.set 'startDate', firstEntry.date
+        startDate = if firstEntry then firstEntry.date else App.time.todaysKey()
+        goal.set 'startDate', startDate
 
     readInFakeData: ->
         @initialize
