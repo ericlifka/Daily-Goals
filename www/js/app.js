@@ -79,13 +79,25 @@
       return currentDay;
     },
     getDateStatus: function(year, month, currentDay) {
-      var dateKey, model;
+      var date, dateKey, model, result, startDate, today;
+      date = App.time.date(year, month, currentDay);
       dateKey = App.time.dateKey(year, month, currentDay);
+      today = App.time.today();
       model = this.get('controller.model');
-      if (model.hasEntryFor(dateKey)) {
-        return "complete";
-      } else {
-        return "failed";
+      startDate = moment(model.startDate);
+      result = "";
+      if (startDate.isSame(dateKey)) {
+        result += " start";
+      }
+      if (today.isSame(dateKey)) {
+        result += " today";
+      }
+      if ((startDate.isBefore(date) || startDate.isSame(date)) && (date.isBefore(today) || date.isSame(today))) {
+        if (model.hasEntryFor(dateKey)) {
+          return result += " complete";
+        } else {
+          return result += " failed";
+        }
       }
     }
   });
@@ -299,9 +311,10 @@
       });
     },
     setStartDate: function(goal) {
-      var firstEntry;
+      var firstEntry, startDate;
       firstEntry = _.last(goal.entries);
-      return goal.set('startDate', firstEntry.date);
+      startDate = firstEntry ? firstEntry.date : App.time.todaysKey();
+      return goal.set('startDate', startDate);
     },
     readInFakeData: function() {
       return this.initialize({
