@@ -44,6 +44,9 @@ Time = Ember.Object.extend
         date = moment dateString
         "#{date.years()}.#{@paddNumber(date.months())}"
 
+    currentMonthkey: ->
+        @sortableMonthKey @todaysKey()
+
     paddNumber: (number) ->
         padding = if number < 10 then "0" else ""
         "#{padding}#{number}"

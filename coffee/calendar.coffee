@@ -11,15 +11,7 @@ App.CalendarView = Ember.View.extend
         @startDate = moment @goal.get 'startDate'
         @today = App.time.today()
         @months = @goal.monthsWithEntries()
-        console.log @startDate
-
-        if not @months.length
-            @noData()
-        else
-            @nextMonth()
-
-    noData: ->
-        @$().text "You don't have any entries for this goal yet"
+        @nextMonth()
 
     nextMonth: ->
         currentMonth = _.last @months

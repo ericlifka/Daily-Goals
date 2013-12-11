@@ -83,7 +83,6 @@ App.GoalModel = Ember.Object.extend
             entry.date is time
 
     monthsWithEntries: ->
-        monthGroups = _.groupBy @entries, (entry) ->
-            App.time.sortableMonthKey entry.date
-
+        monthGroups = _.groupBy @entries, (entry) -> App.time.sortableMonthKey entry.date
+        monthGroups[App.time.currentMonthkey()] = true
         _.sortBy _.keys(monthGroups), (i) -> i

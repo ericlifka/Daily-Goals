@@ -30,15 +30,7 @@
       this.startDate = moment(this.goal.get('startDate'));
       this.today = App.time.today();
       this.months = this.goal.monthsWithEntries();
-      console.log(this.startDate);
-      if (!this.months.length) {
-        return this.noData();
-      } else {
-        return this.nextMonth();
-      }
-    },
-    noData: function() {
-      return this.$().text("You don't have any entries for this goal yet");
+      return this.nextMonth();
     },
     nextMonth: function() {
       var currentMonth;
@@ -614,6 +606,7 @@
       monthGroups = _.groupBy(this.entries, function(entry) {
         return App.time.sortableMonthKey(entry.date);
       });
+      monthGroups[App.time.currentMonthkey()] = true;
       return _.sortBy(_.keys(monthGroups), function(i) {
         return i;
       });
@@ -837,6 +830,9 @@
       var date;
       date = moment(dateString);
       return "" + (date.years()) + "." + (this.paddNumber(date.months()));
+    },
+    currentMonthkey: function() {
+      return this.sortableMonthKey(this.todaysKey());
     },
     paddNumber: function(number) {
       var padding;
