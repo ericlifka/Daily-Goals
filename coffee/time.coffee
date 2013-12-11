@@ -5,6 +5,9 @@ Time = Ember.Object.extend
     isWeekend: Ember.computed ->
         @today().days() in [0, 6]
 
+    calendarMonthDisplay: (year, month) ->
+        moment({year, month}).format 'MMMM YYYY'
+
     today: ->
         n = moment()
         moment
@@ -36,6 +39,15 @@ Time = Ember.Object.extend
     daysLeftInMonth: ->
         today = @today()
         today.daysInMonth() - today.date()
+
+    sortableMonthKey: (dateString) ->
+        date = moment dateString
+        "#{date.years()}.#{@paddNumber(date.months())}"
+
+    paddNumber: (number) ->
+        padding = if number < 10 then "0" else ""
+        "#{padding}#{number}"
+
 
 
 App.time = Time.create()

@@ -163,54 +163,54 @@ Data = Ember.Object.extend
         @initialize
             version: 1
             goals: [
-#                {
-#                    name: "something"
-#                    trackNumber: false
-#                    lastCompletedOn: null
-#                    frequency: {
-#                        interval: 'day'
-#                        daysPerPeriod: 1
-#                        excludeWeekends: false
-#                    }
-#                    entries: [
-#                        {date: "2013-11-20T05:00:00.000Z"}
-#                        {date: "2013-11-19T05:00:00.000Z"}
-#                        {date: "2013-11-18T05:00:00.000Z"}
-#                        {date: "2013-11-17T05:00:00.000Z"}
-#                        {date: "2013-11-16T05:00:00.000Z"}
-#                        {date: "2013-11-15T05:00:00.000Z"}
-#                        {date: "2013-11-14T05:00:00.000Z"}
-#                        {date: "2013-11-13T05:00:00.000Z"}
-#                        {date: "2013-11-12T05:00:00.000Z"}
-#                        {date: "2013-11-11T05:00:00.000Z"}
-#                        {date: "2013-11-10T05:00:00.000Z"}
-#                    ]
-#                },
-#                {
-#                    name: "weekly test"
-#                    trackNumber: false
-#                    lastCompletedOn: null
-#                    frequency: {
-#                        interval: 'week'
-#                        daysPerPeriod: 2
-#                        excludeWeekends: false
-#                    }
-#                    entries: [
-#                        {date: "2013-11-19T05:00:00.000Z"}
-#                        {date: "2013-11-17T05:00:00.000Z"}
-#
-#                        {date: "2013-11-15T05:00:00.000Z"}
-#                        {date: "2013-11-14T05:00:00.000Z"}
-#                        {date: "2013-11-13T05:00:00.000Z"}
-#                        {date: "2013-11-12T05:00:00.000Z"}
-#                        {date: "2013-11-11T05:00:00.000Z"}
-#                        {date: "2013-11-10T05:00:00.000Z"}
-#
-#                        {date: "2013-10-31T05:00:00.000Z"}
-#                        {date: "2013-10-30T05:00:00.000Z"}
-#                        {date: "2013-10-29T05:00:00.000Z"}
-#                    ]
-#                }
+                {
+                    name: "something"
+                    trackNumber: false
+                    lastCompletedOn: null
+                    frequency: {
+                        interval: 'day'
+                        daysPerPeriod: 1
+                        excludeWeekends: false
+                    }
+                    entries: [
+                        {date: "2013-11-20T05:00:00.000Z"}
+                        {date: "2013-11-19T05:00:00.000Z"}
+                        {date: "2013-11-18T05:00:00.000Z"}
+                        {date: "2013-11-17T05:00:00.000Z"}
+                        {date: "2013-11-16T05:00:00.000Z"}
+                        {date: "2013-11-15T05:00:00.000Z"}
+                        {date: "2013-11-14T05:00:00.000Z"}
+                        {date: "2013-11-13T05:00:00.000Z"}
+                        {date: "2013-11-12T05:00:00.000Z"}
+                        {date: "2013-11-11T05:00:00.000Z"}
+                        {date: "2013-11-10T05:00:00.000Z"}
+                    ]
+                },
+                {
+                    name: "weekly test"
+                    trackNumber: false
+                    lastCompletedOn: null
+                    frequency: {
+                        interval: 'week'
+                        daysPerPeriod: 2
+                        excludeWeekends: false
+                    }
+                    entries: [
+                        {date: "2013-11-19T05:00:00.000Z"}
+                        {date: "2013-11-17T05:00:00.000Z"}
+
+                        {date: "2013-11-15T05:00:00.000Z"}
+                        {date: "2013-11-14T05:00:00.000Z"}
+                        {date: "2013-11-13T05:00:00.000Z"}
+                        {date: "2013-11-12T05:00:00.000Z"}
+                        {date: "2013-11-11T05:00:00.000Z"}
+                        {date: "2013-11-10T05:00:00.000Z"}
+
+                        {date: "2013-10-31T05:00:00.000Z"}
+                        {date: "2013-10-30T05:00:00.000Z"}
+                        {date: "2013-10-29T05:00:00.000Z"}
+                    ]
+                }
             ]
 
 App.data = Data.create()

@@ -109,6 +109,12 @@ a:visited {
 .detail-page td {
   border: 1px solid black;
 }
+.detail-page table {
+  margin-bottom: 15px;
+}
+.detail-page caption {
+  font-weight: bold;
+}
 .detail-page th {
   text-align: center;
 }

@@ -21,84 +21,130 @@
   App.CalendarController = Ember.ObjectController.extend();
 
   App.CalendarView = Ember.View.extend({
+    weekdayLabels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
     didInsertElement: function() {
       return this.renderCalendars();
     },
     renderCalendars: function() {
-      var today;
-      today = App.time.today();
-      return this.renderForMonth(today.month(), today.year());
-    },
-    renderForMonth: function(month, year) {
-      var currentDay, length, start, table, _ref;
-      _ref = this.getMonthRange(month, year), start = _ref.start, length = _ref.length;
-      table = this.newCalendarTable();
-      currentDay = 1;
-      while (currentDay <= length) {
-        currentDay = this.addRow(table, year, month, currentDay, start, length);
+      this.goal = this.get('controller.model');
+      this.startDate = moment(this.goal.get('startDate'));
+      this.today = App.time.today();
+      this.months = this.goal.monthsWithEntries();
+      console.log(this.startDate);
+      if (!this.months.length) {
+        return this.noData();
+      } else {
+        return this.nextMonth();
       }
-      return this.$().append(table);
     },
-    getMonthRange: function(month, year) {
-      var length, m, start;
+    noData: function() {
+      return this.$().text("You don't have any entries for this goal yet");
+    },
+    nextMonth: function() {
+      var currentMonth;
+      currentMonth = _.last(this.months);
+      this.months = _.initial(this.months);
+      if (currentMonth) {
+        this.displayCurrentMonth(currentMonth);
+        return this.nextMonth();
+      }
+    },
+    displayCurrentMonth: function(currentMonth) {
+      var _ref;
+      _ref = currentMonth.split('.'), this.currentYear = _ref[0], this.currentMonth = _ref[1];
+      this.calculateMonthRange();
+      return this.createMonthTable();
+    },
+    calculateMonthRange: function() {
+      var m;
       m = moment({
-        month: month,
-        year: year
+        years: this.currentYear,
+        months: this.currentMonth
       });
-      start = m.startOf('month').day();
-      length = m.daysInMonth();
-      return {
-        start: start,
-        length: length
-      };
+      this.monthStart = m.startOf('month').day();
+      return this.monthLength = m.daysInMonth();
     },
-    newCalendarTable: function() {
-      var header, table;
-      table = $('<table>');
+    createMonthTable: function() {
+      this.table = $('<table>');
+      this.createCaption();
+      this.createHeader();
+      this.populateDays();
+      return this.table.appendTo(this.$());
+    },
+    createCaption: function() {
+      var caption;
+      caption = $('<caption>');
+      caption.text(App.time.calendarMonthDisplay(this.currentYear, this.currentMonth));
+      return caption.appendTo(this.table);
+    },
+    createHeader: function() {
+      var day, header, _i, _len, _ref;
       header = $('<tr>');
-      _.each(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], function(day) {
-        return header.append($('<th>').text(day));
-      });
-      return table.append(header);
-    },
-    addRow: function(table, year, month, currentDay, start, length) {
-      var row,
-        _this = this;
-      row = $('<tr>');
-      _.each([0, 1, 2, 3, 4, 5, 6], function(day) {
-        var cell;
-        cell = $('<td>');
-        if ((day >= start || currentDay > 1) && currentDay <= length) {
-          cell.text(currentDay);
-          cell.addClass(_this.getDateStatus(year, month, currentDay));
-          currentDay += 1;
-        }
-        return row.append(cell);
-      });
-      table.append(row);
-      return currentDay;
-    },
-    getDateStatus: function(year, month, currentDay) {
-      var date, dateKey, model, result, startDate, today;
-      date = App.time.date(year, month, currentDay);
-      dateKey = App.time.dateKey(year, month, currentDay);
-      today = App.time.today();
-      model = this.get('controller.model');
-      startDate = moment(model.startDate);
-      result = "";
-      if (startDate.isSame(dateKey)) {
-        result += " start";
+      _ref = this.weekdayLabels;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        day = _ref[_i];
+        header.append($('<th>').text(day));
       }
-      if (today.isSame(dateKey)) {
-        result += " today";
+      return header.appendTo(this.table);
+    },
+    populateDays: function() {
+      var _results;
+      this.currentDay = 1;
+      _results = [];
+      while (this.currentDay <= this.monthLength) {
+        _results.push(this.nextRow());
       }
-      if ((startDate.isBefore(date) || startDate.isSame(date)) && (date.isBefore(today) || date.isSame(today))) {
-        if (model.hasEntryFor(dateKey)) {
-          return result += " complete";
+      return _results;
+    },
+    nextRow: function() {
+      var dayOfTheWeek, _i;
+      this.currentRow = $('<tr>');
+      for (dayOfTheWeek = _i = 0; _i <= 6; dayOfTheWeek = ++_i) {
+        this.nextDay(dayOfTheWeek);
+      }
+      return this.currentRow.appendTo(this.table);
+    },
+    nextDay: function(dayOfTheWeek) {
+      this.currentCell = $('<td>');
+      if (this.currentDayWithinMonth(dayOfTheWeek)) {
+        this.currentCell.text(this.currentDay);
+        this.styleCurrentDay();
+        this.currentDay += 1;
+      }
+      return this.currentCell.appendTo(this.currentRow);
+    },
+    currentDayWithinMonth: function(dayOfTheWeek) {
+      if (this.currentDay <= this.monthLength) {
+        return this.currentDay > 1 || dayOfTheWeek >= this.monthStart;
+      } else {
+        return false;
+      }
+    },
+    styleCurrentDay: function() {
+      var currentDate;
+      currentDate = this.currentDate();
+      if (currentDate.isSame(this.startDate, 'day')) {
+        this.currentCell.addClass('start');
+      }
+      if (currentDate.isSame(this.today, 'day')) {
+        this.currentCell.addClass('today');
+      }
+      if (this.withinGoalRange(currentDate)) {
+        if (this.goal.hasEntryFor(currentDate)) {
+          return this.currentCell.addClass('complete');
         } else {
-          return result += " failed";
+          return this.currentCell.addClass('failed');
         }
       }
+    },
+    currentDate: function() {
+      return App.time.date(this.currentYear, this.currentMonth, this.currentDay);
+    },
+    withinGoalRange: function(date) {
+      return this.onOrBefore(this.startDate, date) && this.onOrBefore(date, this.today);
+    },
+    onOrBefore: function(testDate, boundary) {
+      return testDate.isBefore(boundary, 'day') || testDate.isSame(boundary, 'day');
     }
   });
 
@@ -319,7 +365,77 @@
     readInFakeData: function() {
       return this.initialize({
         version: 1,
-        goals: []
+        goals: [
+          {
+            name: "something",
+            trackNumber: false,
+            lastCompletedOn: null,
+            frequency: {
+              interval: 'day',
+              daysPerPeriod: 1,
+              excludeWeekends: false
+            },
+            entries: [
+              {
+                date: "2013-11-20T05:00:00.000Z"
+              }, {
+                date: "2013-11-19T05:00:00.000Z"
+              }, {
+                date: "2013-11-18T05:00:00.000Z"
+              }, {
+                date: "2013-11-17T05:00:00.000Z"
+              }, {
+                date: "2013-11-16T05:00:00.000Z"
+              }, {
+                date: "2013-11-15T05:00:00.000Z"
+              }, {
+                date: "2013-11-14T05:00:00.000Z"
+              }, {
+                date: "2013-11-13T05:00:00.000Z"
+              }, {
+                date: "2013-11-12T05:00:00.000Z"
+              }, {
+                date: "2013-11-11T05:00:00.000Z"
+              }, {
+                date: "2013-11-10T05:00:00.000Z"
+              }
+            ]
+          }, {
+            name: "weekly test",
+            trackNumber: false,
+            lastCompletedOn: null,
+            frequency: {
+              interval: 'week',
+              daysPerPeriod: 2,
+              excludeWeekends: false
+            },
+            entries: [
+              {
+                date: "2013-11-19T05:00:00.000Z"
+              }, {
+                date: "2013-11-17T05:00:00.000Z"
+              }, {
+                date: "2013-11-15T05:00:00.000Z"
+              }, {
+                date: "2013-11-14T05:00:00.000Z"
+              }, {
+                date: "2013-11-13T05:00:00.000Z"
+              }, {
+                date: "2013-11-12T05:00:00.000Z"
+              }, {
+                date: "2013-11-11T05:00:00.000Z"
+              }, {
+                date: "2013-11-10T05:00:00.000Z"
+              }, {
+                date: "2013-10-31T05:00:00.000Z"
+              }, {
+                date: "2013-10-30T05:00:00.000Z"
+              }, {
+                date: "2013-10-29T05:00:00.000Z"
+              }
+            ]
+          }
+        ]
       });
     }
   });
@@ -486,8 +602,20 @@
       });
     },
     hasEntryFor: function(time) {
+      if (moment.isMoment(time)) {
+        time = time.toISOString();
+      }
       return _.find(this.entries, function(entry) {
         return entry.date === time;
+      });
+    },
+    monthsWithEntries: function() {
+      var monthGroups;
+      monthGroups = _.groupBy(this.entries, function(entry) {
+        return App.time.sortableMonthKey(entry.date);
+      });
+      return _.sortBy(_.keys(monthGroups), function(i) {
+        return i;
       });
     }
   });
@@ -659,6 +787,12 @@
       var _ref;
       return (_ref = this.today().days()) === 0 || _ref === 6;
     }),
+    calendarMonthDisplay: function(year, month) {
+      return moment({
+        year: year,
+        month: month
+      }).format('MMMM YYYY');
+    },
     today: function() {
       var n;
       n = moment();
@@ -698,6 +832,16 @@
       var today;
       today = this.today();
       return today.daysInMonth() - today.date();
+    },
+    sortableMonthKey: function(dateString) {
+      var date;
+      date = moment(dateString);
+      return "" + (date.years()) + "." + (this.paddNumber(date.months()));
+    },
+    paddNumber: function(number) {
+      var padding;
+      padding = number < 10 ? "0" : "";
+      return "" + padding + number;
     }
   });
 

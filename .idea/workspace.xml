@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1571c507-288f-4e61-ad2c-1a662b38a8ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/platforms/ios/DailyGoals.xcodeproj/project.xcworkspace/xcuserdata/ericlifka.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/css/app.css" afterPath="$PROJECT_DIR$/platforms/ios/www/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/app.css" afterPath="$PROJECT_DIR$/www/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/app.less" afterPath="$PROJECT_DIR$/less/app.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/calendar.coffee" afterPath="$PROJECT_DIR$/coffee/calendar.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/data.coffee" afterPath="$PROJECT_DIR$/coffee/data.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/goal.coffee" afterPath="$PROJECT_DIR$/coffee/goal.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee/time.coffee" afterPath="$PROJECT_DIR$/coffee/time.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="daily-goals.iws" />
@@ -31,19 +35,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="calendar.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="calendar.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="30" selection-start="1793" selection-end="1793" vertical-scroll-proportion="0.83516484" vertical-offset="187" max-vertical-offset="975">
+            <state line="91" column="43" selection-start="2512" selection-end="2512" vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="2490">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.less" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="data.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="213" column="17" selection-start="6972" selection-end="6972" vertical-scroll-proportion="0.0" vertical-offset="2917" max-vertical-offset="3675">
+              <folding>
+                <marker date="1386735091000" expanded="true" signature="5930:6958" placeholder="name: &quot;weekly test&quot;..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.less" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/less/app.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="42" selection-start="2622" selection-end="2622" vertical-scroll-proportion="-25.583334" vertical-offset="1651" max-vertical-offset="2460">
+            <state line="143" column="28" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.5525568" vertical-offset="1756" max-vertical-offset="2550">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goal.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/coffee/goal.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="87" column="12" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1425">
               <folding />
             </state>
           </provider>
@@ -52,8 +76,11 @@
       <file leaf-file-name="time.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coffee/time.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="4" selection-start="481" selection-end="481" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
-              <folding />
+            <state line="45" column="53" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+              <folding>
+                <marker date="1386735430000" expanded="true" signature="31:1215" placeholder="todayDisplay: Ember.computed -&gt;&#10;        @today().format 'dddd MMMM Do'..." />
+                <marker date="1386735430000" expanded="true" signature="1144:1215" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,7 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/coffee/app.coffee" />
         <option value="$PROJECT_DIR$/coffee/detail.coffee" />
         <option value="$PROJECT_DIR$/coffee/index.coffee" />
@@ -87,11 +113,12 @@
         <option value="$PROJECT_DIR$/templates/index.hbs" />
         <option value="$PROJECT_DIR$/templates/new.hbs" />
         <option value="$PROJECT_DIR$/coffee/new.coffee" />
-        <option value="$PROJECT_DIR$/coffee/time.coffee" />
-        <option value="$PROJECT_DIR$/coffee/goal.coffee" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/coffee/data.coffee" />
-        <option value="$PROJECT_DIR$/less/app.less" />
+        <option value="$PROJECT_DIR$/coffee/goal.coffee" />
+        <option value="$PROJECT_DIR$/coffee/time.coffee" />
         <option value="$PROJECT_DIR$/coffee/calendar.coffee" />
+        <option value="$PROJECT_DIR$/less/app.less" />
       </list>
     </option>
   </component>
@@ -261,8 +288,8 @@
     <property name="options.lastSelected" value="editor" />
     <property name="last_opened_file_path" value="$USER_HOME$/code/webclient-ember" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -278,6 +305,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -288,23 +323,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -350,7 +377,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17572336" sideWeight="0.6728395" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17501764" sideWeight="0.6728395" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -377,11 +404,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/coffee/app.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="33" selection-start="300" selection-end="300" vertical-scroll-proportion="0.20604396" vertical-offset="0" max-vertical-offset="728" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/application.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="43" selection-start="11" selection-end="11" vertical-scroll-proportion="0.021306818" vertical-offset="0" max-vertical-offset="704" />
@@ -390,11 +412,6 @@
     <entry file="file://$PROJECT_DIR$/www/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.5371901" vertical-offset="390" max-vertical-offset="1515" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/detail.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="4" selection-start="664" selection-end="664" vertical-scroll-proportion="0.4474432" vertical-offset="0" max-vertical-offset="704" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/detail.coffee">
@@ -432,41 +449,56 @@
         <state line="15" column="54" selection-start="412" selection-end="412" vertical-scroll-proportion="0.30906594" vertical-offset="0" max-vertical-offset="1155" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/goal.coffee">
+    <entry file="file://$PROJECT_DIR$/templates/detail.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="2864" selection-end="2864" vertical-scroll-proportion="0.87637365" vertical-offset="547" max-vertical-offset="1275">
-          <folding>
-            <marker date="1385772113000" expanded="true" signature="-1:-1" placeholder="hasEntryForToday: Ember.computed 'lastCompletedOn', -&gt;&#10;        App.time.todaysKey() is @get 'lastCompletedOn'..." />
-          </folding>
+        <state line="22" column="42" selection-start="668" selection-end="696" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="70" selection-start="2434" selection-end="2434" vertical-scroll-proportion="0.9020979" vertical-offset="540" max-vertical-offset="11565">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/data.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="79" selection-start="870" selection-end="870" vertical-scroll-proportion="0.5151099" vertical-offset="135" max-vertical-offset="2940">
+        <state line="213" column="17" selection-start="6972" selection-end="6972" vertical-scroll-proportion="0.0" vertical-offset="2917" max-vertical-offset="3675">
           <folding>
-            <element signature="e#4871#7020#0" expanded="false" />
+            <marker date="1386735091000" expanded="true" signature="5930:6958" placeholder="name: &quot;weekly test&quot;..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/goal.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="12" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1425">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coffee/time.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="4" selection-start="481" selection-end="481" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
+        <state line="45" column="53" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+          <folding>
+            <marker date="1386735430000" expanded="true" signature="31:1215" placeholder="todayDisplay: Ember.computed -&gt;&#10;        @today().format 'dddd MMMM Do'..." />
+            <marker date="1386735430000" expanded="true" signature="1144:1215" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="43" selection-start="2512" selection-end="2512" vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="2490">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/less/app.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="42" selection-start="2622" selection-end="2622" vertical-scroll-proportion="-25.583334" vertical-offset="1651" max-vertical-offset="2460">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/calendar.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="30" selection-start="1793" selection-end="1793" vertical-scroll-proportion="0.83516484" vertical-offset="187" max-vertical-offset="975">
+        <state line="143" column="28" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.5525568" vertical-offset="1756" max-vertical-offset="2550">
           <folding />
         </state>
       </provider>

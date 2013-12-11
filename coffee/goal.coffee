@@ -76,4 +76,14 @@ App.GoalModel = Ember.Object.extend
             currentPeriod is intervalFunction.apply moment entry.date
 
     hasEntryFor: (time) ->
-        _.find @entries, (entry) -> entry.date is time
+        if moment.isMoment time
+            time = time.toISOString()
+
+        _.find @entries, (entry) ->
+            entry.date is time
+
+    monthsWithEntries: ->
+        monthGroups = _.groupBy @entries, (entry) ->
+            App.time.sortableMonthKey entry.date
+
+        _.sortBy _.keys(monthGroups), (i) -> i
