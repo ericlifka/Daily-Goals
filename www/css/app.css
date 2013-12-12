@@ -53,7 +53,7 @@ a:visited {
 }
 .goal-section .goal-list-entry {
   border-bottom: 1px solid lightgray;
-  padding: 5px 0 5px 10px;
+  padding: 7px 0 7px 10px;
   margin: 0px;
 }
 .goal-section .goal-list-entry .goal-title-link {
@@ -65,6 +65,7 @@ a:visited {
   font-weight: lighter;
   background-color: inherit;
   padding-right: 10px;
+  margin-top: -2px;
   color: #428bca;
 }
 .goal-section .goal-list-entry .goal-input {
@@ -129,5 +130,5 @@ a:visited {
   border-left: 5px solid black;
 }
 .detail-page td.today {
-  border-right: 5px solid black;
+  border: 3px solid black;
 }

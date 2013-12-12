@@ -10,6 +10,7 @@ App.CalendarView = Ember.View.extend
         @goal = @get 'controller.model'
         @startDate = moment @goal.get 'startDate'
         @today = App.time.today()
+        @goalPeriod = @goal.get 'frequency.interval'
         @months = @goal.monthsWithEntries()
         @nextMonth()
 
@@ -87,7 +88,7 @@ App.CalendarView = Ember.View.extend
         if @withinGoalRange currentDate
             if @goal.hasEntryFor currentDate
                 @currentCell.addClass 'complete'
-            else
+            else if @goalPeriod is 'day' and @notToday currentDate
                 @currentCell.addClass 'failed'
 
     currentDate: ->
@@ -99,54 +100,5 @@ App.CalendarView = Ember.View.extend
     onOrBefore: (testDate, boundary) ->
         testDate.isBefore(boundary, 'day') or testDate.isSame(boundary, 'day')
 
-
-#    getDateStatus: (year, month, currentDay) ->
-#        date = App.time.date year, month, currentDay
-#        dateKey = App.time.dateKey year, month, currentDay
-#        today = App.time.today()
-#        model = @get 'controller.model'
-#        startDate = moment(model.startDate)
-#        result = ""
-#        if startDate.isSame dateKey
-#            result += " start"
-#        if today.isSame dateKey
-#            result += " today"
-#        if (startDate.isBefore(date) or startDate.isSame(date)) and (date.isBefore(today) or date.isSame(today))
-#            if model.hasEntryFor dateKey
-#                result += " complete"
-#            else
-#                result += " failed"
-
-
-
-#    renderCalendars: ->
-#        today = App.time.today()
-#        @renderForMonth today.month(), today.year()
-#
-#    renderForMonth: (month, year) ->
-#        {start, length} = @getMonthRange month, year
-#        table = @newCalendarTable()
-#        currentDay = 1
-#        while currentDay <= length
-#            currentDay = @addRow table, year, month, currentDay, start, length
-#        @$().append table
-#
-#    newCalendarTable: ->
-#        table = $ '<table>'
-#        header = $ '<tr>'
-#        _.each ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], (day) ->
-#            header.append $('<th>').text day
-#        table.append header
-#
-#    addRow: (table, year, month, currentDay, start, length) ->
-#        row = $ '<tr>'
-#        _.each [0..6], (day) =>
-#            cell = $ '<td>'
-#            if (day >= start or currentDay > 1) and currentDay <= length
-#                cell.text currentDay
-#                cell.addClass @getDateStatus year, month, currentDay
-#                currentDay += 1
-#            row.append cell
-#        table.append row
-#        currentDay
-#
+    notToday: (date) ->
+        not date.isSame @today, 'day'

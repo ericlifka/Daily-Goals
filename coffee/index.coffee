@@ -8,6 +8,9 @@ App.IndexRoute = Ember.Route.extend
 
 
 App.IndexController = Ember.ArrayController.extend
+    showAll: Ember.computed ->
+        true
+
     hasGoals: Ember.computed 'length', ->
         0 < @get 'length'
 

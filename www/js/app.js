@@ -29,6 +29,7 @@
       this.goal = this.get('controller.model');
       this.startDate = moment(this.goal.get('startDate'));
       this.today = App.time.today();
+      this.goalPeriod = this.goal.get('frequency.interval');
       this.months = this.goal.monthsWithEntries();
       return this.nextMonth();
     },
@@ -124,7 +125,7 @@
       if (this.withinGoalRange(currentDate)) {
         if (this.goal.hasEntryFor(currentDate)) {
           return this.currentCell.addClass('complete');
-        } else {
+        } else if (this.goalPeriod === 'day' && this.notToday(currentDate)) {
           return this.currentCell.addClass('failed');
         }
       }
@@ -137,6 +138,9 @@
     },
     onOrBefore: function(testDate, boundary) {
       return testDate.isBefore(boundary, 'day') || testDate.isSame(boundary, 'day');
+    },
+    notToday: function(date) {
+      return !date.isSame(this.today, 'day');
     }
   });
 
@@ -625,6 +629,9 @@
   });
 
   App.IndexController = Ember.ArrayController.extend({
+    showAll: Ember.computed(function() {
+      return true;
+    }),
     hasGoals: Ember.computed('length', function() {
       return 0 < this.get('length');
     }),
